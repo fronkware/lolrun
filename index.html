@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOLRUN.COM</title>
+    <title>lolrun</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -11,24 +11,19 @@
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
         }
 
         header {
-            margin-bottom: 40px;
             text-align: center;
+            background-color: #eee;
+            padding: 10px 0;
+            cursor: pointer;
         }
 
         .logo {
             display: inline-grid;
             grid-template-columns: repeat(3, 30px);
             grid-gap: 5px;
-            justify-content: center;
-            margin: 0 auto;
         }
 
         .logo div {
@@ -44,57 +39,63 @@
             text-transform: uppercase;
         }
 
-        nav {
-            text-align: left;
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        table {
             margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        table tr {
+            cursor: pointer;
         }
 
-        nav ul li {
-            margin: 15px 0;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
+        table td {
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: left;
             font-size: 18px;
         }
 
-        footer {
-            margin-top: 40px;
+        table tr:hover {
+            background-color: #f0f0f0;
         }
 
-        .runner {
-            font-family: monospace;
-            font-size: 16px;
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #eee;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <header onclick="location.href='index.html'">
         <div class="logo">
             <div>l</div><div>o</div><div>l</div>
             <div>r</div><div>u</div><div>n</div>
         </div>
     </header>
-    <nav>
-        <ul>
-            <li><a href="news.html">📰 News Links</a></li>
-            <li><a href="treadmills.html">🏃‍♂️ Treadmill/Cardio Equipment</a></li>
-            <li><a href="calculator.html">📏 Speed/Distance/Time Calculator</a></li>
-        </ul>
-    </nav>
+    <main>
+        <table>
+            <tr onclick="location.href='news.html'">
+                <td>📰 News Links</td>
+            </tr>
+            <tr onclick="location.href='treadmills.html'">
+                <td>🏃‍♂️ Treadmill/Cardio Equipment</td>
+            </tr>
+            <tr onclick="location.href='calculator.html'">
+                <td>📏 Speed/Distance/Time Calculator</td>
+            </tr>
+        </table>
+    </main>
     <footer>
-        <pre class="runner">
-           _O_
-          /   \
-          |   |
-        </pre>
+        This is the homepage for cardio equipment.
     </footer>
 </body>
 </html>
