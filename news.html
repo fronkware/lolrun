@@ -44,6 +44,27 @@
             text-align: left;
             padding: 20px;
         }
+        
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        table tr {
+            cursor: pointer;
+        }
+
+        table td {
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
 
         footer {
             text-align: center;
@@ -64,7 +85,20 @@
     <main>
         <h1>News Links</h1>
         <p>Minimalist news sites</p>
-        <ul>
+         <table>
+            <tr onclick="location.href='"https://text.npr.org'">
+                <td>📰 NPR [Text only]/td>
+            </tr>
+            <tr onclick="location.href='treadmills.html'">
+                <td>🏃‍♂️ Treadmill/Cardio Equipment</td>
+            </tr>
+            <tr onclick="location.href='calculator.html'">
+                <td>📏 Speed/Distance/Time Calculator</td>
+            </tr>
+            <tr onclick="location.href='videos.html'">
+                <td>🎥 Videos of first person stabilized runs</td>
+            </tr>
+        </table>
             <li><a href="https://text.npr.org" target="_blank">NPR [Text only]</a></li>
             <li><a href="https://lite.pbs.org" target="_blank">PBS [Text only]</a></li>
             <li><a href="https://hckrnews.com" target="_blank">Hacker News [Simple]</a></li>
