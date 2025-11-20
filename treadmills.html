@@ -6,11 +6,13 @@
     <title>Treadmill Equipment - lolrun</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
             margin: 0;
             padding: 0;
+            font-size: 16px; /* Slightly adjusted for readability in tables */
+            line-height: 1.5;
         }
 
         header {
@@ -40,9 +42,74 @@
         }
 
         main {
+            max-width: 900px;
+            margin: 0 auto;
             text-align: left;
             padding: 20px;
         }
+
+        /* Expanding Table Styles */
+        details {
+            margin-bottom: 1rem;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 15px;
+            background-color: #eaeaea;
+            list-style: none; /* Hides default triangle in some browsers */
+        }
+        
+        summary::-webkit-details-marker {
+            display: none; /* Hides default triangle in Chrome/Safari */
+        }
+
+        summary::after {
+            content: '+'; 
+            float: right;
+            font-weight: bold;
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            text-align: left;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        /* Instructions list inside table */
+        td ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        td ul li {
+            margin-bottom: 5px;
+        }
+
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
         footer {
             text-align: center;
@@ -50,6 +117,16 @@
             margin-top: 20px;
             background-color: #eee;
             font-size: 14px;
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #121212; color: #e0e0e0; }
+            header, footer, summary, th { background-color: #1e1e1e; color: #fff; }
+            details { background-color: #1e1e1e; border-color: #333; }
+            td, th { border-color: #333; }
+            .logo div { border: 1px solid #555; }
+            a { color: #8ab4f8; }
         }
     </style>
 </head>
@@ -61,128 +138,212 @@
         </div>
     </header>
     <main>
-     <p><strong>Disclaimer</strong>:</p>
-<p><i>This site, lolrun, assumes you have approval to modify the cardio equipment settings, and you are capable of advanced technical troubleshooting to handle cases where adjusting settings creates unintended consequences, such as unresponsive screens, and you are doing these adjustments in a safe environment.</i></p>
-<p><i>If you’re using public gym equipment, you are likely not approved to make changes, so think that through and consider what would happen if you changed settings which prevent others from using the equipment as intended.</i></p>
-<p><strong>Follow the instructions for each cardio equipment manufacturer only if you understand the disclaimer above.</strong></p>
-<ul>
-    <li>General tips for all cardio equipment<ul>
-            <li>For changing machine settings: search for the manual of the equipment and look for “factory”/“engineering”/“maintenance” modes which explain how to change factory settings</li>
-            <li>For accessing the computer/android table: most treadmills with touchscreens are either android or windows tablets with kiosk modes preventing you from accessing the operating system behind the cardio application. BUT, clever poking around will usually get you past this cardio application. <ul>
-                    <li>Language changes: most developers don’t test their applications in other languages. Changing the language to something less commmon often gives you the default android/windows keyboard which allows you to quickly get into settings. Android: hold the spacebar or the globe icon, then access settings from there. Windows: Oh my goodness the number of times I could just type CTRL+SHIFT+ESC and get the command prompt at admin level is frightening. If you don’t understand why that’s frightentining, ask your favorite LLM. Windows keyboards also often will help you get out of kiosk mode with WIN+D or tab or anything else</li>
-                    <li>Slowing down the UI: most developers of kiosk modes that prevent you from accessing normally available menu bars utilize the operation system’s ability to hide the menu bars. This hiding of menu bars happens sometimes by increasing the animation speed to hide them to something crazy fast, so you’ll never see the menu bars…unless the operating system is overloaded and then you can se the menu bars (such as changing the language to Japanese, then back to English, then changing apps, then you spot the android/windows bar, which you can tap to access settings). Other times, the menu bars IS hidden and you cannot see it, BUT the buttons that normally would be there are available and you can tap the screen in that location to bring up the android/windows settings</li>
-                    <li>Through an oddball app: cardio equipment manufacturers love to add loads of apps to their machines, where a few might have a forgotten “debug” or “demo” function that leads you right to a full-access web-browser. (Often news or welness apps)</li>
-                    <li>“Wait that works?”: open up any application that lets you type something, such as a the Peacock TV application “find channel”, type in www.lolrun.com , then highlight the text, on the pop-up, select “visit website”. Sometimes works</li>
-                    <li>Brute force: open apps until you get one that has a settings page/about us/security, which often leads to a URL you can tap on, bringing you to services they use, often leads to google, then you can enter the web that way</li>
-                    <li>Freeze an application: Be careful with this one, you don’t want to make the machine unusable for the next person, but if you’re good at jumping around to different applications and can think through what causes high CPU load, then do that and then try to input something into an input field of an app that’s loading, android will often tell you “this app is unresponsive” which sometimes can be the UI itself, and then ending it will give you android access</li>
-                    <li>Deep settings: The cardio equipment has settings you’re supposed to access as a user, such as language, accessibility, Bluetooth pairing, etc. Those settings pages often have deeper settings (such as the “accessibility” page having a page to “font sizes” which leads to “captioning options” which leads to “color selection” which leads to “image browser” which leads a file navigator…). Sometimes these lead to useful pages.</li>
-                    <li>USB: risky, but most cardio equipment have USB ports that you can plug a USB stick into and load files directly to the machine. Some cardio equipment will just have a file browser pop-up on USB insertion and you can go from there. Just be careful, some cardio equipment will ask if you want to load machine settings from the USB stick and you don’t want to override anything you can’t restore. </li>
-                    <li>I just want to take a moment to say how neat it is that if you smear and tap your fingers in the right order in the right places on a treadmill, you <i>could</i> order a pizza. Explain that to someone from 2000. Can’t wait for 2050 when licking your teeth in a specific order and location can get you a drone delivered banana.</li>
-                    <li>Right, cardio equipment.</li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li>Matrix Cardio Equipment<ul>
-            <li>Android Root Access</li>
-            <li>(NEW) Increase speeds/access Team Viewer/other wonderful settings/see what wonderful power Matrix has <ul>
-                    <li>Most settings can be accessed during a workout, but encouraged to only change them when standing still</li>
-                    <li>Hold the MATIRX logo at the top of the machine (or the gym’s logo) for 4 seconds until a pop-up shows product dashboard</li>
-                    <li>You can reboot the screen from here, access ErP (not recommended), see the TeamViewer controls, bandwidth test, enable out-of order screen, or “Machine Settings” which is what you need to tap to change speed and other defaults on the machine</li>
-                    <li>Machine settings: Password needed which is 3001, default from the user manual (Warning, the following settings will change machine behavior)<ul>
-                            <li>WORKOUT: change the settings for the workout-maximum time, maximum level (for climbmills, 25 is max), pause time, other defaults </li>
-                            <li>APPLICATIONS: Change what applications are shown, drag and drop them from the available screen to the unavailable (this is where you can add a web browser)</li>
-                            <li>Other settings, change the default browser homepage to lolrun.com</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>(Older Touch screens)<ul>
-                    <li>Before starting the workout type [ENTER] 2 0 0 8 [ENTER] to bring up engineering mode. Change the settings similar to what’s described above</li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li>Precor<ul>
-            <li>Android settings access (NEW touchscreens)<ul>
-                    <li>This is a fun one</li>
-                    <li>Begin workout</li>
-                    <li>Switch to any other language, then change back to English. This slows down the user interface where you can see the android animations and tap the menus to access settings</li>
-                    <li>Tap the upper left menu [|||] icon, and notice the lower left of the screen briefly shows a clock/ other android settings, your goal is to tap this before it disappears. Two hands are best used, going between tapping the upper left menu [|||] first and the second hand trying to tap the clock. Try a few times and eventually you’ll get into the android settings page</li>
-                    <li>You’re in! Nice things to do here are connect to WiFi, change browser default homepage (lolrun.com), enable developer mode if you want to install apps via USB. </li>
-                    <li>Enable visual touch: scroll down in settings, about→version→tap 5 times quickly in a row, you’re now a developer, go back, access developer options, turn on “show touches” </li>
-                    <li>These newer screens run some adapted version of peloton’s UI, so you can start/stop processes to “killl” the overlay and get even more android access (WARNING, THIS OFTEN REQUIRES A RESTART TO GET OUT OF TROUBLE, don’t kill apps if you can’t restart the equipment)</li>
-                </ul>
-            </li>
-            <li>Android settings access (OLDER touchscreens)<ul>
-                    <li>Set language to South Korean (most non-English languages will work, and try the below up to the keyboard step first in English to familiarize yourself with where to click)</li>
-                    <li>Begin workout</li>
-                    <li>Open apps</li>
-                    <li>Visit settings</li>
-                    <li>Start demo mode</li>
-                    <li>Visit other offers</li>
-                    <li>See “yoga”</li>
-                    <li>2nd web browser will open up, use this if one isn’t already enabled</li>
-                    <li>With keyboard open, hold down on the globe icon to bring up keyboard settings</li>
-                    <li>Select the rightmost option to bring up android keyboard settings</li>
-                    <li>You’re in! Nice things to do here are connect to WiFi, change browser default homepage (lolrun.com), enable developer mode if you want to install apps via USB. Make sure to change the language to English in the settings so you can navigate easier. </li>
-                    <li>Enable visual touch: scroll down in settings, about→version→tap 5 times quickly in a row, you’re now a developer, go back, access developer options, turn on “show touches” </li>
-                    <li>Use back button on treadmill to exit</li>
-                </ul>
-            </li>
-            <li>&nbsp;</li>
-        </ul>
-    </li>
-    <li>LifeFitness<ul>
-            <li>(OLDER equipment)I’ll come back here, there’s a combination of button presses to enable marathon mode (unlimited duration), increase maximum speeds (14mph/23kph, yay), change motor parameters such as acceleration/deceleration, etc. It’s a little unintuitive since you are going through an LED scrollable array of parameters</li>
-        </ul>
-    </li>
-    <li>STARTRAC<ul>
-            <li>(Older equipment), I’ll come back here, there’s a combination of button presses to enable marathon mode (unlimited duration), increase maximum speed (12.4/20kph), etc. It’s a little unintuitive since you are going through an LED scrollable array of parameters</li>
-        </ul>
-    </li>
-    <li>Other models</li>
-</ul>
-<p><strong>Frequently Asked Questions</strong></p>
-<ol>
-    <li>I changed something and can't undo it, how do I change it back?<ol>
-            <li>Find the manual for your cardio equipment, perform a factory reset. Some situations may be resolved with a power cycle; most on/off switches are located near the ground at the front of the equipment and will need to be left off for a few seconds before turning back on</li>
-        </ol>
-    </li>
-    <li>My treadmill/bike/climbmill/etc. isn't listed above, what should I do?<ol>
-            <li>If the user interface (screen) for what you want to change looks like others by the same manufacturer, try those at your own risk.</li>
-        </ol>
-    </li>
-    <li>Is it good that most cardio equipment has touch screens with a computer?<ol>
-            <li><strong><u>No</u></strong>.</li>
-        </ol>
-    </li>
-    <li>Why?<ol>
-            <li>I'll start with the easy cons: sweaty fingers work better with buttons than touch-screens and most models remove buttons to change speed/settings with touch-screen controls, &nbsp;your gym now needs an IT consulting group to manage these internet-connected devices (and if they don't, I'm sure hackers are happy), more of your data is likely going to corporations (probably the usual stuff like speed and use time, but they also can see your Bluetooth ID on your phone if they wanted and build up individual profiles, maybe pair that with the gym membership list and talk to your healthcare provider how much you actually work out, adjusting group rates, maybe follow exactly what car companies and insurance groups already do)</li>
-        </ol>
-    </li>
-    <li>Sure, but it's nice to have something to look at during the workout, right?<ol>
-            <li>Even if your equipment works with great apps for entertainment right now, it's highly unlikely your gym will keep the equipment up to date, unlikely the manufacturer will update the android/windows tablet, and unlikely that the internet/app you're using will remain compatible in a few years. Even worse, manufacturers can and have “bricked” features that you own, see here. It'd be much better if the cardio equipment controls were separate buttons and an LED display with the basics, and a 2nd touch screen solely for mirroring USB-C input from your phone. Notice how your car's media controls are separate from the actual driving of the car.</li>
-        </ol>
-    </li>
-    <li>I really don't see the big deal?<ol>
-            <li>That's ok. But touch screens on cardio equipment still bother me. ONE (1) new climbmill costs $20,000, this treadmill costs $15,000. Look around at any modern gym, assume they replace them every 5 years, do the math and figure out how much of your membership goes towards these $$ machines, and it's very likely the gym bought them with touch screens because that makes them look more modern and capable. BUT, a truly more capable treadmill would be one that can go faster! I'll expand on this example: I'm not saying you can't have a treadmill with a touch screen and have high speed settings, but I have been noticing 16 mph (26kph) treadmills are basically extinct at gyms, 14mph (23kph) ones are endangered, and the 12.4 mph (20kph) &nbsp;are getting replaced by the 12mph (19kph) variants. I know nearly all the speeds mentioned are out of reach of most average runners, but it represents a cultural shift towards entertainment over working out.</li>
-            <li>You're still thinking that 12 (19kph) should be more than enough, and wonder why you and I are having this imaginary back-and-forth on this site in the FAQ section under my anti-touch-screen stance. I'll consider you a friend now, and I'm happy we've chatted this far. Dear friend, I want you to imagine how fast the fastest sprinters go at the Olympics. Yes, that's very fast, treadmills shouldn't go that fast, that'd be dangerous. Now slow down that runner until they're at a run that's barely fast enough to qualify for the marathon: 12.2mph/19.6kph for men and 10.7mph/17.2kph for women, and the men’s record is at 13mph/21kph, women’s is at 12.1/19.5 kph. Those speeds are held for HOURS, so it’s a little ridulous most treadmills can’t go that fast to let you do a 20 second sprint. Imagine the gym gets a new weight set with weights with built-in counters that tell you how many reps you’ve done, but to keep the price competitive, the weights only go up to 40lbs instead of 50lbs (22.6kg→18kg). Reducing motor speeds isn’t inclusive, and can increase how often a treadmill replacement is needed, since slower motors for treadmills means they will be operating closer at maximum capacity for longer. We’re losing as consumers. </li>
-        </ol>
-    </li>
-    <li>Why lolrun?<ol>
-            <li>Oh, yes, sorry for getting a little excited with my answers above. It’s easy to remember, and easy to type. Also, it’s how I feel when I walk up to a treadmill that asks me for a login, then after finding the guest/quick start, it asks about a workout I want to do, and I think “lol, run”, where this site offers a few tips on how to just “lol, run”. Or when I see it has a web browser and want to go to google or some news site, but the browser is so underpowered and I just want the browser to “lol, run”, so this site is made very basic to “lol, run”. Or when I’m on a treadmill that has a maximum speed of something slow and it feels like a jog, and I want to “lol, run”, so this site explains how to make your treadmill faster to “lol, run”.&nbsp;</li>
-        </ol>
-    </li>
-    <li>
-        <p>How do I contact you?&nbsp;</p>
+        <p><strong>Disclaimer</strong>:</p>
+        <p><i>This site, lolrun, assumes you have approval to modify the cardio equipment settings, and you are capable of advanced technical troubleshooting to handle cases where adjusting settings creates unintended consequences, such as unresponsive screens, and you are doing these adjustments in a safe environment.</i></p>
+        <p><i>If you’re using public gym equipment, you are likely not approved to make changes, so think that through and consider what would happen if you changed settings which prevent others from using the equipment as intended.</i></p>
+        <p><strong>Follow the instructions for each cardio equipment manufacturer only if you understand the disclaimer above.</strong></p>
+
+        <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
+
+        <details>
+            <summary>General Tips (All Equipment)</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%">Type</th>
+                        <th style="width: 65%">Instructions</th>
+                        <th style="width: 15%">Video</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Search Manuals</td>
+                        <td>Search for the manual of the equipment and look for “factory”/“engineering”/“maintenance” modes which explain how to change factory settings.</td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                    <tr>
+                        <td>Touchscreens / Kiosk Mode Bypass</td>
+                        <td>
+                            Most treadmills with touchscreens are either android or windows tablets with kiosk modes. Tricks to bypass:
+                            <ul>
+                                <li><strong>Language changes:</strong> Changing language often loads a default keyboard. Android: hold spacebar/globe to access settings.</li>
+                                <li><strong>Slowing down UI:</strong> Switch languages rapidly (e.g., English -> Japanese -> English) to lag the OS and reveal menu bars.</li>
+                                <li><strong>Oddball apps:</strong> Look for "debug" or "demo" functions in news/wellness apps.</li>
+                                <li><strong>"Wait that works?":</strong> In apps like Peacock TV, type "www.lolrun.com" in search, highlight text, select "visit website".</li>
+                                <li><strong>Brute force:</strong> Open apps until one crashes or shows an "About Us" link to a browser.</li>
+                                <li><strong>Deep settings:</strong> Look for "accessibility" -> "font sizes" -> "captioning" -> "file browser".</li>
+                                <li><strong>USB:</strong> Plug in a USB stick; sometimes a file browser pops up.</li>
+                            </ul>
+                        </td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary>Matrix</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%">Model</th>
+                        <th style="width: 65%">Instructions</th>
+                        <th style="width: 15%">Video</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>New Touchscreens</td>
+                        <td>
+                            <strong>Increase speeds / Access TeamViewer / Machine Settings:</strong>
+                            <ul>
+                                <li>Hold the MATRIX logo at the top of the screen (or the gym’s logo) for 4 seconds until a dashboard pops up.</li>
+                                <li>Tap "Machine Settings".</li>
+                                <li><strong>Password:</strong> 3001 (default).</li>
+                                <li><strong>WORKOUT:</strong> Change max time, max level (climbmills max 25), pause time.</li>
+                                <li><strong>APPLICATIONS:</strong> Drag and drop apps (add web browser here).</li>
+                                <li>Change default browser homepage to lolrun.com.</li>
+                            </ul>
+                        </td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                    <tr>
+                        <td>Older Touchscreens</td>
+                        <td>
+                            Before starting the workout, type: <strong>[ENTER] 2 0 0 8 [ENTER]</strong> to bring up engineering mode. Change settings similar to above.
+                        </td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary>Precor</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%">Model</th>
+                        <th style="width: 65%">Instructions</th>
+                        <th style="width: 15%">Video</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>New Touchscreens (Android)</td>
+                        <td>
+                            <ul>
+                                <li>Begin workout.</li>
+                                <li>Switch to another language, then back to English. This slows down the UI.</li>
+                                <li>Tap the upper left menu [|||]. Notice the lower left shows a clock briefly.</li>
+                                <li>Use two hands: Tap upper left [|||], then immediately tap the clock in lower left. Eventually, you will hit the Android settings.</li>
+                                <li><strong>Nice changes:</strong> Connect WiFi, change homepage, enable developer mode (tap Build Number 5 times in About).</li>
+                                <li><strong>Note:</strong> These run a version of Peloton UI. You can kill processes to get more access, but this may require a restart.</li>
+                            </ul>
+                        </td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                    <tr>
+                        <td>Older Touchscreens</td>
+                        <td>
+                            <ul>
+                                <li>Set language to South Korean (or non-English).</li>
+                                <li>Begin workout -> Open apps -> Visit settings -> Start demo mode.</li>
+                                <li>Visit "other offers" -> See "yoga".</li>
+                                <li>A 2nd web browser will open.</li>
+                                <li>With keyboard open, hold down on the globe icon -> Select rightmost option for Android keyboard settings.</li>
+                                <li>You are now in Settings. Change language back to English here for easier navigation.</li>
+                            </ul>
+                        </td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary>LifeFitness</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%">Model</th>
+                        <th style="width: 65%">Instructions</th>
+                        <th style="width: 15%">Video</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Older Equipment</td>
+                        <td>
+                            (Placeholder) There’s a combination of button presses to enable marathon mode (unlimited duration), increase maximum speeds (14mph/23kph), and change motor parameters. It involves an LED scrollable array of parameters.
+                        </td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary>StarTrac</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%">Model</th>
+                        <th style="width: 65%">Instructions</th>
+                        <th style="width: 15%">Video</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Older Equipment</td>
+                        <td>
+                            (Placeholder) There’s a combination of button presses to enable marathon mode (unlimited duration) and increase maximum speed (12.4/20kph). Involves LED scrollable array.
+                        </td>
+                        <td><a href="#">View Video</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <hr style="border: 0; border-top: 1px solid #ccc; margin: 40px 0;">
+
+        <h3>Frequently Asked Questions</h3>
         <ol>
-            <li>F r o n k w a r e at g m a i l, checked monthly (remove spaces, replace at with @)</li>
+            <li><strong>I changed something and can't undo it, how do I change it back?</strong><br>
+                Find the manual for your cardio equipment, perform a factory reset. Some situations may be resolved with a power cycle; most on/off switches are located near the ground at the front of the equipment and will need to be left off for a few seconds before turning back on.
+            </li>
+            <br>
+            <li><strong>My treadmill/bike/climbmill/etc. isn't listed above, what should I do?</strong><br>
+                If the user interface (screen) for what you want to change looks like others by the same manufacturer, try those at your own risk.
+            </li>
+            <br>
+            <li><strong>Is it good that most cardio equipment has touch screens with a computer?</strong><br>
+                <u>No</u>.
+            </li>
+            <br>
+            <li><strong>Why?</strong><br>
+                I'll start with the easy cons: sweaty fingers work better with buttons than touch-screens and most models remove buttons to change speed/settings with touch-screen controls, your gym now needs an IT consulting group to manage these internet-connected devices (and if they don't, I'm sure hackers are happy), more of your data is likely going to corporations (probably the usual stuff like speed and use time, but they also can see your Bluetooth ID on your phone if they wanted and build up individual profiles, maybe pair that with the gym membership list and talk to your healthcare provider how much you actually work out, adjusting group rates, maybe follow exactly what car companies and insurance groups already do).
+            </li>
+            <br>
+            <li><strong>Sure, but it's nice to have something to look at during the workout, right?</strong><br>
+                Even if your equipment works with great apps for entertainment right now, it's highly unlikely your gym will keep the equipment up to date, unlikely the manufacturer will update the android/windows tablet, and unlikely that the internet/app you're using will remain compatible in a few years. Even worse, manufacturers can and have “bricked” features that you own, see here. It'd be much better if the cardio equipment controls were separate buttons and an LED display with the basics, and a 2nd touch screen solely for mirroring USB-C input from your phone. Notice how your car's media controls are separate from the actual driving of the car.
+            </li>
+            <br>
+            <li><strong>I really don't see the big deal?</strong><br>
+                That's ok. But touch screens on cardio equipment still bother me. ONE (1) new climbmill costs $20,000, this treadmill costs $15,000. Look around at any modern gym, assume they replace them every 5 years, do the math and figure out how much of your membership goes towards these $$ machines, and it's very likely the gym bought them with touch screens because that makes them look more modern and capable. BUT, a truly more capable treadmill would be one that can go faster! I'll expand on this example: I'm not saying you can't have a treadmill with a touch screen and have high speed settings, but I have been noticing 16 mph (26kph) treadmills are basically extinct at gyms, 14mph (23kph) ones are endangered, and the 12.4 mph (20kph) are getting replaced by the 12mph (19kph) variants. I know nearly all the speeds mentioned are out of reach of most average runners, but it represents a cultural shift towards entertainment over working out.
+                <br><br>
+                You're still thinking that 12 (19kph) should be more than enough, and wonder why you and I are having this imaginary back-and-forth on this site in the FAQ section under my anti-touch-screen stance. I'll consider you a friend now, and I'm happy we've chatted this far. Dear friend, I want you to imagine how fast the fastest sprinters go at the Olympics. Yes, that's very fast, treadmills shouldn't go that fast, that'd be dangerous. Now slow down that runner until they're at a run that's barely fast enough to qualify for the marathon: 12.2mph/19.6kph for men and 10.7mph/17.2kph for women, and the men’s record is at 13mph/21kph, women’s is at 12.1/19.5 kph. Those speeds are held for HOURS, so it’s a little ridulous most treadmills can’t go that fast to let you do a 20 second sprint. Imagine the gym gets a new weight set with weights with built-in counters that tell you how many reps you’ve done, but to keep the price competitive, the weights only go up to 40lbs instead of 50lbs (22.6kg→18kg). Reducing motor speeds isn’t inclusive, and can increase how often a treadmill replacement is needed, since slower motors for treadmills means they will be operating closer at maximum capacity for longer. We’re losing as consumers.
+            </li>
+            <br>
+            <li><strong>Why lolrun?</strong><br>
+                Oh, yes, sorry for getting a little excited with my answers above. It’s easy to remember, and easy to type. Also, it’s how I feel when I walk up to a treadmill that asks me for a login, then after finding the guest/quick start, it asks about a workout I want to do, and I think “lol, run”, where this site offers a few tips on how to just “lol, run”. Or when I see it has a web browser and want to go to google or some news site, but the browser is so underpowered and I just want the browser to “lol, run”, so this site is made very basic to “lol, run”. Or when I’m on a treadmill that has a maximum speed of something slow and it feels like a jog, and I want to “lol, run”, so this site explains how to make your treadmill faster to “lol, run”.
+            </li>
+            <br>
+            <li>
+                <strong>How do I contact you?</strong><br>
+                F r o n k w a r e at g m a i l, checked monthly (remove spaces, replace at with @)
+            </li>
         </ol>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-    </li>
-</ol>
     </main>
     <footer>
         This is the homepage for cardio equipment.
