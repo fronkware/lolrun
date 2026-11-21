@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+                                     ______________
+                        .////.      /   lolrun.com   \
+                        /// 6|    /  only using HTML |
+                        //  _|___/___________________/
+                       _/_,-'
+                  _.-/'/   \   ,/;,
+               ,-' /'  \_   \ / _/
+               `\ /     _/\  ` /
+                 |     /,  `\_/
+                 |     \'
+     /\_        /`      /\
+   /' /_``--.__/\  `,. /  \
+  |_/`  `-._     `\/  `\   `.
+            `-.__/'     `\   |
+                          `\  \
+                            `\ \
+                              \_\__
+                               \___)
+    
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lolrun</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            background-color: #eee;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+
+        .logo {
+            display: inline-grid;
+            grid-template-columns: repeat(3, 30px);
+            grid-gap: 5px;
+        }
+
+        .logo div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #000;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        table tr {
+            cursor: pointer;
+        }
+
+        table td {
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #eee;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="location.href='index.html'">
+        <div class="logo">
+            <div>l</div><div>o</div><div>l</div>
+            <div>r</div><div>u</div><div>n</div>
+        </div>
+    </header>
+    <main>
+        <table>
+            <tr onclick="location.href='news.html'">
+                <td>📰 News Links</td>
+            </tr>
+            <tr onclick="location.href='treadmills.html'">
+                <td>🏃‍♂️ Treadmill/Cardio Equipment</td>
+            </tr>
+            <tr onclick="location.href='calculator.html'">
+                <td>📏 Speed/Distance/Time Calculator</td>
+            </tr>
+            <tr onclick="location.href='videos.html'">
+                <td>🎥 Videos of first person stabilized runs</td>
+            </tr>
+        </table>
+    </main>
+    <footer>
+        This is the homepage for cardio equipment.
+    </footer>
+</body>
+</html>
