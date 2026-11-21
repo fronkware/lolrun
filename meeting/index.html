@@ -6,7 +6,11 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>No Meeting Is Safe</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="No meeting is safe if you don't know the land speed of the nearest zoo animal. A joke way to learn how fast zoo animals travel.">
+<meta name="description" content="No meeting is safe if you don't know the land speed of the nearest escaped animal.">
+<meta property="og:title" content="No Meeting Is Safe">
+<meta property="og:description" content="No meeting is safe if you don't know the land speed of the nearest escaped animal.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
@@ -340,7 +344,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 .dielbl{position:absolute;right:calc(100% + 4px);white-space:nowrap;font-size:.8rem;font-weight:700;opacity:0;pointer-events:none;color:inherit}
 .dielbl.show{animation:dielbl 1.8s ease-out}
 @keyframes dielbl{0%{opacity:0;transform:translateX(8px)}15%,70%{opacity:.75;transform:none}100%{opacity:0}}
-.sv-die{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:max(14px,env(safe-area-inset-right,0px))}
+.sv-die-old{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:max(14px,env(safe-area-inset-right,0px))}
 .sv-die .die{opacity:.6;font-size:22px}
 .sv-die .dielbl{color:#fff}
 .zoombtns .dielbl{color:var(--ink)}
@@ -348,6 +352,22 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 .sv-toast{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 200px);transform:translateX(-50%);max-width:calc(100% - 40px);background:rgba(255,255,255,.95);color:#111;font-weight:700;font-size:.95rem;padding:10px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.2);text-align:center;z-index:3}
 .sv-toast.in{animation:svtoast .35s cubic-bezier(.3,1.5,.5,1)}
 @keyframes svtoast{from{transform:translateX(-50%) translateY(14px) scale(.9);opacity:0}}
+
+.modebtns{display:flex;gap:8px}
+.modebtn{flex:1;border:0;border-radius:12px;padding:9px 10px;font-weight:700;font-size:.9rem;background:var(--soft);color:var(--sea);display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.modebtn.on{background:color-mix(in srgb,var(--sea) 14%,var(--card));color:var(--ink)}
+.sv-cmp{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:max(14px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;align-items:flex-end;gap:2px;z-index:2}
+.cmpbtn{border:0;background:rgba(255,255,255,.2);border-radius:50%;width:42px;height:42px;font-size:22px;opacity:.6;cursor:pointer}
+.cmpbtn.nudge{animation:cmpnudge 1.6s ease-in-out infinite}
+@keyframes cmpnudge{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-18deg)}80%{transform:rotate(14deg)}90%{transform:rotate(-8deg)}}
+.cmpbtn.on{opacity:1;background:rgba(255,255,255,.35);animation:none}
+.cmplbl{font-size:.72rem;font-weight:600;opacity:.75;max-width:120px;text-align:right;line-height:1.2}
+.sv-die2{justify-content:flex-end}
+.sv-die2 .die{opacity:.6;font-size:24px}
+.sv-die2 .dielbl{color:#fff;right:auto;position:static;margin-right:6px}
+.sv-die2 .dielbl:not(.show){visibility:hidden}
+.toast,.sv-toast{white-space:pre-line}
+.sv-toast{border-radius:18px;max-width:min(330px,calc(100% - 40px));font-size:.9rem}
 </style>
 </head>
 <body>
@@ -393,10 +413,10 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
         <p class="pitch" id="footnote">*you're never more than a few hours from a bear.</p>
         <button class="gate huge" id="startMeet" type="button">▶ Start meeting</button>
         <div class="chips sm" id="durations" role="radiogroup" aria-label="Meeting length"></div>
-        <nav class="modes" role="tablist" aria-label="Mode">
-          <button role="tab" id="tabMeet" aria-selected="true" aria-controls="meetRail">Meeting</button>
-          <button role="tab" id="tabGame" aria-selected="false" aria-controls="gameRail">Daily<span class="long"> game</span> <span class="badge" id="dayBadge">#1</span></button>
-        </nav>
+        <div class="modebtns">
+          <button class="modebtn on" id="tabMeet" type="button">Meeting</button>
+          <button class="modebtn" id="tabGame" type="button">Daily Challenge <span class="badge" id="dayBadge">#1</span></button>
+        </div>
       </div>
       <div class="overlay runbar" id="runbar" hidden>
         <div class="rclock mono"><span id="rClock">0:00</span><span class="of"> / <span id="rT">30:00</span></span></div>
@@ -435,12 +455,19 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
       <div class="recap" id="recap" hidden>
         <h3 id="recapTitle"></h3>
         <p id="recapBody"></p>
-        <div class="row2"><button class="share" id="recapShare" type="button">Copy my result</button><button class="gate" id="recapGame" type="button" style="font-size:1rem;padding:10px 14px">Play today's daily game →</button></div>
+        <div class="row2"><button class="share" id="recapShare" type="button">Copy my result</button><button class="gate" id="recapGame" type="button" style="font-size:1rem;padding:10px 14px">Play today's Daily Challenge →</button></div>
       </div>
       <div class="ticker" id="ticker"></div>
+      <div class="row2"><button class="ghost" id="preview" type="button">▶ 10-second preview</button><button class="share" id="share" type="button">Copy my result</button></div>
+      <textarea class="sharetext" id="shareText" readonly hidden aria-label="Result text to copy"></textarea>
+      <div class="teaser">
+        <div class="eyebrow">Zoo Stack · Daily Challenge <span id="teaseNo"></span></div>
+        <p id="teaseText">Everyone gets the same city each day, and its 10 nearest zoo animals charge at you. Catch them on your shield and stack them tall and straight.</p>
+        <button class="ghost" id="teaseGo" type="button">Play today's game →</button>
+      </div>
       <div>
-        <div class="eyebrow">Wildcards, rolled when you start</div>
-        <ul class="wild" id="wild"></ul>
+        <div class="eyebrow">Local wildlife</div>
+        <ul class="wild" id="localWild"></ul>
       </div>
       <div>
         <div class="eyebrow" id="chartLabel">Who shows up, and when</div>
@@ -451,15 +478,12 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
         </div>
       </div>
       <div>
+        <div class="eyebrow">Wildcards, rolled when you start</div>
+        <ul class="wild" id="wild"></ul>
+      </div>
+      <div>
         <div class="eyebrow" id="listLabel">Arrival order</div>
         <ol class="list" id="list"></ol>
-      </div>
-      <div class="row2"><button class="ghost" id="preview" type="button">▶ 10-second preview</button><button class="share" id="share" type="button">Copy my result</button></div>
-      <textarea class="sharetext" id="shareText" readonly hidden aria-label="Result text to copy"></textarea>
-      <div class="teaser">
-        <div class="eyebrow">Zoo Stack · daily <span id="teaseNo"></span></div>
-        <p id="teaseText">Everyone gets the same city each day, and its 10 nearest zoo animals charge at you. Catch them on your shield and stack them tall and straight.</p>
-        <button class="ghost" id="teaseGo" type="button">Play today's game →</button>
       </div>
       <p class="disclaimer">Just for laughs: a joke way to learn how fast zoo animals travel. It isn't safety advice, and no animals are actually loose.</p>
     </aside>
@@ -498,9 +522,9 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
     <div class="sv-arrow" id="svArrow"><svg viewBox="-100 -100 200 200" aria-hidden="true"><path class="arw" d="M0,62 L0,-60 M-42,-20 L0,-62 L42,-20" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><path class="crack" d="M-9,-46 L5,-30 L-6,-12 L7,6 L-5,24 L4,44 M7,6 L18,12 M-6,-12 L-16,-6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <div class="sv-hit" id="svHit" hidden></div>
     <div class="sv-toast" id="svToast" hidden></div>
-    <div class="diebox sv-die"><button class="die" type="button" aria-label="Roll a random event">🎲</button><span class="dielbl">Tempt fate!</span></div>
+    <div class="sv-cmp" id="svCmpBox"><button class="cmpbtn" id="svCmp" type="button" aria-label="Turn on compass">🧭</button><span class="cmplbl" id="svCmpLbl" hidden>Tap so arrows point the real way</span></div>
     <div class="sv-bot"><div class="sv-time" id="svTime">–</div><div class="sv-sub" id="svSub">until it arrives</div><div class="sv-meta" id="svMeta"></div></div>
-    <div class="sv-btns"><button class="sv-detail" id="svDetail" type="button">Detailed view</button><button class="sv-detail" id="svGame" type="button">Daily minigame</button></div>
+    <div class="sv-btns"><div class="diebox sv-die2"><span class="dielbl">Tempt fate!</span><button class="die" type="button" aria-label="Roll a random event">🎲</button></div><button class="sv-detail" id="svDetail" type="button">Detailed view</button><button class="sv-detail" id="svGame" type="button">Daily Challenge</button></div>
   </div>
   <div class="simple dg" id="game" hidden role="dialog" aria-label="Zoo Stack">
     <canvas id="dgCanvas"></canvas>
@@ -580,7 +604,14 @@ const LOCAL={
   SD:[["cougar",.1],["rattler",.1]], MN:[["wolf",.15],["blackbear",.3],["moose",.1]], WI:[["wolf",.15],["blackbear",.3]], MI:[["wolf",.15],["blackbear",.3]],
   AK:[["grizzly",.4],["moose",.4],["blackbear",.3],["wolf",.2]]
 };
-const OCEAN_SHARK={id:"oceanshark",n:"Shark",e:"🦈",w:10};
+const OCEAN=[
+  ["Great white shark","🦈",25,200,10],["Shortfin mako","🦈",45,300,9],["Tiger shark","🦈",20,150,10],["Bull shark","🦈",25,100,10],["Hammerhead","🦈",25,250,6],
+  ["Orca","🐋",34,500,8],["Sailfish","🐟",68,700,4],["Blue marlin","🐟",50,600,5],["Barracuda","🐟",27,200,5],["Saltwater crocodile","🐊",18,150,10],
+  ["Sea lion","🦭",25,300,4],["Leopard seal","🦭",25,250,7],["Moray eel","🐍",2,20,5],["Stingray","🐟",3,30,5],["Box jellyfish","🪼",4.6,40,8],
+  ["Portuguese man o' war","🪼",1,10,6],["Giant Pacific octopus","🐙",5,40,4],["Blue-ringed octopus","🐙",2,15,9],["Pufferfish","🐡",1,10,3],["Dolphin with a fish for you","🐬",25,400,1]
+].map(([n,e,mph,yd,w],i)=>({id:"ocean"+i,n,e,mph,yd,w,ocean:true}));
+const OCEAN_SHARK=OCEAN[0];
+function oceanPick(lat,lng){ const h=Math.abs(Math.sin(lat*12.9898+lng*78.233)*43758.5453)%1; return OCEAN[Math.floor(h*OCEAN.length)]; }
 let statesGeo=[];
 function stateAt(lat,lng){ for(const f of statesGeo) if(d3.geoContains(f,[lng,lat])) return {name:f.properties.name, ab:ST_ABBR[f.properties.name]}; return null; }
 function onLand(lat,lng){ return !nation || d3.geoContains(nation,[lng,lat]); }
@@ -686,7 +717,7 @@ function bigCityNear(lat,lng){
 }
 function arrivals(lat,lng){
   const out=[];
-  if(!onLand(lat,lng)) out.push({f:{name:"right underneath you",lat,lng}, sp:OCEAN_SHARK, d:0, t:15/3600});
+  if(!onLand(lat,lng)){ const o=oceanPick(lat,lng), d=o.yd/1760; out.push({f:{name:"the water around you",lat,lng}, sp:o, d, t:d/o.mph}); }
   for(const f of (S.byReg[region(lat,lng)]||[])){
     const d=miles(lat,lng,f.lat,f.lng);
     for(const sp of f.sp) out.push({f, sp, d, t:hoursTo(sp,d)});
@@ -1019,13 +1050,13 @@ function renderWild(rolled){
     li.querySelector(".pct").textContent=hit ? "🎲 rolled" : pct(w.p);
     ul.appendChild(li);
   }
-  { const lt=localThreats(u.lat,u.lng), li=document.createElement("li"), hits=(rolled||[]).filter(k=>k.startsWith("loc-"));
+  { const lt=localThreats(u.lat,u.lng), li=document.createElement("li"), hits=(rolled||[]).filter(k=>k.startsWith("loc-")); const lw=$("localWild"); lw.innerHTML="";
     if(hits.length) li.className="hit";
     li.innerHTML=`<span class="e">🌲</span><span><span class="nm"></span><br><span class="src"></span></span><span class="pct"></span>`;
     li.querySelector(".nm").textContent=`Local wildlife${lt.st?" ("+lt.st.name+")":""}`;
     li.querySelector(".src").textContent=(hits.length?hits.map(wildName).join(", ")+" coming":lt.list.map(x=>`${x.sp.e} ${pct(x.p)}`).join(" · "))+" · shows up 1–2 hr out";
     li.querySelector(".pct").textContent=hits.length?"🎲 rolled":"";
-    ul.appendChild(li); }
+    lw.appendChild(li); }
   const oddHit=(rolled||[]).filter(k=>ODD.some(o=>o.id===k));
   const li=document.createElement("li"); if(oddHit.length) li.className="hit";
   li.innerHTML=`<span class="e">🎲</span><span><span class="nm"></span><br><span class="src"></span></span><span class="pct"></span>`;
@@ -1055,7 +1086,7 @@ function renderResults(){
     const first=list[0];
     $("lastLabel").textContent="Your meeting can last";
     $("lastFor").textContent = first ? fmt(first.t) : "Forever";
-    $("lastWho").textContent = first && first.sp===OCEAN_SHARK ? "before a 🦈 shark gets you. Your pin is in the ocean." : first ? `before ${first.sp.e} ${first.sp.n} shows up, from ${first.f.name}, ${fmtMi(first.d)} away. Wildcards can change that.` : "No zoo animal can reach this spot. Wildcards still can.";
+    $("lastWho").textContent = first && first.sp.ocean ? `before ${first.sp.e} ${first.sp.n} gets you. It's ${first.sp.yd} yards away, doing ${first.sp.mph} mph. Your pin is in the water.` : first ? `before ${first.sp.e} ${first.sp.n} shows up, from ${first.f.name}, ${fmtMi(first.d)} away. Wildcards can change that.` : "No zoo animal can reach this spot. Wildcards still can.";
     const s=scoreOf(list,T), [g,cls]=grade(s);
     $("score").textContent=s; const ge=$("grade"); ge.textContent=g; ge.className="grade "+cls;
     $("scoreLabel").textContent=S.dur.noun+" safety";
@@ -1099,7 +1130,7 @@ function startRun(preview){
   for(const a of list){ if(chosen.length>=Math.max(chosen.length,10)) break; if(!chosen.includes(a)) chosen.push(a); }
   chosen.forEach((a,i)=>{
     const n=per.get(a.f)||0; per.set(a.f,n+1);
-    if(a.sp===OCEAN_SHARK){ ents.push(entFor({key:"ocean", sp:a.sp, src:"You're in the ocean", from:[u.lng,u.lat], at:15/3600})); return; }
+    if(a.sp.ocean){ ents.push(entFor({key:"ocean", sp:a.sp, src:`${a.sp.yd} yards away in the water`, from:[u.lng,u.lat], at:a.t})); return; }
     ents.push(entFor({key:"a"+i, sp:a.sp, src:a.f.name, from:[a.f.lng,a.f.lat], D:h=>distAt(a.sp,h), ox:n?Math.cos(n*2.4)*(6+n*2):0, oy:n?Math.sin(n*2.4)*(6+n*2):0}));
   });
   const rolled=[];
@@ -1164,7 +1195,14 @@ function rollRisk(){
   } else { S.forceWild=k; toast(`🎲 Rigged: ${wildName(k)} will show up in your next meeting.`,4500); }
   renderWild(R&&!R.done?R.rolled:null);
 }
+let dieN=0;
+const REAL=[
+  "The real danger: a drunk driver is coming 😞\nUS drunk-driving crashes killed 12,429 people in 2023. Sharks kill about 1 a year here, so that's roughly 12,000× deadlier.",
+  "The real danger: a driver texting behind the wheel 😞\nDistracted driving killed 3,275 people in the US in 2023. That's roughly 3,000× a year of fatal US shark attacks."
+];
 function dieTap(btn){
+  dieN++;
+  if(dieN%11===0){ toast(REAL[Math.floor(Math.random()*REAL.length)],9000); return; }
   const lab=btn.parentElement.querySelector(".dielbl"); if(lab){ lab.classList.remove("show"); void lab.offsetWidth; lab.classList.add("show"); }
   rollRisk();
 }
@@ -1520,9 +1558,29 @@ function dgFinish(){
   setTimeout(()=>say(R.plan.map(dgLine).join(". ")+`. Zoo Stack score, ${pts}.`),700);
 }
 function dgLine(p){ return p.res ? `${p.a.sp.n} stacked, ${p.q}` : `${p.a.sp.n} got you, rawr`; }
-function say(text){
+function say(text,pitch=1,rate=1.05){
   if(!S.sound) return;
-  try{ const ss=window.speechSynthesis; if(!ss) return; ss.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=1.05; ss.speak(u); }catch(_){}
+  try{ const ss=window.speechSynthesis; if(!ss) return; ss.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=rate; u.pitch=pitch; ss.speak(u); }catch(_){}
+}
+const TALK=[
+  n=>`I'm a ${n}. Rawr.`, n=>`${cap(n)} incoming!`, n=>`Hi, it's me, the ${n}. I'm early.`, n=>`${cap(n)} here. Save me a seat.`,
+  n=>`Did someone order a ${n}?`, n=>`Your ${n} is approaching. Please remain seated.`, n=>`I left the zoo for this meeting.`,
+  n=>`Running late. Literally running.`, n=>`This could have been an email. I'm coming anyway.`, n=>`Can I present first?`,
+  n=>`${cap(n)} on the way. Do not reply all.`, n=>`I hope this meeting has snacks. Like you.`
+];
+const PUNS={grizzly:["Bear-ly there!","Bear with me."],blackbear:["Bear-ly there!","Bear with me."],polarbear:["Bear-ly there!","I'm here to break the ice."],slothbear:["Bear-ly there!"],
+  lion:["Lion around? Not me."],cheetah:["No cheetah-ing, I'm just fast."],hippo:["Hippo-ing my way over."],tiger:["Grrreat to see you soon."],
+  wolf:["Awoooo. Calendar invite accepted."],ostrich:["Don't bury your head. I'm coming."],afelephant:["I never forget a meeting."],aselephant:["I never forget a meeting."],
+  gorilla:["Going ape. On my way."],chimp:["Monkey business, incoming."],croc:["See you later. Or sooner."],gator:["In a while. Actually, now."],goose:["Honk. Honk honk."],shark:["Uber's here. Smell you soon."]};
+function cap(t){ return t.charAt(0).toUpperCase()+t.slice(1); }
+const TALK_PITCH={afelephant:.55,aselephant:.55,hippo:.6,grizzly:.6,polarbear:.6,rhino:.65,bison:.7,buffalo:.7,gorilla:.7,ostrich:1.5,bees:1.9,pigeons:1.7,chimp:1.4,goose:1.6,bugkid:1.6};
+let lastTalk=-1;
+function animalTalk(x){
+  const n=x.n.split(" ").pop().toLowerCase().replace(/[^a-z']/g,"")||"animal";
+  const pool=TALK.map(f=>f(n)).concat(PUNS[x.sid]||[]);
+  let k; do{ k=Math.floor(Math.random()*pool.length); }while(k===lastTalk && pool.length>1); lastTalk=k;
+  ensureAudio(); say(pool[k], TALK_PITCH[x.sid]||1, 1);
+  toast(`${x.e} “${pool[k]}”`,2600);
 }
 function tone(f,t0,dur,type,gain,filt){
   const o=AC.createOscillator(), g=AC.createGain(); o.type=type; o.frequency.setValueAtTime(f,t0);
@@ -1714,11 +1772,11 @@ function threats(n=3){
   const R=S.run;
   if(R && !R.done){
     return R.ents.filter(e=>e.arrived===null && e.dead===null && e.at===undefined)
-      .map(e=>({key:e.key, e:e.sp.e, n:e.sp.n, src:e.src, pos:e.pos, d:mi2(e.pos,R.you), t:etaLong(e,R)}))
+      .map(e=>({key:e.key, sid:e.sp.id, e:e.sp.e, n:e.sp.n, src:e.src, pos:e.pos, d:mi2(e.pos,R.you), t:etaLong(e,R)}))
       .filter(x=>isFinite(x.t)).sort((a,b)=>a.t-b.t).slice(0,n).map(x=>({...x, you:R.you}));
   }
   const you=[S.user.lng,S.user.lat];
-  return (S.last||[]).filter(a=>isFinite(a.t)).slice(0,n).map((a,i)=>({key:'f'+i, e:a.sp.e, n:a.sp.n, src:a.f.name, pos:[a.f.lng,a.f.lat], d:a.d, t:a.t, you}));
+  return (S.last||[]).filter(a=>isFinite(a.t)).slice(0,n).map((a,i)=>({key:'f'+i, sid:a.sp.id, e:a.sp.e, n:a.sp.n, src:a.f.name, pos:[a.f.lng,a.f.lat], d:a.d, t:a.t, you}));
 }
 CMP.sel=null;
 function drawCompass(){
@@ -1747,8 +1805,8 @@ function drawCompass(){
       px=cx+dx*t; py=cy+dy*t; ang+=7; } while(placed.some(q=>Math.hypot(q[0]-px,q[1]-py)<46) && ++tries<12);
     placed.push([px,py]);
     let b=dots.querySelector(`[data-k="${x.key}"]`);
-    if(!b){ b=document.createElement("button"); b.className="sv-dot"; b.type="button"; b.dataset.k=x.key; b.onclick=()=>{ CMP.sel=x.key; drawCompass(); }; dots.appendChild(b); }
-    b.textContent=x.e; b.setAttribute("aria-label",x.n); b.classList.toggle("sel",x===sel);
+    if(!b){ b=document.createElement("button"); b.className="sv-dot"; b.type="button"; b.dataset.k=x.key; b.onclick=()=>{ if(CMP.sel===b.dataset.k){ animalTalk(b._x||x); } else { CMP.sel=b.dataset.k; drawCompass(); } }; dots.appendChild(b); }
+    b._x=x; b.textContent=x.e; b.setAttribute("aria-label",x.n); b.classList.toggle("sel",x===sel);
     b.style.left=px+"px"; b.style.top=py+"px"; b.style.zIndex=x===sel?2:1; seen.add(x.key);
   });
   [...dots.children].forEach(b=>{ if(!seen.has(b.dataset.k)) b.remove(); });
@@ -1756,21 +1814,25 @@ function drawCompass(){
   const ar=$("svArrow"); ar.style.opacity=1; ar.style.transform=`translate(-50%,-50%) rotate(${a}deg)`;
   $("svEye").textContent=R&&!R.done ? `Incoming · ${fmtClock(R.h*3600)} into the meeting` : "First to reach you";
   $("svName").textContent=`${sel.e} ${sel.n}`;
-  const sec=sel.t*3600;
+  const idle=!(R&&!R.done), el=idle&&CMP.t0?(performance.now()-CMP.t0)/1000:0, sec=Math.max(0,sel.t*3600-el);
   $("svTime").innerHTML=sec<6000 ? `${fmtClock(sec)}<small>${sec<3600?"min":"hr"}</small>` : `${fmt(sel.t)}`;
-  $("svSub").textContent="until it reaches you";
+  $("svSub").textContent=sec<=0?"it's here":"until it reaches you";
   $("svMeta").textContent=`${fmtMi(sel.d)} away · ${sel.src} · ${CMP.heading===null?"north up":"compass on"}`;
   setTone(sel.t*60);
 }
 function svPills(){ $("svCity").textContent="📍 "+S.user.label; $("svDur").textContent="⏱ "+S.dur.short+" meeting"; }
 function setTone(min){ const el=$("simple"); el.classList.toggle("hot",min<3); el.classList.toggle("warn",min>=3&&min<10); }
 function openSimple(on){
-  CMP.on=on; $("simple").hidden=!on; $("cmpBtn").setAttribute("aria-pressed",String(on));
+  CMP.on=on; if(on && !CMP.t0) CMP.t0=performance.now(); $("simple").hidden=!on; $("cmpBtn").setAttribute("aria-pressed",String(on));
   clearInterval(CMP.timer);
   if(on){ startCompassSensors(); drawCompass(); CMP.timer=setInterval(drawCompass,500); }
   else { window.removeEventListener("deviceorientationabsolute",onOrient); window.removeEventListener("deviceorientation",onOrient); }
 }
 $("svDetail").onclick=()=>openSimple(false);
+function cmpState(){ const b=$("svCmp"), l=$("svCmpLbl"); if(!b) return; const on=CMP.heading!==null; b.classList.toggle("on",on); b.classList.toggle("nudge",!on && !CMP.asked); if(on) l.hidden=true; }
+setTimeout(()=>{ if(CMP.heading===null && !CMP.asked) $("svCmpLbl").hidden=false; },2000);
+$("svCmp").onclick=()=>{ CMP.asked=true; startCompassSensors(); $("svCmpLbl").textContent="Checking for a compass…"; setTimeout(()=>{ if(CMP.heading===null){ $("svCmpLbl").hidden=false; $("svCmpLbl").textContent="No compass here. Arrows stay north-up."; setTimeout(()=>$("svCmpLbl").hidden=true,3000); } cmpState(); },1500); cmpState(); };
+setInterval(cmpState,700);
 function placeBack(){ const b=$("backSimple"); if(!b) return; const run=!$("runbar").hidden; b.style.bottom=run?(Math.max(112,$("runbar").offsetHeight+24))+"px":($("startbar").offsetHeight+28)+"px"; b.style.left=run?"":"auto"; }
 $("backSimple").onclick=()=>openSimple(true);
 addEventListener("resize",placeBack);
