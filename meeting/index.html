@@ -1,10 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
-<title>No Meeting Is Safe</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body><title>No Meeting Is Safe</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="No meeting is safe if you don't know the land speed of the nearest escaped animal.">
 <meta property="og:title" content="No Meeting Is Safe">
@@ -143,6 +137,7 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .item circle.zone{fill:var(--danger);fill-opacity:.12;stroke:var(--danger);stroke-width:1.5;stroke-dasharray:4 3}
 .sprite text.e{font-size:22px;dominant-baseline:central;text-anchor:middle}
 .sprite text.eta{font:700 10.5px var(--font-mono);fill:var(--danger);paint-order:stroke;stroke:var(--land);stroke-width:3.5px;stroke-linejoin:round}
+.roads{fill:none;stroke:#b9a37a;stroke-width:.5;opacity:.45;vector-effect:non-scaling-stroke}
 .trail{fill:none;stroke:var(--danger);stroke-width:1.5;stroke-dasharray:3 4;opacity:.55}
 .trail.car{stroke:var(--sea);opacity:.8}
 
@@ -154,8 +149,12 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .zoombtns button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:700;font-size:1.1rem;display:grid;place-items:center}
 .zoombtns svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2}
 .legend{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:10px;padding:6px 9px;font-size:.76rem;display:flex;flex-direction:column;gap:4px}
-.legend .bar{width:130px;height:8px;border-radius:4px;background:linear-gradient(90deg,#8E1B2Ccc,#E4572Eaa,#F4B40066,transparent);border:1px solid var(--line)}
+.legend .bar{width:130px;height:8px;border-radius:4px;background:linear-gradient(90deg,#8E1B2Ccc,#E4572Eaa,#F4B40055 84%,#FAD646 84%);border:1px solid var(--line)}
 .legend label{display:flex;align-items:center;gap:6px;font-weight:600;cursor:pointer}
+.legwild{display:flex;align-items:center;gap:6px;padding-top:4px;border-top:1px solid var(--line);max-width:130px}
+.legwild .we{font-size:1.25rem;line-height:1}
+.legwild b{display:block;font-weight:600;color:#9a7400}
+.legwild small{display:block;color:var(--muted);font-size:.7rem}
 .legend .ends{display:flex;justify-content:space-between;width:130px;color:var(--muted)}
 
 .startbar{left:auto;right:12px;bottom:12px;transform:none;width:min(300px,calc(100% - 24px));display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:12px;border-radius:22px;background:color-mix(in srgb,var(--card) 94%,transparent);border:1.5px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.18)}
@@ -329,6 +328,15 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 .dg-btns{display:flex;gap:10px}
 .dg-btns .sv-detail{position:static;flex:1;background:#fff;color:#1c7c3c;font-size:1.05rem;padding:14px}
 .dg .sharetext{color:#000}
+.dg-pop{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.35);animation:dgfade .2s ease-out}
+.dg-card{position:relative;width:min(360px,100%);background:#fff;color:#111;border-radius:22px;padding:22px 18px 18px;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:dgpop .28s cubic-bezier(.2,1.4,.4,1)}
+.dg-ph{font-weight:800;font-size:1.2rem;margin-bottom:10px;text-align:center}
+.dg-pre{margin:0 0 14px;padding:12px;background:#f2f4f2;border-radius:12px;font:14px/1.45 var(--font-mono,ui-monospace,monospace);white-space:pre-wrap;overflow-wrap:anywhere;text-align:center}
+.dg-pb{display:flex;gap:10px}
+.dg-pb button{flex:1;border:0;border-radius:14px;padding:14px;font-size:1.05rem;font-weight:700;background:#30C85E;color:#fff;cursor:pointer}
+.dg-pb button+button{background:#e8f5ec;color:#1c7c3c}
+.dg-px{position:absolute;top:8px;right:10px;border:0;background:none;font-size:1.1rem;color:#666;cursor:pointer;padding:6px}
+@keyframes dgfade{from{opacity:0}}@keyframes dgpop{from{transform:scale(.85);opacity:0}}
 @media (prefers-reduced-motion: reduce){.sv-pulse i,.sv-dot,.sv-dot.sel{animation:none}}
 
 .crack{stroke:transparent}
@@ -353,6 +361,10 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 .sv-toast.in{animation:svtoast .35s cubic-bezier(.3,1.5,.5,1)}
 @keyframes svtoast{from{transform:translateX(-50%) translateY(14px) scale(.9);opacity:0}}
 
+.startrow{display:flex;gap:8px;align-items:stretch}
+.startrow .gate.huge{flex:1;font-size:1.25rem;padding:12px 14px;animation:none}
+#durSel{border:0;border-radius:14px;background:var(--soft);color:var(--ink);font:inherit;font-weight:700;font-size:.95rem;padding:0 30px 0 12px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px;background-repeat:no-repeat;cursor:pointer}
+.dailybtn{border:0;border-radius:12px;background:var(--soft);color:var(--sea);font-weight:700;font-size:.9rem;padding:9px 12px;display:flex;align-items:center;justify-content:center;gap:6px}
 .modebtns{display:flex;gap:8px}
 .modebtn{flex:1;border:0;border-radius:12px;padding:9px 10px;font-weight:700;font-size:.9rem;background:var(--soft);color:var(--sea);display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .modebtn.on{background:color-mix(in srgb,var(--sea) 14%,var(--card));color:var(--ink)}
@@ -368,9 +380,13 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 .sv-die2 .dielbl:not(.show){visibility:hidden}
 .toast,.sv-toast{white-space:pre-line}
 .sv-toast{border-radius:18px;max-width:min(330px,calc(100% - 40px));font-size:.9rem}
+
+.sv-dot{box-shadow:0 0 0 3px var(--ring,transparent)}
+.sv-dot.sel{box-shadow:0 0 0 4px var(--ring,transparent),0 4px 14px rgba(0,0,0,.25)}
+.dg .sv-top{right:110px!important}
+.dg-mute{right:calc(max(16px,env(safe-area-inset-right,0px)) + 48px)!important;font-size:1rem}
 </style>
-</head>
-<body>
+
 <div class="app">
   <header class="topbar">
     <div class="logo">No meeting is <span>safe</span><button class="ast" id="ast" type="button" aria-label="Show the footnote" title="*you're never more than a few hours from a bear.">*</button></div>
@@ -391,7 +407,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
       <svg id="base" aria-hidden="true"><g id="gBase"><path class="land" id="land"></path></g></svg>
       <canvas id="heat"></canvas>
       <svg id="top" role="img" aria-label="Map of the United States with zoo locations. Tap to place your pin.">
-        <g id="gTop"><path class="borders" id="borders"></path><path class="coast" id="coast"></path><path class="arena" id="arena"></path></g>
+        <g id="gTop"><path class="roads" id="roads"></path><path class="borders" id="borders"></path><path class="coast" id="coast"></path><path class="arena" id="arena"></path></g>
         <g id="trails"></g><g id="cities"></g><g id="facs"></g><g id="safest" class="safest"></g><g id="items"></g><g id="you" class="you"></g><g id="sprites"></g>
       </svg>
       <div class="overlay topleft">
@@ -399,7 +415,8 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
         <div class="legend" id="legend">
           <label><input type="checkbox" id="heatOn" checked> Safety heat map</label>
           <div class="bar"></div>
-          <div class="ends"><span>Lunch</span><span>All clear</span></div>
+          <div class="ends"><span>Lunch</span><span>Wildlife only</span></div>
+          <div class="legwild" id="legWild" hidden><span class="we" id="legWildE"></span><span><b id="legWildN"></b><small id="legWildMsg" hidden>Nowhere is safe</small></span></div>
         </div>
       </div>
       <div class="overlay zoombtns">
@@ -411,17 +428,17 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
       </div>
       <div class="overlay startbar" id="startbar">
         <p class="pitch" id="footnote">*you're never more than a few hours from a bear.</p>
-        <button class="gate huge" id="startMeet" type="button">▶ Start meeting</button>
-        <div class="chips sm" id="durations" role="radiogroup" aria-label="Meeting length"></div>
-        <div class="modebtns">
-          <button class="modebtn on" id="tabMeet" type="button">Meeting</button>
-          <button class="modebtn" id="tabGame" type="button">Daily Challenge <span class="badge" id="dayBadge">#1</span></button>
+        <div class="startrow">
+          <select id="durSel" aria-label="Meeting length"></select>
+          <button class="gate huge" id="startMeet" type="button">▶ Start</button>
         </div>
+        <button class="dailybtn" id="tabGame" type="button">🏆 Daily Challenge <span class="badge" id="dayBadge">#1</span></button>
       </div>
       <div class="overlay runbar" id="runbar" hidden>
         <div class="rclock mono"><span id="rClock">0:00</span><span class="of"> / <span id="rT">30:00</span></span></div>
         <div class="chips sm" id="speeds" role="radiogroup" aria-label="Playback speed"></div>
         <div class="rrow"><button class="ghost sm" id="skip" type="button">Skip ⏭</button><button class="ghost sm" id="endMeet" type="button">End meeting</button></div>
+        <button class="ghost sm" id="runGame" type="button">🏆 Play the Daily Challenge</button>
         <div class="drivehint" id="driveHint"><b>WASD</b>/arrows: run at 6 mph</div>
       </div>
       <button class="overlay backsimple" id="backSimple" type="button">◀ Back to simple view</button>
@@ -462,7 +479,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
       <textarea class="sharetext" id="shareText" readonly hidden aria-label="Result text to copy"></textarea>
       <div class="teaser">
         <div class="eyebrow">Zoo Stack · Daily Challenge <span id="teaseNo"></span></div>
-        <p id="teaseText">Everyone gets the same city each day, and its 10 nearest zoo animals charge at you. Catch them on your shield and stack them tall and straight.</p>
+        <p id="teaseText">Everyone gets the same city each day, and its 10 nearest zoo animals charge at you. Catch them on a sliding meeting table and stack them tall and straight.</p>
         <button class="ghost" id="teaseGo" type="button">Play today's game →</button>
       </div>
       <div>
@@ -503,7 +520,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
       </div>
       <div>
         <h3>What this version leaves out</h3>
-        <p>Animals travel in straight lines, so yes, the Houston tigers currently swim the Gulf. Nobody crosses into Alaska or Hawaii, and Hawaii's zoo animals stay on Oahu. Fences, rivers and traffic are ignored.</p>
+        <p>Animals take either a straight line or the major US highways (Natural Earth), whichever is faster. On a road they go 25% faster, and they cut cross-country for up to 10 mi to get on or off. The heat map is a cheaper fudge: straight-line danger whose edges stretch up to 25% further near roads and blend back away from them. Nobody crosses into Alaska or Hawaii, and Hawaii's zoo animals stay on Oahu. Fences, rivers and traffic are ignored.</p>
         <h3>The data</h3>
         <p id="dataNote">A hand-built starter set of zoos, sanctuaries and wildlife parks, with one entry per species at each place. Collections change often, so treat it as approximate.</p>
         <p>Your starting spot comes from your internet address (via GeoJS) when the page can reach it. It's rough, often off by a few miles, and nothing is saved.</p>
@@ -529,15 +546,25 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
   <div class="simple dg" id="game" hidden role="dialog" aria-label="Zoo Stack">
     <canvas id="dgCanvas"></canvas>
     <div class="sv-top">
-      <div class="sv-tag">Daily #<span id="dgNo">1</span> · Zoo Stack<br><span>Catch each charging animal on your shield. Land within 10° of a stack's top to build it. Points = height × straightness, up to 5,500.</span></div>
+      <div class="sv-tag">Daily #<span id="dgNo">1</span> · Zoo Stack<br><span>Slide the meeting table to catch each falling animal. Land on a stack's top to build it. Points = height × straightness, up to 5,500.</span></div>
       <div class="sv-pills"><button class="sv-pill" id="dgCity" type="button">📍 –</button></div>
     </div>
     <button class="sv-x" id="dgClose" type="button" aria-label="Close">✕</button>
+    <button class="sv-x dg-mute" id="dgMute" type="button" aria-label="Mute">🔊</button>
     <div class="dg-bot">
       <div class="dg-slots" id="dgSlots"></div>
       <div class="dg-total"><span id="dgTotal">–</span><small id="dgLabel">today's score</small></div>
       <div class="dg-btns"><button class="sv-detail" id="dgGo" type="button">Start</button><button class="sv-detail" id="dgShare" type="button" hidden>Copy result</button></div>
       <textarea class="sharetext" id="dgShareText" readonly hidden aria-label="Result text to copy"></textarea>
+    </div>
+    <div class="dg-pop" id="dgPop" hidden role="dialog" aria-label="Share your result">
+      <div class="dg-card">
+        <button class="dg-px" id="dgPopX" type="button" aria-label="Close">✕</button>
+        <div class="dg-ph">Today's stack is in</div>
+        <pre class="dg-pre" id="dgPre"></pre>
+        <div class="dg-pb"><button type="button" id="dgPopCopy">Copy result</button><button type="button" id="dgPopShare" hidden>Share…</button></div>
+        <textarea class="sharetext" id="dgPopText" readonly hidden aria-label="Result text to copy"></textarea>
+      </div>
     </div>
   </div>
   <p class="disclaimer pagefoot">This is joke education about how fast zoo animals move, not a real safety tool. Speeds and zoo lists are rough estimates.</p>
@@ -710,17 +737,92 @@ function nearestCoast(lat,lng,max){
     }
   return best;
 }
+
+/* ---------- roads: graph, Dijkstra from you, heat-map fudge ---------- */
+const ROAD_K=0.8, ROAD_IN=10, ROAD_NEAR=8;
+const RD={ok:false};
+function buildRoads(r){
+  const n=r.n.length/2, X=new Float64Array(n), Y=new Float64Array(n);
+  for(let i=0;i<n;i++){ X[i]=r.n[2*i]; Y[i]=r.n[2*i+1]; }
+  const m=r.e.length/2, deg=new Int32Array(n+1);
+  for(let k=0;k<m;k++){ deg[r.e[2*k]+1]++; deg[r.e[2*k+1]+1]++; }
+  for(let i=0;i<n;i++) deg[i+1]+=deg[i];
+  const adj=new Int32Array(2*m), len=new Float32Array(2*m), fill=deg.slice(0,n);
+  const C=0.25, nb=new Map(), sb=new Map(), SC=0.5;
+  for(let k=0;k<m;k++){
+    const a=r.e[2*k], b=r.e[2*k+1], L=miles(Y[a],X[a],Y[b],X[b]);
+    adj[fill[a]]=b; len[fill[a]++]=L; adj[fill[b]]=a; len[fill[b]++]=L;
+    for(let i=Math.floor(Math.min(X[a],X[b])/SC);i<=Math.floor(Math.max(X[a],X[b])/SC);i++)
+      for(let j=Math.floor(Math.min(Y[a],Y[b])/SC);j<=Math.floor(Math.max(Y[a],Y[b])/SC);j++){ const key=i*10000+j; let q=sb.get(key); if(!q){ q=[]; sb.set(key,q); } q.push(a,b); }
+  }
+  for(let i=0;i<n;i++){ const key=Math.floor(X[i]/C)*10000+Math.floor(Y[i]/C); let q=nb.get(key); if(!q){ q=[]; nb.set(key,q); } q.push(i); }
+  Object.assign(RD,{ok:true,n,X,Y,deg,adj,len,C,nb,sb,SC,cache:null});
+}
+function nodesNear(lat,lng,max){
+  const out=[], kx=KM*Math.cos(lat*RAD), C=RD.C;
+  for(let i=Math.floor((lng-max/kx)/C);i<=Math.floor((lng+max/kx)/C);i++)
+    for(let j=Math.floor((lat-max/KM)/C);j<=Math.floor((lat+max/KM)/C);j++){
+      const q=RD.nb.get(i*10000+j); if(!q) continue;
+      for(const v of q){ const d=miles(lat,lng,RD.Y[v],RD.X[v]); if(d<=max) out.push([v,d]); }
+    }
+  return out.sort((a,b)=>a[1]-b[1]).slice(0,40);
+}
+function roadField(lat,lng){
+  if(!RD.ok) return null;
+  const key=lat.toFixed(4)+","+lng.toFixed(4);
+  if(RD.cache && RD.cache.key===key) return RD.cache;
+  const n=RD.n, dist=new Float64Array(n).fill(Infinity), prev=new Int32Array(n).fill(-1);
+  const H=[]; // binary heap of [d,v]
+  const push=(d,v)=>{ H.push([d,v]); let i=H.length-1; while(i>0){ const p=(i-1)>>1; if(H[p][0]<=H[i][0]) break; [H[p],H[i]]=[H[i],H[p]]; i=p; } };
+  const pop=()=>{ const t=H[0], l=H.pop(); if(H.length){ H[0]=l; let i=0; for(;;){ const a=2*i+1, b=a+1; let m=i; if(a<H.length&&H[a][0]<H[m][0]) m=a; if(b<H.length&&H[b][0]<H[m][0]) m=b; if(m===i) break; [H[m],H[i]]=[H[i],H[m]]; i=m; } } return t; };
+  for(const [v,d] of nodesNear(lat,lng,ROAD_IN)){ if(d<dist[v]){ dist[v]=d; push(d,v); } }
+  while(H.length){
+    const [d,v]=pop(); if(d>dist[v]) continue;
+    for(let k=RD.deg[v];k<RD.deg[v+1];k++){ const w=RD.adj[k], nd=d+RD.len[k]*ROAD_K; if(nd<dist[w]){ dist[w]=nd; prev[w]=v; push(nd,w); } }
+  }
+  return RD.cache={key,lat,lng,dist,prev};
+}
+// effective miles from a point to you, via roads if that beats straight line
+function roadRoute(F,lat,lng){
+  const st=miles(lat,lng,F.lat,F.lng);
+  let best=st, exit=-1;
+  for(const [v,d] of nodesNear(lat,lng,ROAD_IN)){ const e=d+F.dist[v]; if(e<best){ best=e; exit=v; } }
+  return {e:best, st, exit};
+}
+function roadPath(F,from,exit){
+  if(exit<0) return null;
+  const path=[{p:[RD.X[exit],RD.Y[exit]],k:1}];
+  for(let v=exit;F.prev[v]>=0;v=F.prev[v]) path.push({p:[RD.X[F.prev[v]],RD.Y[F.prev[v]]],k:ROAD_K});
+  return path;
+}
+// 0..1: how close a point is to any road (smooth falloff to 0 at ROAD_NEAR mi)
+function roadNear(lat,lng){
+  if(!RD.ok) return 0;
+  const SC=RD.SC, kx=KM*Math.cos(lat*RAD), max=ROAD_NEAR; let bd=max;
+  for(let i=Math.floor((lng-max/kx)/SC);i<=Math.floor((lng+max/kx)/SC);i++)
+    for(let j=Math.floor((lat-max/KM)/SC);j<=Math.floor((lat+max/KM)/SC);j++){
+      const q=RD.sb.get(i*10000+j); if(!q) continue;
+      for(let t=0;t<q.length;t+=2){
+        const a=q[t], b=q[t+1];
+        const ax=(RD.X[a]-lng)*kx, ay=(RD.Y[a]-lat)*KM, dx=(RD.X[b]-RD.X[a])*kx, dy=(RD.Y[b]-RD.Y[a])*KM, L2=dx*dx+dy*dy;
+        let u=L2 ? -(ax*dx+ay*dy)/L2 : 0; u=u<0?0:u>1?1:u;
+        const d=Math.hypot(ax+u*dx, ay+u*dy); if(d<bd) bd=d;
+      }
+    }
+  const x=bd/max; return x>=1 ? 0 : (1-x*x)*(1-x*x);
+}
 function bigCityNear(lat,lng){
   let best=null, bd=WILD.pigeons.cityMi;
   for(const c of S.bigCities){ const d=miles(lat,lng,c[2],c[3]); if(d<bd){ bd=d; best={name:c[0],st:c[1],lat:c[2],lng:c[3],d}; } }
   return best;
 }
 function arrivals(lat,lng){
-  const out=[];
+  const out=[], F=roadField(lat,lng);
   if(!onLand(lat,lng)){ const o=oceanPick(lat,lng), d=o.yd/1760; out.push({f:{name:"the water around you",lat,lng}, sp:o, d, t:d/o.mph}); }
   for(const f of (S.byReg[region(lat,lng)]||[])){
-    const d=miles(lat,lng,f.lat,f.lng);
-    for(const sp of f.sp) out.push({f, sp, d, t:hoursTo(sp,d)});
+    const R=F ? roadRoute(F,f.lat,f.lng) : null, d=R?R.st:miles(lat,lng,f.lat,f.lng), de=R?R.e:d;
+    const road=!!R && R.exit>=0;
+    for(const sp of f.sp) out.push({f, sp, d, de, road, exit:road?R.exit:-1, F, t:hoursTo(sp,de)});
   }
   return out.sort((a,b)=>a.t-b.t);
 }
@@ -789,6 +891,7 @@ function fit(){
   const path=d3.geoPath(projection);
   d3.select("#land").attr("d",path(nation));
   d3.select("#borders").attr("d",path(stateMesh));
+  if(RD.ok){ if(!RD.mesh){ const L=[]; for(let v=0;v<RD.n;v++) for(let k=RD.deg[v];k<RD.deg[v+1];k++){ const w=RD.adj[k]; if(w>v) L.push([[RD.X[v],RD.Y[v]],[RD.X[w],RD.Y[w]]]); } RD.mesh={type:"MultiLineString",coordinates:L}; } d3.select("#roads").attr("d",path(RD.mesh)); }
   d3.select("#coast").attr("d",path(coastMesh));
   drawArena();
   facPx=S.fac.map(f=>projection([f.lng,f.lat]));
@@ -877,7 +980,30 @@ function drawYou(){
   g.select("text.lbl").attr("y", (R && (R.crashed||driving)) ? -36 : -15);
   g.attr("transform",`translate(${p[0]},${p[1]})`);
 }
+function wildTop(lat,lng){
+  const L=onLand(lat,lng) ? localThreats(lat,lng) : {st:null,list:[]};
+  const bear=L.list.find(x=>x.id==="grizzly")||L.list.find(x=>x.id==="blackbear");
+  const top=bear || L.list.filter(x=>x.id!=="coyote").sort((a,b)=>b.p-a.p)[0];
+  return {st:L.st, t:top || {id:"blackbear", p:0, sp:S.sp.blackbear||{e:"🐻",n:"Black bear"}}};
+}
+function drawWild(){
+  const box=$("legWild");
+  if(!S.heatOn || S.mode!=="meet" || !nation){ box.hidden=true; return; }
+  let ll=null;
+  for(const [fx,fy] of [[.5,.5],[.4,.45],[.6,.55],[.5,.35],[.5,.65],[.3,.5],[.7,.5]]){
+    const q=projection.invert(S.t.invert([S.W*fx,S.H*fy]));
+    if(q && d3.geoContains(nation,q)){ ll=q; break; }
+  }
+  if(!ll && S.user) ll=[S.user.lng,S.user.lat];
+  if(!ll){ box.hidden=true; return; }
+  const {st,t}=wildTop(ll[1],ll[0]);
+  box.hidden=false;
+  $("legWildE").textContent=t.sp.e;
+  $("legWildN").textContent=`Wild ${t.sp.n.toLowerCase()}${st?" in "+st.ab:""}`;
+  $("legWildMsg").hidden=S.dur.m<480;
+}
 function drawSafest(){
+  drawWild();
   const g=d3.select("#safest");
   if(!safest || !S.heatOn || S.mode!=="meet" || (S.run && !S.run.done)){ g.attr("display","none"); return; }
   const p=screen(safest.lng,safest.lat); if(!p){ g.attr("display","none"); return; }
@@ -921,10 +1047,10 @@ function heatFollow(){
   const r=S.t.k/heatT.k;
   heat.style.transform=`translate(${S.t.x-r*heatT.x}px,${S.t.y-r*heatT.y}px) scale(${r})`;
 }
-function evalPoint(lat,lng,T,list){
-  let th=0, first=Infinity;
+function evalPoint(lat,lng,T,list,rn){
+  let th=0, first=Infinity; const g=1/(1+0.25*(rn||0));
   for(const f of list){
-    const d=miles(lat,lng,f.lat,f.lng);
+    const d=miles(lat,lng,f.lat,f.lng)*g;
     for(const sp of f.sp){ const t=hoursTo(sp,d); if(t<first) first=t; if(t<T) th+=sp.w*(T-t)/T; }
   }
   return [Math.round(100*Math.exp(-th/5)), first];
@@ -943,12 +1069,12 @@ function renderHeat(){
   let best=null;
   for(let j=0;j<gh;j++) for(let i=0;i<gw;i++){
     const ll=projection.invert(S.t.invert([(i+.5)*c,(j+.5)*c])); if(!ll) continue;
-    const [s,first]=evalPoint(ll[1],ll[0],T,S.byReg[region(ll[1],ll[0])]||[]);
+    const [s,first]=evalPoint(ll[1],ll[0],T,S.byReg[region(ll[1],ll[0])]||[],roadNear(ll[1],ll[0]));
     const o=(j*gw+i)*4;
     if(s<100){
       const col=d3.rgb(ramp(1-s/100));
       px[o]=col.r; px[o+1]=col.g; px[o+2]=col.b; px[o+3]=Math.round(255*(0.16+0.42*(1-s/100)));
-    }
+    } else { px[o]=250; px[o+1]=214; px[o+2]=70; px[o+3]=52; }
     if(mask[o+3]>200 && (!best || s>best.s || (s===best.s && first>best.first))) best={s,first,lat:ll[1],lng:ll[0]};
   }
   octx.putImageData(img,0,0);
@@ -1078,7 +1204,7 @@ function renderResults(){
   $("spotLabel").textContent=u.example ? "Example spot · tap the map to use yours" : u.approx ? "Your rough spot, from your internet connection · tap the map to fix it" : "Your spot";
   $("where").textContent=u.label;
   $("coords").textContent=`${Math.abs(u.lat).toFixed(3)}°${u.lat>=0?"N":"S"}, ${Math.abs(u.lng).toFixed(3)}°${u.lng>=0?"E":"W"}`;
-  $("startMeet").textContent=`▶ Start ${S.dur.short} meeting`;
+  $("startMeet").textContent="▶ Start"; if($("durSel")) $("durSel").value=DURS.indexOf(S.dur);
   $("rT").textContent=fmtClock(S.dur.m*60);
   const R=S.run;
   if(R && R.done){ renderRunResults(R); }
@@ -1131,7 +1257,7 @@ function startRun(preview){
   chosen.forEach((a,i)=>{
     const n=per.get(a.f)||0; per.set(a.f,n+1);
     if(a.sp.ocean){ ents.push(entFor({key:"ocean", sp:a.sp, src:`${a.sp.yd} yards away in the water`, from:[u.lng,u.lat], at:a.t})); return; }
-    ents.push(entFor({key:"a"+i, sp:a.sp, src:a.f.name, from:[a.f.lng,a.f.lat], D:h=>distAt(a.sp,h), ox:n?Math.cos(n*2.4)*(6+n*2):0, oy:n?Math.sin(n*2.4)*(6+n*2):0}));
+    ents.push(entFor({key:"a"+i, sp:a.sp, src:a.f.name+(a.road?" (via roads)":""), path:a.road?roadPath(a.F,null,a.exit):null, from:[a.f.lng,a.f.lat], D:h=>distAt(a.sp,h), ox:n?Math.cos(n*2.4)*(6+n*2):0, oy:n?Math.sin(n*2.4)*(6+n*2):0}));
   });
   const rolled=[];
   if(onLand(u.lat,u.lng)) for(const L of localThreats(u.lat,u.lng).list){
@@ -1248,14 +1374,19 @@ function stepRun(R,h1,realDt){
     const hEnd=e.life!==undefined ? Math.min(h1,e.life) : h1;
     const d1=e.D(hEnd), cov=d1-e.prevD; e.prevD=d1;
     if(cov>0){
-      const rem=mi2(e.pos,R.you);
-      if(cov>=rem){ e.pos=R.you.slice(); arrive(R,e,h0+dh*Math.min(1,rem/cov)); continue; }
-      e.pos=d3.geoInterpolate(e.pos,R.you)(cov/rem);
+      let c=cov, hit=false;
+      while(c>0){
+        const wp=e.path&&e.path.length?e.path[0]:null, tgt=wp?wp.p:R.you, k=wp?wp.k:1, rem=mi2(e.pos,tgt)*k;
+        if(c>=rem){ e.pos=tgt.slice(); c-=rem; if(wp){ (e.tp=e.tp||[e.from]).push(tgt); e.path.shift(); continue; } arrive(R,e,h0+dh*(1-c/cov)); hit=true; break; }
+        e.pos=d3.geoInterpolate(e.pos,tgt)(c/rem); c=0;
+      }
+      if(hit) continue;
     }
     if(e.life!==undefined && h1>=e.life){ e.dead=e.life; event(R,`${e.sp.e} The shark's tank gave out ${fmtMi(mi2(e.pos,R.you))} short of you.`); }
   }
   R.h=h1;
 }
+function remOf(e,you){ let r=0, p=e.pos; if(e.path) for(const w of e.path){ r+=mi2(p,w.p)*w.k; p=w.p; } return r+mi2(p,you); }
 const KEYS={w:[0,1],arrowup:[0,1],s:[0,-1],arrowdown:[0,-1],a:[-1,0],arrowleft:[-1,0],d:[1,0],arrowright:[1,0]};
 function crash(R,h){
   R.crashed=true; R.keys.clear(); syncDpad();
@@ -1290,7 +1421,7 @@ function computeEtas(R){
   for(const e of R.ents){
     e.eta=null;
     if(e.arrived!==null || e.dead!==null || e.at!==undefined) continue;
-    const rem=mi2(e.pos,R.you), base=e.D(R.h);
+    const rem=remOf(e,R.you), base=e.D(R.h);
     let lo=0, hi=R.T-R.h;
     if(e.D(R.h+hi)-base<rem){ continue; }
     for(let i=0;i<24;i++){ const mid=(lo+hi)/2; if(e.D(R.h+mid)-base>=rem) hi=mid; else lo=mid; }
@@ -1387,7 +1518,7 @@ function drawSprites(){
   if(S.mode==="meet" && S.run){
     const R=S.run; center=screen(R.you[0],R.you[1]);
     let n=0;
-    data=R.ents.filter(e=>e.at===undefined || e.arrived!==null).map(e=>{ const done=e.arrived!==null; const d={key:e.key, e:e.dead!==null?"💀":e.sp.e, title:`${e.sp.n} · ${e.src}`, from:e.from, pos:e.pos, done, ang:0, rad:0, ox:e.ox||0, oy:e.oy||0, car:!!e.car, eta:e.eta, trail:e.at!==undefined?null:[e.from]};
+    data=R.ents.filter(e=>e.at===undefined || e.arrived!==null).map(e=>{ const done=e.arrived!==null; const d={key:e.key, e:e.dead!==null?"💀":e.sp.e, title:`${e.sp.n} · ${e.src}`, from:e.from, pos:e.pos, done, ang:0, rad:0, ox:e.ox||0, oy:e.oy||0, car:!!e.car, eta:e.eta, trail:e.at!==undefined?null:(e.tp||[e.from])};
       if(done){ d.ang=n*0.9; d.rad=22+Math.floor(n/7)*14; n++; } return d; });
   } else if(S.mode==="game" && G.run){
     center=G.hide?screen(G.hide[0],G.hide[1]):null;
@@ -1461,29 +1592,30 @@ function loadStore(){ try{ const s=JSON.parse(localStorage.getItem(STORE)); retu
 function saveStore(s){ try{ localStorage.setItem(STORE,JSON.stringify(s)); }catch(_){} }
 
 /* ---------- daily game: stack them up ---------- */
-const DG={open:false, raf:0, run:null, aim:-Math.PI/2, date:"", no:1};
-const DG_MAX=5500, DG_HW=24*RAD, DG_STACK=10*RAD, DG_N=10, DG_RZ=24, DG_RP=54, DG_SP=26;
+const DG={open:false, raf:0, run:null, x:null, date:"", no:1};
+const DG_MAX=5500, DG_N=10, DG_TW=120, DG_TOL=22, DG_SP=30;
 function dgCityFor(date){
   const pool=S.cities.filter(c=>c[4]>=100 && region(c[2],c[3])==="l48" && S.fac.some(f=>miles(c[2],c[3],f.lat,f.lng)<=50));
   const rnd=seedRng("city:"+date); rnd(); const c=pool[Math.floor(rnd()*pool.length)];
   return {lat:c[2], lng:c[3], label:c[0]+", "+c[1]};
 }
 function dgPick(){ return arrivals(DG.city.lat,DG.city.lng).filter(a=>isFinite(a.t)).slice(0,DG_N); }
-function dgGeom(){ const c=$("dgCanvas"), W=c.clientWidth, H=c.clientHeight, cy=H*0.47;
-  return {W,H,cx:W/2,cy,Ro:Math.max(110,Math.min(W/2-30, cy-150, H-cy-190))}; }
+function dgGeom(){ const c=$("dgCanvas"), W=c.clientWidth, H=c.clientHeight;
+  const top=document.querySelector("#game .sv-top").getBoundingClientRect().bottom+20, bot=document.querySelector("#game .dg-bot").getBoundingClientRect().top-56;
+  if(DG.x===null) DG.x=W/2; DG.x=Math.max(DG_TW/2+8,Math.min(W-DG_TW/2-8,DG.x));
+  return {W,H,top,tableY:bot,spawnY:top+10}; }
 function dgPlan(){
-  const rnd=seedRng("dg2:"+DG.date);
-  return dgPick().map(a=>({a, ang:(bearing([DG.city.lng,DG.city.lat],[a.f.lng,a.f.lat])-90)*RAD,
-    w:(1.6+rnd()*1.8)*(rnd()<.5?-1:1), circle:0.9+rnd()*1.4, flip:rnd()<.45 ? 0.4+rnd()*0.5 : -1,
-    dash:Math.max(1.05,Math.min(1.7,1.9-a.sp.s/80)), res:null}));
+  const rnd=seedRng("dg3:"+DG.date);
+  return dgPick().map(a=>({a, fx:0.12+rnd()*0.76, drift:(rnd()*2-1)*0.22, wob:rnd()*1.2,
+    hold:0.45+rnd()*0.35, fall:Math.max(1.4,Math.min(2.6,2.7-a.sp.s/55)), res:null}));
 }
 function dgTall(R){ return R.stacks.reduce((m,s)=>Math.max(m,s.items.length),0); }
-function dgOrbit(R,g){ return Math.max(g.Ro, DG_RP+dgTall(R)*DG_SP+70); }
+function dgOrbit(R,g){ return 0; }
 function dgOpen(){
   DG.date=todayStr(); DG.no=dayNo(DG.date); DG.city=dgCityFor(DG.date);
-  if(CMP.on) openSimple(false);
+  DG.fromSimple=CMP.on; if(CMP.on) openSimple(false);
   $("game").hidden=false; DG.open=true;
-  $("dgNo").textContent=DG.no; $("dgCity").textContent="📍 Today's city: "+DG.city.label;
+  $("dgNo").textContent=DG.no; syncMute(); $("dgCity").textContent="📍 Today's city: "+DG.city.label;
   const rec=loadStore().days[DG.date];
   DG.run={plan:dgPlan(), i:-1, phase:"idle", t:0, r:0, done:false, practice:!!rec, stacks:[], fx:[]};
   dgSlots(); $("dgShare").hidden=!rec; $("dgShareText").hidden=true;
@@ -1491,7 +1623,7 @@ function dgOpen(){
   else { $("dgTotal").textContent="–"; $("dgLabel").textContent="one official try today"; $("dgGo").textContent="Start"; }
   dgResize(); cancelAnimationFrame(DG.raf); DG.last=performance.now(); DG.raf=requestAnimationFrame(dgLoop);
 }
-function dgClose(){ try{ speechSynthesis.cancel(); }catch(_){} DG.open=false; $("game").hidden=true; cancelAnimationFrame(DG.raf); $("game").classList.remove("hot","warn"); }
+function dgClose(){ $("dgPop").hidden=true; if(DG.open && DG.fromSimple){ DG.fromSimple=false; openSimple(true); } try{ speechSynthesis.cancel(); }catch(_){} DG.open=false; $("game").hidden=true; cancelAnimationFrame(DG.raf); $("game").classList.remove("hot","warn"); }
 function dgSlots(){
   const box=$("dgSlots"); box.innerHTML="";
   DG.run.plan.forEach(p=>{ const d=document.createElement("button"); d.type="button"; d.className="dg-slot"+(p.res===null?"":p.res?" hit":" miss");
@@ -1503,7 +1635,7 @@ function dgStart(){
   const R=DG.run; if(!R || (R.phase!=="idle" && !R.done)) return;
   ensureAudio();
   const rec=loadStore().days[DG.date];
-  DG.run={plan:dgPlan(), i:0, phase:"circle", t:0, r:0, done:false, practice:!!(rec && rec.pts!==undefined), stacks:[], fx:[], pts:0};
+  DG.run={plan:dgPlan(), i:0, phase:"hold", t:0, done:false, practice:!!(rec && rec.pts!==undefined), stacks:[], fx:[], pts:0};
   dgSlots(); $("dgGo").disabled=true; $("dgShare").hidden=true; $("dgShareText").hidden=true;
   $("dgTotal").textContent="0 pts"; $("dgLabel").textContent=DG.run.practice?"practice run":"official run";
 }
@@ -1513,33 +1645,33 @@ function dgLoop(now){
   const dt=Math.min(0.05,(now-DG.last)/1000); DG.last=now;
   const R=DG.run, g=dgGeom();
   if(R && R.phase!=="idle" && !R.done){
-    const p=R.plan[R.i], orbit=dgOrbit(R,g);
+    const p=R.plan[R.i];
     if(!p){ dgFinish(); }
     else {
       R.t+=dt;
-      if(R.phase==="circle"){
-        const dir=(p.flip>0 && R.t>p.flip)?-1:1; p.ang+=p.w*dir*dt; R.r=orbit;
-        if(R.t>=p.circle){ R.phase="dash"; R.t=0; R.r0=orbit; }
-      } else if(R.phase==="dash"){
-        R.r=R.r0-(R.r0-DG_RZ)*(R.t/(p.dash*(R.r0-DG_RZ)/(R.r0-DG_RP)));
-        const rel=angDiff(p.ang,DG.aim);
-        let landed=null;
-        let q=0;
-        for(const st of R.stacks){ const top=st.items[st.items.length-1], d=Math.abs(angDiff(rel,top.rel)); if(d<=DG_STACK && R.r<=DG_RP+st.items.length*DG_SP+DG_SP*0.5){ landed=st; q=Math.max(1,Math.round(100*(1-d/DG_STACK))); break; } }
-        if(!landed && Math.abs(rel)<=DG_HW && R.r<=DG_RP+DG_SP*0.5){ landed={items:[]}; R.stacks.push(landed); q=Math.max(1,Math.round(100*(1-Math.abs(rel)/DG_HW))); }
+      const lo=DG_TW, hi=g.W-DG_TW, base=lo+(hi-lo)*Math.max(0,Math.min(1,p.fx+p.drift*Math.min(1,R.t/(p.hold+p.fall))));
+      const sx=Math.max(lo,Math.min(hi,base+Math.sin(R.t*3+p.wob*5)*18*p.wob));
+      if(R.phase==="hold"){ R.ax=sx; R.ay=g.spawnY; if(R.t>=p.hold){ R.phase="fall"; } }
+      else if(R.phase==="fall"){
+        const ft=R.t-p.hold, dist=g.tableY-g.spawnY;
+        R.ax=sx; R.ay=g.spawnY+dist*(ft/p.fall);
+        let landed=null, q=0;
+        for(const st of R.stacks){ const top=st.items[st.items.length-1], wx=DG.x+top.x, d=Math.abs(R.ax-wx), topY=g.tableY-st.items.length*DG_SP;
+          if(d<=DG_TOL && R.ay>=topY-DG_SP*0.5){ landed=st; q=Math.max(1,Math.round(100*(1-d/DG_TOL))); break; } }
+        if(!landed && Math.abs(R.ax-DG.x)<=DG_TW/2 && R.ay>=g.tableY-DG_SP*0.5 && R.ay<=g.tableY+6){ landed={items:[]}; R.stacks.push(landed); q=Math.max(1,Math.round(100*(1-Math.abs(R.ax-DG.x)/(DG_TW/2)))); }
         if(landed){
-          const h=landed.items.length+1, pts=h*q;
-          landed.items.push({e:p.a.sp.e, rel, q}); p.res=true; p.q=q; p.h=h; R.pts=(R.pts||0)+pts;
+          const h=landed.items.length+1, pts=h*q, rel=landed.items.length? landed.items[landed.items.length-1].x+(R.ax-DG.x-landed.items[landed.items.length-1].x)*0.5 : R.ax-DG.x;
+          landed.items.push({e:p.a.sp.e, x:rel, q}); p.res=true; p.q=q; p.h=h; R.pts=(R.pts||0)+pts;
           $("dgTotal").textContent=R.pts.toLocaleString()+" pts";
           qSound(q); dgSlots();
-          R.fx.push({txt:`+${pts}`,rel,r:DG_RP+h*DG_SP+22,t:0,q});
+          R.fx.push({txt:`+${pts}`,x:rel,y:g.tableY-h*DG_SP-14,t:0,q});
           R.phase="pause"; R.t=0;
-        } else if(R.r<=DG_RZ){
+        } else if(R.ay>g.tableY+60){
           p.res=false; R.phase="pause"; R.t=0; $("game").classList.add("hot"); setTimeout(()=>$("game").classList.remove("hot"),450);
-          beep([200,140]); dgSlots(); R.fx.push({txt:p.a.sp.e+" got you",rel:0,r:-60,t:0,abs:true});
+          beep([200,140]); dgSlots(); R.fx.push({txt:p.a.sp.e+" got you",abs:true,x:g.W/2,y:g.tableY+20,t:0});
         }
       } else if(R.phase==="pause"){
-        if(R.t>0.35){ R.i++; R.phase="circle"; R.t=0; if(R.i>=R.plan.length) dgFinish(); }
+        if(R.t>0.35){ R.i++; R.phase="hold"; R.t=0; if(R.i>=R.plan.length) dgFinish(); }
       }
     }
   }
@@ -1555,29 +1687,88 @@ function dgFinish(){
   $("dgLabel").textContent=R.practice?`practice · official score stays ${off&&off.pts!==undefined?off.pts.toLocaleString():"–"}`:`of ${DG_MAX.toLocaleString()} · ${tall} tall · ${stuck} of ${R.plan.length} stacked`;
   $("dgGo").disabled=false; $("dgGo").textContent="Practice"; $("dgShare").hidden=false;
   beep(pts>=2000?[523,659,784,1047]:[392,330,262],0.16);
-  setTimeout(()=>say(R.plan.map(dgLine).join(". ")+`. Zoo Stack score, ${pts}.`),700);
+  if(!R.practice) setTimeout(()=>{ if(DG.open && DG.run===R) dgPopShow(); },900);
 }
 function dgLine(p){ return p.res ? `${p.a.sp.n} stacked, ${p.q}` : `${p.a.sp.n} got you, rawr`; }
 function say(text,pitch=1,rate=1.05){
   if(!S.sound) return;
   try{ const ss=window.speechSynthesis; if(!ss) return; ss.cancel(); const u=new SpeechSynthesisUtterance(text); u.rate=rate; u.pitch=pitch; ss.speak(u); }catch(_){}
 }
-const TALK=[
-  n=>`I'm a ${n}. Rawr.`, n=>`${cap(n)} incoming!`, n=>`Hi, it's me, the ${n}. I'm early.`, n=>`${cap(n)} here. Save me a seat.`,
-  n=>`Did someone order a ${n}?`, n=>`Your ${n} is approaching. Please remain seated.`, n=>`I left the zoo for this meeting.`,
-  n=>`Running late. Literally running.`, n=>`This could have been an email. I'm coming anyway.`, n=>`Can I present first?`,
-  n=>`${cap(n)} on the way. Do not reply all.`, n=>`I hope this meeting has snacks. Like you.`
-];
-const PUNS={grizzly:["Bear-ly there!","Bear with me."],blackbear:["Bear-ly there!","Bear with me."],polarbear:["Bear-ly there!","I'm here to break the ice."],slothbear:["Bear-ly there!"],
-  lion:["Lion around? Not me."],cheetah:["No cheetah-ing, I'm just fast."],hippo:["Hippo-ing my way over."],tiger:["Grrreat to see you soon."],
-  wolf:["Awoooo. Calendar invite accepted."],ostrich:["Don't bury your head. I'm coming."],afelephant:["I never forget a meeting."],aselephant:["I never forget a meeting."],
-  gorilla:["Going ape. On my way."],chimp:["Monkey business, incoming."],croc:["See you later. Or sooner."],gator:["In a while. Actually, now."],goose:["Honk. Honk honk."],shark:["Uber's here. Smell you soon."]};
+const PHRASES={
+  lion:["I'm the king of this meeting now.","Roar. Is that the agenda?","I sleep twenty hours a day. I woke up for you."],
+  tiger:["I've got my stripes. Do you have a minute?","Tiger here. I'll be pouncing shortly.","Grrreat meeting so far. Room for one more?"],
+  leopard:["A leopard can't change its spots. Or its plans.","Climbing a tree, then climbing into your calendar.","I'll be dropping in from above."],
+  jaguar:["Jaguar. Not the car. Faster to your desk.","I bite through turtle shells. Your door is nothing.","Spotted: me, heading your way."],
+  cheetah:["Zero to your meeting in three seconds.","No cheetah-ing, I'm just quick.","I sprint, then I nap. Sprinting now."],
+  snowleopard:["I can't roar, so I'll just stare at you.","Snow leopard. I brought my own tail scarf.","Quiet entrance, big feet, coming soon."],
+  cougar:["Puma, cougar, mountain lion. I answer to all three.","I'm a cougar. I'm here for the young meeting.","Mountain lion. No mountain required."],
+  grizzly:["Bear-ly there!","Grizzly. I brought my own salmon.","I'm going to bear-hug this whole team."],
+  blackbear:["Bear with me.","Black bear. Mostly here for your picnic basket.","I'm more scared of you. Still coming though."],
+  polarbear:["I'm here to break the ice.","Polar bear. Cool under pressure.","I swam here. Just kidding. I walked."],
+  slothbear:["Sloth bear. Not slow. Ironic, I know.","I eat termites. Hope your desk is wooden.","Shaggy and grumpy. Like your Monday."],
+  afelephant:["I never forget a meeting.","Trunk call incoming.","African elephant. Big ears, all listening."],
+  aselephant:["Asian elephant. I took the scenic route.","Small ears, big entrance.","Remember me? I remember you."],
+  hippo:["Hippo-ing my way over.","I look friendly. I am not.","Hungry, hungry, heading to you."],
+  rhino:["I can't see well, so I'll charge everything.","Horn honking. Make way.","Rhino. Thick skin. Great for feedback."],
+  buffalo:["Buffalo. I stampede to meetings.","Horns first, introductions later.","They call me the black death. I prefer Barry."],
+  bison:["Bison. Don't call me buffalo.","I can jump six feet. Your cubicle is four.","Bringing the whole herd mentality."],
+  moose:["Moose on the loose.","I've got antlers and no inside voice.","Excuse me, is this the moose-ting room?"],
+  gorilla:["Going ape. On my way.","Four hundred pounds, all gentle. Mostly.","Silverback. I'll be chairing."],
+  chimp:["Monkey business, incoming.","I'm not a monkey. I'm a chimp. Big difference.","Bringing bananas for the whole team."],
+  wolf:["Awoooo. Calendar invite accepted.","I trot all day. I'll get there.","My pack is right behind me."],
+  wilddog:["Wild dog. I chase things for miles.","Painted dog. My coat is my calendar.","The pack decided. You're the meeting."],
+  dhole:["I whistle. That's me, whistling.","Dhole. Rhymes with hole. As in, in one.","Rare and on my way."],
+  hyena:["Hahaha. Oh, that's just me arriving.","Hyena. I'll be laughing the whole meeting.","I bring snacks. Usually someone else's."],
+  croc:["See you later. Or sooner.","I've been doing this for two hundred million years.","Crocodile. Smiling, not friendly."],
+  gator:["In a while. Actually, now.","Gator. I'm fast for about thirty feet.","Swamp to standup. Let's go."],
+  komodo:["I'm a Komodo dragon. I can wait.","Slow and steady. And venomous.","Big lizard. Bigger patience."],
+  ostrich:["Don't bury your head. I'm coming.","Thirty miles an hour for thirty minutes. Do the math.","Ostrich. All legs, no brakes."],
+  shark:["Uber's here. Smell you soon.","Temporary tank, permanent attitude.","Rate your driver five stars, please."],
+  pigeons:["Coo. Coo. Coo. That's the whole flock.","We're here for your sandwich.","Pigeon pigeon pigeon pigeon."],
+  bees:["Bzzzz. We're very busy.","Buzz meeting! Ha.","The whole hive RSVP'd."],
+  coconut:["Thunk.","Gravity sent me.","I fell for you. Literally."],
+  bugkid:["Look what I found!","It has six legs! Wanna hold it?","I named him Gary."],
+  dog:["Who's a good meeting? You are!","Ball? Ball? Ball?","I got out. Want to play?"],
+  goose:["Honk.","Honk honk. That's a threat.","Peace was never an option."],
+  goat:["Maaa. I'm eating your notes.","Goat. Greatest of all time. Of all meetings.","I climb anything. Including your desk."],
+  turkey:["Gobble gobble. Agenda item one.","Wild turkey. Emphasis on wild.","I'm not on the menu. You are."],
+  raccoon:["Trash panda reporting for snacks.","I have little hands. I will open your bag.","Masked bandit. No questions."],
+  boss:["Got a quick sec?","Just circling back.","This will only take five minutes."],
+  jogger:["On your left! Wait, you're my left.","Ran a ten K this morning. Did I mention?","Mind if I stretch here?"],
+  cart:["Rattle rattle rattle.","Nobody is pushing me. That's the problem.","Wobbly wheel, unstoppable."],
+  tortoise:["I've been coming since Tuesday.","Slow. Steady. Inevitable.","I'm a hundred years old. I'll wait."],
+  skunk:["Don't make me turn around.","Smell you soon.","Black, white, and nobody's alright."],
+  llama:["No drama, just llama.","I spit. Just so you know.","Llama. Alpaca my bags for this."],
+  rattler:["Rattle. That's your warning.","I'm a rattlesnake. Shake on it?","Hiss. Watch your ankles."],
+  coyote:["Yip yip yip!","Coyote. Running into a cliff later.","I live everywhere. Including near you."],
+  crash:["Honk! Sorry!","I was looking at my phone.","Brakes? What brakes?"],
+  ocean0:["Great white. Brought my best smile.","You're gonna need a bigger meeting room.","I can smell a drop of coffee from a mile away."],
+  ocean1:["Mako. Fastest shark. Already here.","I jump out of the water for fun.","Forty-five miles an hour. Fins down."],
+  ocean2:["Tiger shark. I eat license plates.","Stripes on land, stripes at sea.","I'll try anything once. Including you."],
+  ocean3:["Bull shark. I can swim up rivers.","Fresh or salt, I'm not picky.","Headbutt first, questions never."],
+  ocean4:["Hammerhead. I nail every meeting.","My eyes are on the sides. I see everyone.","Hammer time."],
+  ocean5:["Orca. Technically a dolphin. Technically.","Killer whale. Killer meeting.","I'm bringing the whole pod."],
+  ocean6:["Sailfish. Sixty-eight miles an hour.","My fin is a sail. My schedule is open.","Blink and I'm here."],
+  ocean7:["Blue marlin. Look at this nose.","I'm a fish with a sword. Your move.","Big blue, coming through."],
+  ocean8:["Barracuda. I like shiny things.","Teeth first.","Sleek, silver, and slightly rude."],
+  ocean9:["Saltwater croc. The biggest reptile alive.","I swam here from another country.","I don't do small talk."],
+  ocean10:["Ark ark ark!","Sea lion. I'll take the bench.","Can I balance your laptop on my nose?"],
+  ocean11:["Leopard seal. Fancy coat, bad manners.","I eat penguins. You look like a penguin.","Slippery and spotted."],
+  ocean12:["Moray eel. I live in your desk drawer now.","I have a second set of jaws.","Peek-a-boo."],
+  ocean13:["Stingray. Shuffle your feet.","I'm flat but I'm dangerous.","Glide in, sting out."],
+  ocean14:["Box jellyfish. No brain, no problem.","Twenty-four eyes, all on you.","Drifting with purpose."],
+  ocean15:["Portuguese man o' war. Technically a colony.","I'm four animals in a trench coat.","Long tentacles, short temper."],
+  ocean16:["Giant Pacific octopus. Eight arms to shake.","I can squeeze through any gap.","I'm taking notes with all my arms."],
+  ocean17:["Blue-ringed octopus. Tiny, deadly, adorable.","My rings mean back off.","Small but legendary."],
+  ocean18:["Pufferfish. Don't make me puff.","I'm round now. That's a warning.","Spiky hug incoming."],
+  ocean19:["Dolphin here. I brought you a fish!","Squeak squeak. That means hello.","Wanna race? I win."]
+};
+const GENERIC=["Incoming!","Almost there.","Save me a seat."];
 function cap(t){ return t.charAt(0).toUpperCase()+t.slice(1); }
-const TALK_PITCH={afelephant:.55,aselephant:.55,hippo:.6,grizzly:.6,polarbear:.6,rhino:.65,bison:.7,buffalo:.7,gorilla:.7,ostrich:1.5,bees:1.9,pigeons:1.7,chimp:1.4,goose:1.6,bugkid:1.6};
+const TALK_PITCH={afelephant:.55,aselephant:.55,hippo:.6,grizzly:.6,polarbear:.6,rhino:.65,bison:.7,buffalo:.7,gorilla:.7,ostrich:1.5,bees:1.9,pigeons:1.7,chimp:1.4,goose:1.6,bugkid:1.6,boss:.9,tortoise:.7,ocean5:.7,ocean19:1.6};
 let lastTalk=-1;
 function animalTalk(x){
-  const n=x.n.split(" ").pop().toLowerCase().replace(/[^a-z']/g,"")||"animal";
-  const pool=TALK.map(f=>f(n)).concat(PUNS[x.sid]||[]);
+  const pool=PHRASES[x.sid]||GENERIC;
   let k; do{ k=Math.floor(Math.random()*pool.length); }while(k===lastTalk && pool.length>1); lastTalk=k;
   ensureAudio(); say(pool[k], TALK_PITCH[x.sid]||1, 1);
   toast(`${x.e} “${pool[k]}”`,2600);
@@ -1625,63 +1816,64 @@ function qText(x,q,px,py,size,alpha,txt){
 function dgDraw(g){
   const c=$("dgCanvas"), x=c.getContext("2d"), dpr=c.width/Math.max(1,g.W), R=DG.run;
   x.setTransform(dpr,0,0,dpr,0,0); x.clearRect(0,0,g.W,g.H);
-  const orbit=R?dgOrbit(R,g):g.Ro, k=g.Ro/orbit;
-  x.save(); x.translate(g.cx,g.cy); x.scale(k,k);
-  x.strokeStyle="rgba(255,255,255,.25)"; x.lineWidth=2/k; x.setLineDash([4/k,8/k]); x.beginPath(); x.arc(0,0,orbit,0,7); x.stroke(); x.setLineDash([]);
-  x.fillStyle="rgba(255,255,255,.18)"; x.beginPath(); x.arc(0,0,DG_RZ,0,7); x.fill();
-  x.fillStyle="#fff"; x.beginPath(); x.arc(0,0,8,0,7); x.fill();
-  x.strokeStyle="#fff"; x.lineCap="round"; x.lineWidth=9;
-  x.beginPath(); x.arc(0,0,DG_RP-8,DG.aim-DG_HW,DG.aim+DG_HW); x.stroke();
-  x.save(); x.rotate(DG.aim); x.lineWidth=10; x.lineJoin="round";
-  x.beginPath(); x.moveTo(12,0); x.lineTo(DG_RP-22,0); x.moveTo(DG_RP-36,-12); x.lineTo(DG_RP-22,0); x.lineTo(DG_RP-36,12); x.stroke(); x.restore();
-  if(!R){ x.restore(); return; }
-  x.textAlign="center"; x.textBaseline="middle";
-  const em=(e,a,r,size,alpha=1)=>{ x.globalAlpha=alpha; const px=Math.cos(a)*r, py=Math.sin(a)*r; x.fillStyle="#fff"; x.beginPath(); x.arc(px,py,size*0.62,0,7); x.fill();
+  // meeting table
+  const tx=DG.x-DG_TW/2, ty=g.tableY;
+  x.fillStyle="rgba(0,0,0,.18)"; x.fillRect(tx+6,ty+10,DG_TW-12,6);
+  x.fillStyle="#fff"; x.beginPath(); x.roundRect?x.roundRect(tx,ty,DG_TW,12,6):x.rect(tx,ty,DG_TW,12); x.fill();
+  x.fillRect(tx+12,ty+12,5,22); x.fillRect(tx+DG_TW-17,ty+12,5,22);
+  x.font="20px system-ui,'Apple Color Emoji',sans-serif"; x.textAlign="center"; x.textBaseline="middle";
+  const gl=x.createLinearGradient(0,ty,0,ty-260); gl.addColorStop(0,"rgba(255,255,255,.55)"); gl.addColorStop(1,"rgba(255,255,255,0)");
+  x.strokeStyle=gl; x.lineWidth=2; x.setLineDash([6,5]); x.beginPath(); x.moveTo(DG.x,ty); x.lineTo(DG.x,ty-260); x.stroke(); x.setLineDash([]);
+  x.font="24px system-ui,'Apple Color Emoji',sans-serif"; x.fillText("🧑‍💼",DG.x,ty+26);
+  x.font="16px system-ui,'Apple Color Emoji',sans-serif"; x.fillText("💼",DG.x-40,ty+28); x.fillText("☕",DG.x+40,ty+28);
+  x.font="600 10px -apple-system,system-ui,sans-serif"; x.fillStyle="rgba(255,255,255,.8)"; x.fillText("100",DG.x,ty-8);
+  if(!R) return;
+  const em=(e,px,py,size,alpha=1)=>{ x.globalAlpha=alpha; x.fillStyle="#fff"; x.beginPath(); x.arc(px,py,size*0.62,0,7); x.fill();
     x.font=`${size}px system-ui,"Apple Color Emoji","Segoe UI Emoji",sans-serif`; x.fillText(e,px,py+1); x.globalAlpha=1; };
-  for(const st of R.stacks) st.items.forEach((it,h)=>{ const a=DG.aim+it.rel, r=DG_RP+(h+0.5)*DG_SP; em(it.e,a,r,20);
-    const tx=Math.cos(a)*r-Math.sin(a)*24, ty=Math.sin(a)*r+Math.cos(a)*24; qText(x,it.q,tx,ty,11,0.75); });
+  for(const st of R.stacks) st.items.forEach((it,h)=>{ const px=DG.x+it.x, py=g.tableY-(h+0.5)*DG_SP; em(it.e,px,py,24); qText(x,it.q,px+26,py,11,0.75); });
   R.plan.forEach((p,n)=>{
-    if(n===R.i && (R.phase==="circle"||R.phase==="dash")){ let size=24; if(R.phase==="circle" && p.circle-R.t<0.3) size=24+12*(1-(p.circle-R.t)/0.3); em(p.a.sp.e,p.ang,R.r,size); }
-    else if(R.phase==="idle" || n>R.i) em(p.a.sp.e,p.ang,orbit+40,18,.5);
+    if(n===R.i && (R.phase==="hold"||R.phase==="fall")){
+      if(R.phase==="hold"){ x.strokeStyle="rgba(255,255,255,.35)"; x.setLineDash([4,6]); x.lineWidth=2; x.beginPath(); x.moveTo(R.ax,g.spawnY+20); x.lineTo(R.ax,g.tableY-4); x.stroke(); x.setLineDash([]); }
+      em(p.a.sp.e,R.ax,R.ay,R.phase==="hold"?30:28);
+    } else if(R.phase==="idle" || n>R.i){ const k=n-(R.phase==="idle"?0:R.i+1); if(k<6) em(p.a.sp.e,g.W-24-k*30,g.top-6,18,.5); }
   });
-  x.font="700 18px -apple-system,system-ui,sans-serif"; x.fillStyle="#fff";
-  for(const f of R.fx){ f.t+=1/60; if(f.t>1.1) continue; x.globalAlpha=Math.max(0,1-f.t/1.1);
-    if(f.abs) x.fillText(f.txt,0,f.r-f.t*30); else { const a=DG.aim+f.rel; if(f.q!==undefined) qText(x,f.q,Math.cos(a)*f.r,Math.sin(a)*f.r-f.t*30,18,Math.max(0,1-f.t/1.1),f.txt); else x.fillText(f.txt,Math.cos(a)*f.r,Math.sin(a)*f.r-f.t*30); } }
-  x.globalAlpha=1; x.restore();
-  if(R.phase==="idle"){ x.font="600 15px -apple-system,system-ui,sans-serif"; x.fillStyle="#fff"; x.textAlign="center"; x.fillText("Catch them on the shield. Stack them high.",g.cx,g.cy-g.Ro-34); }
+  for(const f of R.fx){ f.t+=1/60; if(f.t>1.1) continue; const a=Math.max(0,1-f.t/1.1);
+    if(f.abs){ x.globalAlpha=a; x.fillStyle="#fff"; x.font="700 18px -apple-system,system-ui,sans-serif"; x.fillText(f.txt,f.x,f.y-f.t*30); x.globalAlpha=1; }
+    else qText(x,f.q,DG.x+f.x,f.y-f.t*30,18,a,f.txt); }
+  if(R.phase==="idle"){ x.font="600 15px -apple-system,system-ui,sans-serif"; x.fillStyle="#fff"; x.fillText("Slide the meeting table to catch them. Stack them high.",g.W/2,(g.top+g.tableY)/2); }
 }
-function dgAim(e){ const c=$("dgCanvas").getBoundingClientRect(), g=dgGeom(); DG.aim=Math.atan2(e.clientY-c.top-g.cy, e.clientX-c.left-g.cx); }
+function dgAim(e){ const c=$("dgCanvas").getBoundingClientRect(); DG.x=e.clientX-c.left; }
 $("dgCanvas").addEventListener("pointermove",dgAim);
 $("dgCanvas").addEventListener("pointerdown",e=>{ dgAim(e); try{ $("dgCanvas").setPointerCapture(e.pointerId); }catch(_){} });
-addEventListener("keydown",e=>{ if(!DG.open) return; if(e.key==="ArrowLeft"){ DG.aim-=0.12; e.preventDefault(); } if(e.key==="ArrowRight"){ DG.aim+=0.12; e.preventDefault(); } if(e.key==="Escape") dgClose(); });
+addEventListener("keydown",e=>{ if(!DG.open) return; if(e.key==="ArrowLeft"){ DG.x-=18; e.preventDefault(); } if(e.key==="ArrowRight"){ DG.x+=18; e.preventDefault(); } if(e.key==="Escape") dgClose(); });
 addEventListener("resize",()=>{ if(DG.open) dgResize(); });
 $("dgGo").onclick=dgStart;
 $("dgClose").onclick=dgClose;
-$("dgCity").onclick=()=>{ dgClose(); if(setUser(DG.city.lat,DG.city.lng,DG.city.label)) centerOn(DG.city.lat,DG.city.lng,VIEW_K[S.dur.m],600); };
-$("dgShare").onclick=()=>{
-  const rec=loadStore().days[DG.date]; if(!rec || rec.pts===undefined) return;
+function syncMute(){ $("dgMute").textContent=S.sound?"🔊":"🔇"; $("dgMute").setAttribute("aria-label",S.sound?"Mute":"Unmute"); const b=$("sound"); if(b){ b.textContent=S.sound?"🔔":"🔕"; b.setAttribute("aria-pressed",String(S.sound)); } }
+$("dgMute").onclick=()=>{ S.sound=!S.sound; if(!S.sound){ try{ speechSynthesis.cancel(); }catch(_){} } else { ensureAudio(); beep([660]); } syncMute(); };
+$("dgCity").onclick=()=>{ if(S.run && !S.run.done){ toast("Your meeting is still going. Finish it to move there."); return; } DG.fromSimple=false; dgClose(); if(setUser(DG.city.lat,DG.city.lng,DG.city.label)) centerOn(DG.city.lat,DG.city.lng,VIEW_K[S.dur.m],600); };
+function dgShareTxt(){
+  const rec=loadStore().days[DG.date]; if(!rec || rec.pts===undefined) return "";
   const sq=q=>!q?"❌":q>90?"✨":q>80?"🟦":q>70?"🟩":q>60?"🟨":q>50?"🟧":"🟥";
   const txt=[`🦁 Zoo Stack #${DG.no}`, `🏗️ ${rec.pts.toLocaleString()} / ${DG_MAX.toLocaleString()} · ${rec.tall} tall`, rec.res.map(([e])=>e).join(""), rec.res.map(([,q])=>sq(q)).join(""), `📍 ${rec.city}`, SHARE_URL].join("\n");
-  copyText(txt,$("dgShareText"));
-};
+  return txt;
+}
+function dgPopShow(){ const t=dgShareTxt(); if(!t) return; $("dgPre").textContent=t; $("dgPopText").hidden=true; $("dgPopShare").hidden=!navigator.share; $("dgPop").hidden=false; }
+$("dgShare").onclick=dgPopShow;
+$("dgPopX").onclick=()=>$("dgPop").hidden=true;
+$("dgPop").onclick=e=>{ if(e.target.id==="dgPop") $("dgPop").hidden=true; };
+$("dgPopCopy").onclick=()=>copyText(dgShareTxt(),$("dgPopText"));
+$("dgPopShare").onclick=()=>{ navigator.share({text:dgShareTxt()}).catch(()=>{}); };
 
 /* ---------- modes ---------- */
-function setMode(m){ if(m==="game"){ if(S.run && !S.run.done){ toast("Finish or end the meeting first."); return; } dgOpen(); } else dgClose(); }
+function setMode(m){ if(m==="game") dgOpen(); else dgClose(); }
 
 /* ---------- controls ---------- */
 function buildDurations(){
-  const box=$("durations"); box.innerHTML="";
-  DURS.forEach(d=>{
-    const b=document.createElement("button"); b.type="button"; b.setAttribute("role","radio");
-    b.textContent=d.chip; b.setAttribute("aria-checked",String(d===S.dur));
-    b.onclick=()=>{
-      if(S.dur===d) return;
-      clearRun(); S.dur=d; $("recap").hidden=true;
-      [...box.children].forEach(c=>c.setAttribute("aria-checked",String(c===b)));
-      renderResults(); scheduleHeat();
-    };
-    box.appendChild(b);
-  });
+  const sel=$("durSel"); sel.innerHTML="";
+  DURS.forEach((d,i)=>{ const o=document.createElement("option"); o.value=i; o.textContent=d.m<480?d.chip+" meeting":d.chip; sel.appendChild(o); });
+  sel.value=DURS.indexOf(S.dur);
+  sel.onchange=()=>{ const d=DURS[+sel.value]; if(S.dur===d) return; clearRun(); S.dur=d; $("recap").hidden=true; renderResults(); scheduleHeat(); };
 }
 function buildSearch(){
   const q=$("q"), ul=$("suggest"); let items=[], sel=-1;
@@ -1742,12 +1934,12 @@ $("share").onclick=()=>copyText(meetShareText(),$("shareText"));
 $("recapShare").onclick=()=>copyText(meetShareText(),$("shareText"));
 $("recapGame").onclick=()=>setMode("game");
 $("teaseGo").onclick=()=>setMode("game");
-$("tabMeet").onclick=()=>setMode("meet");
 $("ast").onclick=()=>{ const f=$("footnote"); if(S.mode==="meet" && !$("startbar").hidden){ f.classList.remove("flash"); void f.offsetWidth; f.classList.add("flash"); } else toast("*you're never more than a few hours from a bear.",4000); };
 $("tabGame").onclick=()=>setMode("game");
+$("runGame").onclick=()=>setMode("game");
 $("sound").onclick=()=>{ S.sound=!S.sound; const b=$("sound"); b.setAttribute("aria-pressed",String(S.sound)); b.setAttribute("aria-label",S.sound?"Sound on":"Sound off"); b.textContent=S.sound?"🔔":"🔕"; if(S.sound){ ensureAudio(); beep([660]); } };
 window.addEventListener("keydown",e=>{
-  const R=S.run; if(!R || R.done || S.mode!=="meet") return;
+  const R=S.run; if(!R || R.done || S.mode!=="meet" || DG.open) return;
   if(e.target.closest && e.target.closest("input,textarea")) return;
   const k=e.key.toLowerCase(); if(!KEYS[k]) return;
   e.preventDefault(); startDriving(k);
@@ -1764,7 +1956,7 @@ document.querySelectorAll("#dpad button").forEach(b=>{
 const CMP={on:false, heading:null, gotAbs:false, timer:0, raf:0};
 function bearing(a,b){ const p1=a[1]*RAD, p2=b[1]*RAD, dl=(b[0]-a[0])*RAD;
   return (Math.atan2(Math.sin(dl)*Math.cos(p2), Math.cos(p1)*Math.sin(p2)-Math.sin(p1)*Math.cos(p2)*Math.cos(dl))/RAD+360)%360; }
-function etaLong(e,R){ const rem=mi2(e.pos,R.you), base=e.D(R.h); let lo=0, hi=1;
+function etaLong(e,R){ const rem=remOf(e,R.you), base=e.D(R.h); let lo=0, hi=1;
   while(e.D(R.h+hi)-base<rem && hi<2000) hi*=2; if(hi>=2000) return Infinity;
   for(let i=0;i<30;i++){ const m=(lo+hi)/2; if(e.D(R.h+m)-base>=rem) hi=m; else lo=m; }
   if(e.life!==undefined && R.h+hi>e.life) return Infinity; return hi; }
@@ -1806,7 +1998,8 @@ function drawCompass(){
     placed.push([px,py]);
     let b=dots.querySelector(`[data-k="${x.key}"]`);
     if(!b){ b=document.createElement("button"); b.className="sv-dot"; b.type="button"; b.dataset.k=x.key; b.onclick=()=>{ if(CMP.sel===b.dataset.k){ animalTalk(b._x||x); } else { CMP.sel=b.dataset.k; drawCompass(); } }; dots.appendChild(b); }
-    b._x=x; b.textContent=x.e; b.setAttribute("aria-label",x.n); b.classList.toggle("sel",x===sel);
+    b._x=x; b.textContent=x.e; b.setAttribute("aria-label",x.n);
+    { const el=!(R&&!R.done)&&CMP.t0?(performance.now()-CMP.t0)/3600000:0, m=(x.t-el)*60; b.style.setProperty("--ring", m<3?"#FF3B30":m<10?"#FF9500":m<20?"#FFD60A":"transparent"); } b.classList.toggle("sel",x===sel);
     b.style.left=px+"px"; b.style.top=py+"px"; b.style.zIndex=x===sel?2:1; seen.add(x.key);
   });
   [...dots.children].forEach(b=>{ if(!seen.has(b.dataset.k)) b.remove(); });
@@ -1821,7 +2014,7 @@ function drawCompass(){
   setTone(sel.t*60);
 }
 function svPills(){ $("svCity").textContent="📍 "+S.user.label; $("svDur").textContent="⏱ "+S.dur.short+" meeting"; }
-function setTone(min){ const el=$("simple"); el.classList.toggle("hot",min<3); el.classList.toggle("warn",min>=3&&min<10); }
+function setTone(min){}
 function openSimple(on){
   CMP.on=on; if(on && !CMP.t0) CMP.t0=performance.now(); $("simple").hidden=!on; $("cmpBtn").setAttribute("aria-pressed",String(on));
   clearInterval(CMP.timer);
@@ -1838,9 +2031,9 @@ $("backSimple").onclick=()=>openSimple(true);
 addEventListener("resize",placeBack);
 setInterval(placeBack,500);
 document.querySelectorAll(".die").forEach(b=>b.addEventListener("click",e=>{ e.stopPropagation(); dieTap(b); }));
-$("svGame").onclick=()=>{ openSimple(false); setMode("game"); };
+$("svGame").onclick=()=>setMode("game");
 $("svCity").onclick=()=>{ openSimple(false); $("q").focus(); };
-$("svDur").onclick=()=>{ openSimple(false); $("durations").scrollIntoView({block:"center"}); };
+$("svDur").onclick=()=>{ openSimple(false); $("durSel").focus(); };
 addEventListener("resize",()=>CMP.on&&drawCompass());
 function onOrient(e){
   let hd=null;
@@ -1879,8 +2072,9 @@ function parseHash(){
   if(m) return {lat:+m[1], lng:+m[2], min:m[3]?+m[3]:null};
   return null;
 }
-Promise.all(["zoos.json","states-10m.json","cities.json","coast.json"].map(u=>fetch(u).then(r=>{ if(!r.ok) throw new Error(u); return r.json(); })))
-.then(([z,us,cities,coast])=>{
+Promise.all(["zoos.json","states-10m.json","cities.json","coast.json","roads.json"].map(u=>fetch(u).then(r=>{ if(!r.ok) throw new Error(u); return r.json(); })))
+.then(([z,us,cities,coast,roads])=>{
+  buildRoads(roads);
   for(const [id,s] of Object.entries(z.species)) S.sp[id]=Object.assign({id},s);
   S.fac=z.facilities.map(r=>({name:r[0],city:r[1],st:r[2],lat:r[3],lng:r[4],type:r[5],sp:r[6].split(" ").map(i=>S.sp[i]).filter(Boolean)}));
   S.fac.forEach(f=>{ f.reg=region(f.lat,f.lng); (S.byReg[f.reg]=S.byReg[f.reg]||[]).push(f); });
@@ -1904,7 +2098,7 @@ Promise.all(["zoos.json","states-10m.json","cities.json","coast.json"].map(u=>fe
   if(hp && hp.lat!==undefined && projection([hp.lng,hp.lat])){ S.user={lat:hp.lat,lng:hp.lng,label:"",example:false}; S.touched=true; if(hp.min){ const d=DURS.find(x=>x.m===hp.min); if(d) S.dur=d; } }
   fit();
   if(!S.user.label) S.user.label=nearestCity(S.user.lat,S.user.lng);
-  [...$("durations").children].forEach((c,i)=>c.setAttribute("aria-checked",String(DURS[i]===S.dur)));
+  $("durSel").value=DURS.indexOf(S.dur);
   $("dayBadge").textContent="#"+dayNo(todayStr()); $("teaseNo").textContent="#"+dayNo(todayStr());
   centerOn(S.user.lat,S.user.lng,VIEW_K[S.dur.m],0);
   renderResults(); renderHeat(); drawScreen();
@@ -1919,5 +2113,4 @@ Promise.all(["zoos.json","states-10m.json","cities.json","coast.json"].map(u=>fe
 .catch(err=>{ $("mapmsg").hidden=false; $("mapmsg").textContent="The map data didn't load. Reload the page to try again."; console.error(err); });
 })();
 </script>
-</body>
-</html>
+</body></html>
