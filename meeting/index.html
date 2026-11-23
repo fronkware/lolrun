@@ -49,20 +49,50 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .simple{position:fixed;inset:0;z-index:50;color:#fff;background:var(--sv-bg,#12B35A);transition:background .6s;overflow:hidden;font-family:var(--font-body);user-select:none;-webkit-user-select:none}
 .simple.warn{--sv-bg:#E89A0C}.simple.hot{--sv-bg:#D8402A}.simple.done{--sv-bg:#3B4A42}
 .sv-top{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px))}
-.sv-tag{font-weight:700;font-size:1.05rem;line-height:1.25;margin-bottom:12px}
+.sv-tag{font-weight:700;font-size:1.05rem;line-height:1.25;margin-bottom:10px;padding-right:104px}
 .sv-tag span{font-weight:500;font-size:.85rem;opacity:.9}
+.sv-foot{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);text-align:center;font-size:.78rem;opacity:.85;padding:0 16px}
+.sv-pill2{display:inline-flex!important;align-items:center;gap:2px;padding:0 6px!important}
+.sv-pill2 button{border:0;background:none;color:inherit;font:inherit;padding:7px 6px;cursor:pointer}
+.sv-pill2 i{font-style:normal;opacity:.6}
 .sv-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .sv-pill{border:0;border-radius:999px;background:rgba(255,255,255,.22);color:#fff;font-weight:600;font-size:.9rem;padding:8px 12px}
 .sv-eye{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
-.sv-name{font-family:var(--font-display);font-weight:800;font-size:2rem;line-height:1.05}
+.sv-name{font-family:var(--font-display);font-weight:800;font-size:1.45rem;line-height:1.1;margin-bottom:6px}
 .sv-arrow{position:absolute;left:50%;top:52%;width:min(46vw,220px);height:min(46vw,220px);transform:translate(-50%,-50%);transition:transform .25s ease-out}
 .sv-arrow svg{width:100%;height:100%;overflow:visible}
+.sv-more{font-size:.95rem!important;font-weight:800;color:#fff}
 .sv-dot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:24px;border:0;padding:0;cursor:pointer;transition:left .3s,top .3s}
 .sv-dot.sel{background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.sv-bot{position:absolute;left:max(24px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 28px);right:150px}
-.sv-time{font-size:3.4rem;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
+.sv-bot{position:absolute;left:max(24px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 28px);right:178px}
+.sv-time{font-size:3rem;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
 .sv-time small{font-size:1.6rem;opacity:.6;margin-left:6px}
-.sv-sub{font-size:1.9rem;line-height:1.15;margin-top:4px}
+.sv-sub{font-size:1.5rem;line-height:1.15;margin-top:4px}
+.sv-ctrl{display:flex;flex-direction:row;gap:8px;margin-top:12px;width:min(300px,calc(100vw - 196px))}
+.sv-ctrl .sv-seg{flex:0 0 auto}.sv-ctrl .sv-seg button{flex:0 0 auto;font-size:.95rem;padding:8px 12px}
+.sv-btns .sv-main{white-space:nowrap;padding:12px 14px}
+.sv-seg{display:flex;background:rgba(0,0,0,.16);border-radius:999px;padding:3px}
+.sv-seg button{flex:1;border:0;background:transparent;color:#fff;font-weight:700;font-size:.95rem;padding:8px 10px;border-radius:999px;cursor:pointer}
+.sv-seg button[aria-pressed="true"]{background:#fff;color:#1c7c3c}
+.sv-seg #svRunMode[aria-pressed="true"]{color:#0A84FF}
+.sv-main{border:0;border-radius:999px;background:#fff;color:#1c7c3c;font-weight:800;font-size:1.05rem;padding:12px 16px;cursor:pointer}
+.sv-prog{margin-top:8px;font-size:.85rem;font-variant-numeric:tabular-nums;max-width:300px}
+.sv-ctrl{width:auto!important;max-width:300px}
+.sv-pbar{height:5px;border-radius:3px;background:rgba(255,255,255,.25);overflow:hidden;margin-bottom:4px}
+.sv-pbar i{display:block;height:100%;width:0;background:#fff}
+.sv-run{border:0;border-radius:999px;background:rgba(255,255,255,.25);color:#fff;font-weight:700;font-size:1rem;padding:8px 14px;cursor:pointer;white-space:nowrap}
+.sv-run[aria-pressed="true"]{background:#0A84FF}
+.sv-go[aria-pressed="true"]{background:#FF3B30}
+.sv-hits{position:absolute;left:0;bottom:100%;margin-bottom:10px;width:min(320px,calc(100vw - 48px));font-size:.85rem;background:#fff;color:#111;border-radius:14px;padding:10px 12px;max-height:40vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:4}
+.sv-hitpill{background:rgba(0,0,0,.2)}
+.sv-hits ul{margin:2px 0 0;padding:0;list-style:none;opacity:.9}
+.sv-hits li{line-height:1.35}
+.sv-runarrow{position:absolute;left:50%;top:52%;width:64px;height:64px;transform:translate(-50%,-50%);transition:left .25s ease-out,top .25s ease-out;pointer-events:none;z-index:3}
+.sv-runarrow svg{transition:transform .25s ease-out}
+.sv-runarrow svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 0 #fff) drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.sv-runarrow span{position:absolute;left:50%;top:68px;transform:translateX(-50%);background:#0A84FF;color:#fff;font-weight:700;font-size:.85rem;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.sv-plan{font-size:.9rem;font-weight:600;margin-top:8px}
+.sv-mapbtn{position:absolute;left:50%;transform:translate(-50%,-50%);border:0;border-radius:999px;background:rgba(255,255,255,.22);color:#fff;font-weight:700;font-size:.85rem;padding:7px 14px;white-space:nowrap;cursor:pointer;z-index:2}
 .sv-meta{font-size:.9rem;opacity:.85;margin-top:6px}
 .sv-btns{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 28px);display:flex;flex-direction:column;gap:8px;align-items:stretch}
 .sv-detail{border:0;border-radius:999px;background:rgba(255,255,255,.22);color:#fff;font-weight:700;padding:12px 16px;font-size:.95rem}
@@ -172,7 +202,7 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .ghost.sm{padding:6px 10px;font-size:.85rem;border-radius:9px}
 .drivehint{font-size:.78rem;color:var(--muted)}
 .drivehint b{color:var(--ink)}
-.backsimple{right:12px;bottom:110px;border:0;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.9rem;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.2);z-index:6}
+.backsimple{left:12px;right:auto;bottom:12px;border:0;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.9rem;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.2);z-index:6}
 .dpad{left:12px;right:auto;bottom:12px;display:grid;grid-template-columns:repeat(3,40px);grid-template-rows:repeat(2,40px);gap:4px}
 .dpad button{border:1.5px solid var(--line);background:color-mix(in srgb,var(--card) 95%,transparent);border-radius:10px;font-weight:800;font-size:1rem;touch-action:none;user-select:none;-webkit-user-select:none}
 .dpad button.on{background:var(--ink);color:var(--bg)}
@@ -255,6 +285,36 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .about summary{cursor:pointer;font-family:var(--font-display);font-weight:800;font-size:1.15rem;padding:10px 0}
 .about .body{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:8px 32px;padding-bottom:14px}
 .about p{margin:0 0 10px;max-width:65ch}
+.rsheet{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.35);animation:dgfade .2s ease-out}
+.rs-card{position:relative;width:min(520px,100%);max-height:86vh;overflow:auto;background:var(--card);color:var(--ink);border-radius:22px 22px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px rgba(0,0,0,.25);animation:rsup .3s cubic-bezier(.2,1,.3,1)}
+@media (min-width:700px){.rsheet{align-items:center}.rs-card{border-radius:22px}}
+@keyframes rsup{from{transform:translateY(40px);opacity:0}}
+.rs-x{position:absolute;top:10px;right:12px;border:0;background:none;font-size:1.1rem;color:var(--muted);cursor:pointer;padding:6px}
+.rs-eye{font-size:.78rem;font-weight:600;color:var(--muted)}
+.rs-head{display:flex;align-items:baseline;gap:6px;margin:4px 0}
+.rs-score{font-size:2.6rem;font-weight:800;line-height:1}
+.rs-of{color:var(--muted);font-weight:600;margin-right:8px}
+.rs-last{font-size:1.05rem;margin-bottom:8px}
+.rs-cmp{display:flex;gap:8px;margin:10px 0}
+.rs-cmp span{flex:1;background:var(--soft);border-radius:12px;padding:8px 10px;font-size:.85rem;color:var(--muted)}
+.rs-cmp span b{display:block;font-size:1.2rem;color:var(--ink)}
+.rs-cmp span.you{outline:2px solid #0A84FF}
+.rs-tl{list-style:none;margin:8px 0;padding:0;border-top:1px solid var(--line)}
+.rs-tl li{display:grid;grid-template-columns:52px 28px 1fr;gap:6px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.rs-tl .tm{font-family:var(--font-mono,ui-monospace,monospace);color:var(--muted);font-size:.82rem}
+.rs-tl .em{font-size:1.15rem}
+.rs-tl small{display:block;color:var(--muted);font-size:.78rem}
+.rs-tl li.hit{color:#C0392B}
+.rs-run{font-size:.88rem;color:var(--muted);margin:6px 0 10px}
+.rs-all{font-size:.85rem;margin-bottom:10px}.rs-all ul{margin:6px 0 0;padding-left:18px;color:var(--muted)}
+.rs-btns{display:flex;gap:8px;flex-wrap:wrap}
+.rs-btns button{flex:1 1 30%;border:0;border-radius:12px;padding:12px 10px;font-weight:700;background:var(--soft);color:var(--ink);cursor:pointer}
+.rs-btns #rsShare{background:#30C85E;color:#fff}
+.runres .yp{fill:none;stroke:#0A84FF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.runres .pin text{font-size:18px}
+.runres .pin .tl{font-size:11px;font-weight:700;fill:#C0392B;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.about .hood{grid-column:1/-1}
+.about .hood p{max-width:90ch}
 .about h3{font-family:var(--font-display);margin:6px 0 6px;font-size:1rem}
 .tablewrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:.84rem}
@@ -361,10 +421,15 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 .sv-toast.in{animation:svtoast .35s cubic-bezier(.3,1.5,.5,1)}
 @keyframes svtoast{from{transform:translateX(-50%) translateY(14px) scale(.9);opacity:0}}
 
+.startrow2{display:flex;gap:8px;margin-top:8px}.startrow2>*{flex:1 1 auto;white-space:nowrap}.startrow2>.runbtn{flex:0 0 auto}
+.runbtn[aria-pressed="true"]{background:#0A84FF!important;color:#fff!important}
+.runplan .rp{fill:none;stroke:#0A84FF;stroke-width:3;stroke-dasharray:7 6;stroke-linecap:round}
+.runplan .end{font-size:20px}
+.runplan .lbl{fill:#0A84FF;font-size:12px;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:3px}
 .startrow{display:flex;gap:8px;align-items:stretch}
 .startrow .gate.huge{flex:1;font-size:1.25rem;padding:12px 14px;animation:none}
 #durSel{border:0;border-radius:14px;background:var(--soft);color:var(--ink);font:inherit;font-weight:700;font-size:.95rem;padding:0 30px 0 12px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 16px) 52%,calc(100% - 11px) 52%;background-size:5px 5px;background-repeat:no-repeat;cursor:pointer}
-.dailybtn{border:0;border-radius:12px;background:var(--soft);color:var(--sea);font-weight:700;font-size:.9rem;padding:9px 12px;display:flex;align-items:center;justify-content:center;gap:6px}
+.dailybtn{border:0;border-radius:12px;background:var(--soft);color:var(--sea);font-weight:700;font-size:.9rem;padding:9px 12px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
 .modebtns{display:flex;gap:8px}
 .modebtn{flex:1;border:0;border-radius:12px;padding:9px 10px;font-weight:700;font-size:.9rem;background:var(--soft);color:var(--sea);display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .modebtn.on{background:color-mix(in srgb,var(--sea) 14%,var(--card));color:var(--ink)}
@@ -384,6 +449,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 .sv-dot{box-shadow:0 0 0 3px var(--ring,transparent)}
 .sv-dot.sel{box-shadow:0 0 0 4px var(--ring,transparent),0 4px 14px rgba(0,0,0,.25)}
 .dg .sv-top{right:110px!important}
+.sv-snd{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:calc(max(14px,env(safe-area-inset-right,0px)) + 52px);z-index:3;border:0;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.22);color:#fff;font-size:1.15rem;cursor:pointer}
 .dg-mute{right:calc(max(16px,env(safe-area-inset-right,0px)) + 48px)!important;font-size:1rem}
 </style>
 
@@ -398,7 +464,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
     <button id="locate" class="btn" type="button" title="Use my location">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg><span class="lbl">Use my location</span>
     </button>
-    <button id="sound" class="btn" type="button" aria-pressed="true" aria-label="Sound on" title="Sound on arrivals">🔔</button>
+    <button id="sound" class="btn" type="button" aria-pressed="false" aria-label="Unmute" title="Sound is off. Tap to unmute">🔇</button>
     <div class="brk"></div>
   </header>
 
@@ -408,7 +474,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
       <canvas id="heat"></canvas>
       <svg id="top" role="img" aria-label="Map of the United States with zoo locations. Tap to place your pin.">
         <g id="gTop"><path class="roads" id="roads"></path><path class="borders" id="borders"></path><path class="coast" id="coast"></path><path class="arena" id="arena"></path></g>
-        <g id="trails"></g><g id="cities"></g><g id="facs"></g><g id="safest" class="safest"></g><g id="items"></g><g id="you" class="you"></g><g id="sprites"></g>
+        <g id="trails"></g><g id="cities"></g><g id="facs"></g><g id="safest" class="safest"></g><g id="items"></g><g id="runplan" class="runplan"></g><g id="you" class="you"></g><g id="sprites"></g><g id="runres" class="runres"></g>
       </svg>
       <div class="overlay topleft">
         <div class="hint" id="hint">Loading…</div>
@@ -432,12 +498,12 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
           <select id="durSel" aria-label="Meeting length"></select>
           <button class="gate huge" id="startMeet" type="button">▶ Start</button>
         </div>
-        <button class="dailybtn" id="tabGame" type="button">🏆 Daily Challenge <span class="badge" id="dayBadge">#1</span></button>
+        <div class="startrow2"><button class="dailybtn" id="tabGame" type="button">🏆 Daily Challenge <span class="badge" id="dayBadge">#1</span></button><button class="dailybtn runbtn" id="runPlan" type="button" aria-pressed="false">🏃 Run</button></div>
       </div>
       <div class="overlay runbar" id="runbar" hidden>
         <div class="rclock mono"><span id="rClock">0:00</span><span class="of"> / <span id="rT">30:00</span></span></div>
         <div class="chips sm" id="speeds" role="radiogroup" aria-label="Playback speed"></div>
-        <div class="rrow"><button class="ghost sm" id="skip" type="button">Skip ⏭</button><button class="ghost sm" id="endMeet" type="button">End meeting</button></div>
+        <div class="rrow"><button class="ghost sm" id="skip" type="button">Skip ⏭</button><button class="ghost sm" id="endMeet" type="button">End meeting</button><button class="ghost sm runbtn" id="runPlan2" type="button" aria-pressed="false">🏃 Run</button></div>
         <button class="ghost sm" id="runGame" type="button">🏆 Play the Daily Challenge</button>
         <div class="drivehint" id="driveHint"><b>WASD</b>/arrows: run at 6 mph</div>
       </div>
@@ -508,40 +574,65 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
   </div>
 
   <details class="about">
-    <summary>How the math works</summary>
+    <summary>How it all works: speeds, chases and the code behind it</summary>
     <div class="body">
       <div>
         <h3>Two speeds per animal</h3>
-        <p>Each animal sprints at top speed for as long as it can manage, then settles into a pace it can keep for hours. A cheetah does 64 mph for about 25 seconds, then walks. A wolf only sprints for 20 seconds but trots at 5 mph all day. Cats win up close; dogs, elephants and ostriches win over distance. During a meeting they chase wherever you are, so you can run away at 6 mph, a 10-minute mile. Every 5 seconds of running carries a 1 in 100 chance of getting hit by a car.</p>
+        <p>Each animal sprints at top speed for as long as it can manage, then settles into a pace it can keep for hours. A cheetah does 64 mph for about 25 seconds, then walks. A wolf only sprints for 20 seconds but trots at 5 mph all day. Cats win up close; dogs, elephants and ostriches win over distance. During a meeting they chase wherever you are, so you can run away at 6 mph, a 10-minute mile. Every 5 seconds of running (meeting time, so speed-ups count) carries a 1 in 100 chance, which makes a hit about 97% likely if you run a whole 30-minute meeting, of getting hit by one of 20 tall-hooded pickups and SUVs (a lifted F-150, a Ram 2500, a Suburban…). You can keep running, but each hit halves your speed.</p>
         <h3>Wildcards</h3>
-        <p>Rolled fresh each time you start. 🕊️ Pigeons (25%) if you're within 25 miles of a city of 300,000 people or more; they fly in from downtown at 45 mph. 🦈 A shark (10%) if you're within 7.5 miles of the ocean: 30 minutes to get an Uber, load it and set up a temporary tank, then 30 mph, and the tank lasts 15 minutes. 🐝 Bees (4%) from a hive up to 3 miles away, at 15 mph. 🥥 A coconut (1%) lands on you at minute 5, wherever you are.</p>
+        <p>Rolled fresh each time you start. 🕊️ Pigeons (25%) if you're within 25 miles of a city of 300,000 people or more; they fly in from downtown at 45 mph. 🦈 A shark (10%) if you're within 7.5 miles of the ocean: 30 minutes to get an Uber, load it and set up a temporary tank, then 30 mph, and the tank lasts 15 minutes. 🐝 Bees (4%) from a hive up to 3 miles away, at 15 mph. 🥥 A coconut (1%) lands on you at minute 5, wherever you are. Twelve oddballs (a kid with a bug, a goose, your boss…) at 1% each, and your state's local wildlife shows up 1 to 2 hours in.</p>
         <h3>The safety score</h3>
         <p>Every arrival before your meeting ends adds danger, weighted by how deadly it is and how much of the meeting it's there for. A lion at minute 5 hurts the score far more than a gorilla at minute 55. 100 means nothing arrives in time.</p>
+        <h3>What it doesn't model</h3>
+        <p>Fences, rivers, terrain and traffic. Animals that would rather stay home. Nobody crosses into Alaska or Hawaii, and Hawaii's zoo animals stay on Oahu. You run cross-country in a straight line; only the animals use roads. It's a fun upper bound, not a risk model.</p>
       </div>
       <div>
-        <h3>What this version leaves out</h3>
-        <p>Animals take either a straight line or the major US highways (Natural Earth), whichever is faster. On a road they go 25% faster, and they cut cross-country for up to 10 mi to get on or off. The heat map is a cheaper fudge: straight-line danger whose edges stretch up to 25% further near roads and blend back away from them. Nobody crosses into Alaska or Hawaii, and Hawaii's zoo animals stay on Oahu. Fences, rivers and traffic are ignored.</p>
-        <h3>The data</h3>
-        <p id="dataNote">A hand-built starter set of zoos, sanctuaries and wildlife parks, with one entry per species at each place. Collections change often, so treat it as approximate.</p>
-        <p>Your starting spot comes from your internet address (via GeoJS) when the page can reach it. It's rough, often off by a few miles, and nothing is saved.</p>
         <h3>Speeds used</h3>
         <div class="tablewrap"><table id="speeds-table"><thead><tr><th>Animal</th><th>Sprint</th><th>For</th><th>Then</th><th>Danger</th></tr></thead><tbody></tbody></table></div>
+        <h3>The data</h3>
+        <p id="dataNote">A hand-built starter set of zoos, sanctuaries and wildlife parks, with one entry per species at each place. Collections change often, so treat it as approximate.</p>
+      </div>
+      <div class="hood">
+        <h3>Under the hood</h3>
+        <p><b>Everything runs in your browser.</b> One HTML page with D3 for the map, plus five static JSON files: zoos and species, US state shapes (us-atlas), big cities, a coastline index, and a road graph. No server, no account, no tracking. The only thing saved is your daily-game history, in your own browser's local storage.</p>
+        <p><b>Location.</b> On load the page asks GeoJS (falling back to ipapi.co) for a rough spot based on your internet address. It's often a few miles off, and if neither answers it starts in San Diego. Search, "Use my location" (your device's GPS, only when you tap it) or tapping the map replace it. The page never uploads your location. A result you copy and share can include it in the link.</p>
+        <p><b>Arrival times.</b> For each animal the page takes the shorter of two routes: a straight line, or a road route. Roads come from Natural Earth's major US highways, about 39,000 points. A shortest-path search (Dijkstra) runs once outward from you over that network, with road miles costing 0.8 of a regular mile because animals go 25% faster on pavement. Each animal can cut up to 10 mi cross-country to reach a road and again to reach you. Time is the sprint first, then the cruise speed for the rest.</p>
+        <p><b>The chase.</b> A meeting steps the clock forward in small slices. Every animal moves its allowed distance along its road path, then straight at wherever you are right now. They react to where you are, not where you're going. Speed chips just compress the same clock.</p>
+        <p><b>Run this way.</b> The 🏃 Run button tries 36 directions, 10° apart. For each it simulates you running at 6 mph in a straight line (stopping at the coast or a border) while everything that's coming chases you live, using the same engine as a meeting. It picks the direction with the best safety score, breaking ties by the latest first arrival, and compares that with standing still. If nothing beats staying put by a minute, it says so. It's a single snapshot: once you move, tap again.</p>
+        <p><b>Randomness.</b> Wildcards are rolled with your browser's random number generator each time a meeting starts or you tap the die, so two meetings in the same spot can differ. Local wildlife comes from a per-state table found by testing which state shape contains your point. The ocean creature you get for a pin in the water comes from a hash of its coordinates, so the same spot always gives the same creature. The daily game is seeded by today's date, so everyone gets the same city and the same falling order.</p>
+        <p><b>Compass.</b> On phones, the compass button asks for device-orientation permission (iOS requires a tap for this). The arrow angle is the true bearing from you to the animal minus your phone's heading. Without a compass the arrows are north-up.</p>
+        <p><b>Heat map.</b> Each pixel gets its own straight-line score from nearby facilities, drawn to a canvas clipped to the US. Near a highway the distance is shrunk so danger stretches up to 25% further, fading smoothly to nothing 8 mi from the road. It's an approximation; your own spot uses the full road routing. Yellow means only local wildlife can reach you.</p>
+        <p><b>Sound.</b> Off until you tap the speaker. Beeps are synthesized with the Web Audio API, and animal voices use your browser's built-in speech, only when you tap.</p>
       </div>
     </div>
   </details>
+  <div class="rsheet" id="rsheet" hidden role="dialog" aria-label="Meeting result"><div class="rs-card">
+    <button class="rs-x" id="rsX" type="button" aria-label="Close">✕</button>
+    <div class="rs-eye" id="rsEye"></div>
+    <div class="rs-head"><span class="rs-score" id="rsScore"></span><span class="rs-of">/100</span><span class="grade" id="rsGrade"></span></div>
+    <div class="rs-last" id="rsLast"></div>
+    <div class="rs-cmp" id="rsCmp"></div>
+    <ol class="rs-tl" id="rsTl"></ol>
+    <div class="rs-run" id="rsRun"></div>
+    <details class="rs-all" id="rsAll" hidden><summary id="rsAllSum"></summary><ul id="rsAllList"></ul></details>
+    <div class="rs-btns"><button type="button" id="rsShare">Copy result</button><button type="button" id="rsMap">See it on the map</button><button type="button" id="rsAgain">Again</button></div>
+    <textarea class="sharetext" id="rsText" readonly hidden aria-label="Result text to copy"></textarea>
+  </div></div>
   <div class="simple" id="simple" hidden role="dialog" aria-label="Simple view">
     <div class="sv-top">
       <div class="sv-tag">No meeting is safe*<br><span>*you're never more than a few hours from a bear.</span></div>
-      <div class="sv-pills"><button class="sv-pill" id="svCity" type="button">📍 –</button><button class="sv-pill" id="svDur" type="button">⏱ –</button></div>
-      <div class="sv-eye" id="svEye">Incoming</div><div class="sv-name" id="svName">–</div></div>
+      <div class="sv-pills"><span class="sv-pill sv-pill2"><button id="svCity" type="button">📍 –</button><i aria-hidden="true">·</i><button id="svDur" type="button">⏱ –</button></span></div></div>
     <div class="sv-pulse" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div id="svDots"></div>
+    <div id="svDots"></div><button class="sv-mapbtn" id="svMapBtn" type="button">View detailed map</button>
     <div class="sv-arrow" id="svArrow"><svg viewBox="-100 -100 200 200" aria-hidden="true"><path class="arw" d="M0,62 L0,-60 M-42,-20 L0,-62 L42,-20" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><path class="crack" d="M-9,-46 L5,-30 L-6,-12 L7,6 L-5,24 L4,44 M7,6 L18,12 M-6,-12 L-16,-6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <div class="sv-hit" id="svHit" hidden></div>
+    <div class="sv-runarrow" id="svRunArrow" hidden><svg viewBox="-100 -100 200 200" aria-hidden="true"><path d="M0,62 L0,-60 M-42,-20 L0,-62 L42,-20" fill="none" stroke="#0A84FF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="svRunLbl">Run this way</span></div>
     <div class="sv-toast" id="svToast" hidden></div>
-    <div class="sv-cmp" id="svCmpBox"><button class="cmpbtn" id="svCmp" type="button" aria-label="Turn on compass">🧭</button><span class="cmplbl" id="svCmpLbl" hidden>Tap so arrows point the real way</span></div>
-    <div class="sv-bot"><div class="sv-time" id="svTime">–</div><div class="sv-sub" id="svSub">until it arrives</div><div class="sv-meta" id="svMeta"></div></div>
-    <div class="sv-btns"><div class="diebox sv-die2"><span class="dielbl">Tempt fate!</span><button class="die" type="button" aria-label="Roll a random event">🎲</button></div><button class="sv-detail" id="svDetail" type="button">Detailed view</button><button class="sv-detail" id="svGame" type="button">Daily Challenge</button></div>
+    <button class="sv-snd" id="svSound" type="button" aria-label="Unmute">🔇</button><div class="sv-cmp" id="svCmpBox"><button class="cmpbtn" id="svCmp" type="button" aria-label="Turn on compass">🧭</button><span class="cmplbl" id="svCmpLbl" hidden>Tap so arrows point the real way</span></div>
+    <div class="sv-bot"><div class="sv-eye" id="svEye">Incoming</div><div class="sv-name" id="svName">–</div><div class="sv-time" id="svTime">–</div><div class="sv-sub" id="svSub">until it arrives</div><div class="sv-meta" id="svMeta"></div>
+      <div class="sv-prog" id="svProg" hidden><div class="sv-pbar"><i id="svProgBar"></i></div><span id="svProgTxt"></span></div>
+      <div class="sv-ctrl"><div class="sv-seg" role="group" aria-label="During the meeting"><button id="svStill" type="button" aria-pressed="true">🧍 Stand</button><button id="svRunMode" type="button" aria-pressed="false">🏃 Run</button></div></div><div class="sv-plan" id="svPlan" hidden></div></div>
+    <div class="sv-btns"><div class="diebox sv-die2"><span class="dielbl">Tempt fate!</span><button class="die" type="button" aria-label="Roll a random event">🎲</button></div><button class="sv-detail" id="svDetail" type="button">Detailed view</button><button class="sv-detail" id="svGame" type="button">Daily Challenge</button><button class="sv-main" id="svMain" type="button">▶ Start meeting</button></div>
   </div>
   <div class="simple dg" id="game" hidden role="dialog" aria-label="Zoo Stack">
     <canvas id="dgCanvas"></canvas>
@@ -593,6 +684,12 @@ const BEARS = new Set(["grizzly","blackbear","polarbear","slothbear"]);
 const DOGS = new Set(["wolf","wilddog","dhole","hyena"]);
 const MEAT = new Set([...CATS,...BEARS,...DOGS,"croc","gator","komodo","chimp"]);
 const RUN_MPH = 6, CRASH_EVERY = 5, CRASH_P = 0.01;
+// tall-hooded trucks and SUVs: the front-end heights that hit pedestrians in the torso and head
+const RIGS=[
+  ["Lifted Ford F-150","🛻"],["Ram 1500","🛻"],["Ram 2500 HD","🛻"],["Ram 3500 dually","🛻"],["Chevy Silverado 1500","🛻"],
+  ["Chevy Silverado 2500 HD","🛻"],["GMC Sierra 1500","🛻"],["GMC Sierra 2500 HD","🛻"],["Ford F-250 Super Duty","🛻"],["Ford F-350 Super Duty","🛻"],
+  ["Ford F-450","🛻"],["Ford F-150 Raptor","🛻"],["Ram TRX","🛻"],["GMC Hummer EV pickup","🛻"],["Toyota Tundra","🛻"],
+  ["Chevy Suburban","🚙"],["Chevy Tahoe","🚙"],["Cadillac Escalade","🚙"],["GMC Yukon XL","🚙"],["Ford Expedition","🚙"]];
 const WILD = {
   pigeons:{id:"pigeons", n:"Pigeon flock", e:"🕊️", w:1, p:0.25, mph:45, takeoff:2/60, cityK:300, cityMi:25},
   shark:{p:0.10},
@@ -678,7 +775,7 @@ function quirkGroup(id){
 }
 
 const S = { sp:{}, fac:[], byReg:{}, cities:[], bigCities:[], user:{...EXAMPLE}, dur:DURS[1], heatOn:true, mode:"meet",
-  t:d3.zoomIdentity, W:0, H:0, run:null, last:null, sound:true, touched:false };
+  t:d3.zoomIdentity, W:0, H:0, run:null, last:null, sound:false, touched:false };
 const G = { sharkStart:null, ready:false, date:"", no:1, arena:null, lineup:[], sharkOn:false, hide:null, steak:null, block:null, tool:"hide",
   run:null, anim:null, practice:false };
 
@@ -965,6 +1062,7 @@ function drawFacs(){
 }
 function youPos(){ return S.run ? S.run.you : [S.user.lng,S.user.lat]; }
 function drawYou(){
+  drawRunPlan(); drawRunResult();
   const g=d3.select("#you");
   const yp=youPos(), p=S.mode==="meet" ? screen(yp[0],yp[1]) : null;
   if(!p){ g.attr("display","none"); return; }
@@ -975,8 +1073,8 @@ function drawYou(){
     g.append("text").attr("class","car").attr("y",-22);
     g.append("text").attr("class","lbl").attr("y",-15).attr("text-anchor","middle").text("You");
   }
-  const R=S.run, driving=R && !R.done && R.keys.size>0 && !R.crashed;
-  g.select("text.car").text(R && R.crashed ? "🤕" : driving ? "🏃" : "");
+  const R=S.run, driving=R && !R.done && (R.keys.size>0 || R.runB!=null);
+  g.select("text.car").text(driving ? (R.crashed?"🤕🏃":"🏃") : (R && R.crashed ? "🤕" : ""));
   g.select("text.lbl").attr("y", (R && (R.crashed||driving)) ? -36 : -15);
   g.attr("transform",`translate(${p[0]},${p[1]})`);
 }
@@ -1200,7 +1298,7 @@ function setHint(){
 }
 function renderResults(){
   const u=S.user, T=S.dur.m/60, list=arrivals(u.lat,u.lng);
-  S.last=list;
+  S.last=list; setTimeout(refreshPlan,0);
   $("spotLabel").textContent=u.example ? "Example spot · tap the map to use yours" : u.approx ? "Your rough spot, from your internet connection · tap the map to fix it" : "Your spot";
   $("where").textContent=u.label;
   $("coords").textContent=`${Math.abs(u.lat).toFixed(3)}°${u.lat>=0?"N":"S"}, ${Math.abs(u.lng).toFixed(3)}°${u.lng>=0?"E":"W"}`;
@@ -1241,7 +1339,7 @@ function setUser(lat,lng,label,opts={}){
 
 /* ---------- the chase engine (preview + meeting) ---------- */
 function clearRun(){
-  const R=S.run; if(!R) return;
+  const R=S.run; if(!R) return; PLAN=null; setTimeout(()=>{ refreshPlan(); drawYou(); },0);
   cancelAnimationFrame(R.raf); clearInterval(R.timer);
   try{ R.wake?.release(); }catch(_){}
   S.run=null; drawSprites(); drawYou();
@@ -1249,7 +1347,7 @@ function clearRun(){
 function entFor(o){ return Object.assign({pos:o.from.slice(), prevD:0, arrived:null, dead:null, eta:null}, o); }
 function startRun(preview){
   if(S.run && !S.run.done) return;
-  clearRun(); ensureAudio(); hideTip();
+  clearRun(); PLAN=null; ensureAudio(); hideTip();
   const u=S.user, T=S.dur.m/60, list=S.last||[];
   const ents=[], per=new Map();
   const chosen=list.filter(a=>a.t<=T*1.5).slice(0,40);
@@ -1281,8 +1379,10 @@ function startRun(preview){
   for(const o of ODD){ if(Math.random()<ODD_P || S.forceWild===o.id){ rolled.push(o.id); ents.push(oddEnt(o,[u.lng,u.lat],0)); } }
   S.forceWild=null;
   const speed=preview ? Math.max(1,T*3600/10) : 1;
-  const R=S.run={preview, T, h:0, speed, ents, rolled, you:[u.lng,u.lat], keys:new Set(), driveSec:0, nextRoll:CRASH_EVERY, crashed:false, drove:0,
+  const R=S.run={preview, T, h:0, speed, ents, rolled, you:[u.lng,u.lat], keys:new Set(), driveSec:0, nextRoll:CRASH_EVERY, crashed:false, hits:[], mph:RUN_MPH, drove:0, hitSet:new Set(), youPath:[[u.lng,u.lat]], runB:null,
     arrivals:[], done:false, lastWall:performance.now(), raf:0, timer:0, wake:null, title:document.title, autoSped:false, etaAt:0, lastEvent:""};
+  for(let k=CRASH_EVERY;k<=T*3600+1e-9;k+=CRASH_EVERY) if(Math.random()<CRASH_P) R.hitSet.add(k);
+  R.snap={o:[u.lng,u.lat], T, hitSet:R.hitSet, ents:ents.map(e=>({sp:e.sp,at:e.at,pos:e.pos.slice(),path:e.path?e.path.slice():null,D:e.D,life:e.life}))};
   renderChart([],T); $("chartEmpty").hidden=true; $("recap").hidden=true;
   renderWild(rolled.length?rolled:[]);
   $("ticker").textContent = rolled.length ? `🎲 Wildcard${rolled.length>1?"s":""}: ${rolled.map(k=>wildName(k)).join(", ")}. Every gate is open.` : "Every gate is open. Here they come.";
@@ -1295,6 +1395,7 @@ function startRun(preview){
   if(!preview){ try{ navigator.wakeLock?.request("screen").then(w=>{ if(S.run===R && !R.done) R.wake=w; else w.release(); }).catch(()=>{}); }catch(_){} }
   beep([523,659]);
   renderLiveHead(R); setHint(); drawYou();
+  if(S.runMode) setRunMode(true);
   R.timer=setInterval(()=>tickRun(false),1000);
   const loop=()=>{ if(S.run!==R || R.done) return; tickRun(true); R.raf=requestAnimationFrame(loop); };
   R.raf=requestAnimationFrame(loop);
@@ -1344,27 +1445,28 @@ function tickRun(draw){
   if(!R.preview && R.speed===1 && !R.arrivals.length) document.title=`⏱ ${fmtClock(R.h*3600)} · No meeting is safe`;
   if(draw){
     if(now-R.etaAt>250){ R.etaAt=now; computeEtas(R); }
-    if(R.keys.size && !R.crashed) follow(R);
+    if(R.keys.size) follow(R);
     drawSprites(); drawYou();
   }
 }
 function stepRun(R,h1,realDt){
   const h0=R.h, dh=h1-h0;
-  if(R.keys.size && !R.crashed && dh>0){
+  if((R.keys.size || R.runB!=null) && dh>0){
     let dx=0, dy=0;
     for(const k of R.keys){ const v=KEYS[k]; if(v){ dx+=v[0]; dy+=v[1]; } }
+    if(!dx && !dy && R.runB!=null){ dx=Math.sin(R.runB*RAD); dy=Math.cos(R.runB*RAD); }
     const L=Math.hypot(dx,dy);
     if(L>0){
-      const mv=RUN_MPH*dh, lat=R.you[1];
+      const mv=R.mph*dh, lat=R.you[1];
       const next=[R.you[0]+dx/L*mv/(KM*Math.cos(lat*RAD)), R.you[1]+dy/L*mv/KM];
-      if(projection(next) && region(next[1],next[0])===region(lat,R.you[0]) && d3.geoContains(nation,next)){ R.you=next; R.drove+=mv; }
-      else if(!R.edgeWarned){ R.edgeWarned=true; toast("Can't run into the water."); }
+      if(projection(next) && region(next[1],next[0])===region(lat,R.you[0]) && d3.geoContains(nation,next)){ R.you=next; R.drove+=mv; const lp=R.youPath[R.youPath.length-1]; if(mi2(lp,next)>0.03) R.youPath.push(next.slice()); }
+      else { if(R.runB!=null){ R.runB=null; syncRunBtn(); toast("You hit the water. Stopped running."); } else if(!R.edgeWarned){ R.edgeWarned=true; toast("Can't run into the water."); } }
     }
-    if(realDt>0){
-      R.driveSec+=realDt;
-      while(R.driveSec>=R.nextRoll && !R.crashed){
-        R.nextRoll+=CRASH_EVERY;
-        if(Math.random()<CRASH_P) crash(R,h1);
+    {
+      R.driveSec+=dh*3600; // meeting-clock seconds, so speed-ups count too
+      while(R.driveSec>=R.nextRoll){
+        const k=R.nextRoll; R.nextRoll+=CRASH_EVERY;
+        if(R.hitSet.has(k)) crash(R,h1);
       }
     }
   }
@@ -1388,23 +1490,36 @@ function stepRun(R,h1,realDt){
 }
 function remOf(e,you){ let r=0, p=e.pos; if(e.path) for(const w of e.path){ r+=mi2(p,w.p)*w.k; p=w.p; } return r+mi2(p,you); }
 const KEYS={w:[0,1],arrowup:[0,1],s:[0,-1],arrowdown:[0,-1],a:[-1,0],arrowleft:[-1,0],d:[1,0],arrowright:[1,0]};
+let HITLOG=[]; try{ HITLOG=JSON.parse(localStorage.getItem("noMeetingSafe.hits.v1")||"[]")||[]; }catch(_){ HITLOG=[]; }
+function renderHits(){
+  const box=$("svHits"); if(!box) return;
+  if(!HITLOG.length){ box.hidden=true; return; }
+  $("svHitsN").textContent=`Hit by ${HITLOG.length} vehicle${HITLOG.length>1?"s":""}`;
+  $("svHitsList").innerHTML="";
+  for(const x of HITLOG.slice(0,50)){ const li=document.createElement("li"); li.textContent=`${x.emo} ${x.name} · ${fmtClock(x.t*3600)} into a ${x.dur} meeting`; $("svHitsList").appendChild(li); }
+}
+function syncRunBtn(){}
 function crash(R,h){
-  R.crashed=true; R.keys.clear(); syncDpad();
-  const e=entFor({key:"w-x", sp:WILD.crash, src:"A driver didn't see you. You're done running.", from:R.you.slice()});
+  const [name,emo]=RIGS[Math.floor(Math.random()*RIGS.length)];
+  R.crashed=true; R.hits.push(name); R.mph=R.mph/2;
+  HITLOG.unshift({name,emo,t:h,dur:S.dur.short,place:S.user.label||""}); try{ localStorage.setItem("noMeetingSafe.hits.v1",JSON.stringify(HITLOG.slice(0,50))); }catch(_){}
+  renderHits();
+  const e=entFor({key:"w-x"+R.hits.length, sp:{id:"crash", n:"Hit by a "+name, e:emo, w:WILD.crash.w}, src:`The driver couldn't see you over the hood`, from:R.you.slice()});
   R.ents.push(e); arrive(R,e,h);
-  toast("🚗💥 Hit by a car! You're done running.",4500);
-  $("driveHint").textContent="🤕 Hit by a car. You're stuck here.";
+  toast(`${emo}💥 Hit by a ${name}! You limp on at ${+R.mph.toFixed(2)} mph.`,5000);
+  $("driveHint").innerHTML=`🤕 Hit ${R.hits.length}×. <b>WASD</b>/arrows: run at ${+R.mph.toFixed(2)} mph`;
 }
 function arrive(R,e,h){
   e.arrived=h;
-  const a={sp:e.sp, t:h, src:e.src, key:e.key, wild:!!e.wild};
+  const a={sp:e.sp, t:h, src:e.src, key:e.key, wild:!!e.wild, pos:R.you.slice(), mph:R.mph};
   R.arrivals.push(a);
   addToChart(a,R.T);
   renderList(R.arrivals.slice().sort((x,y)=>x.t-y.t),R.T);
   renderLiveHead(R);
-  event(R, e.key==="w-x" ? `${fmt(h)}: 🚗 You got hit by a car.` : `${fmt(h)}: ${e.sp.e} ${e.sp.n} arrived.`);
-  if(R.speed<=60 && e.key!=="w-x") toast(`${e.sp.e} ${e.sp.n} just arrived`);
-  beep(e.key==="w-x"?[200,140]:[660,440]);
+  const isHit=e.key.startsWith("w-x");
+  event(R, isHit ? `${fmt(h)}: ${e.sp.e} ${e.sp.n}.` : `${fmt(h)}: ${e.sp.e} ${e.sp.n} arrived.`);
+  if(R.speed<=60 && !isHit) toast(`${e.sp.e} ${e.sp.n} just arrived`);
+  beep(isHit?[200,140]:[660,440]);
   if(!R.preview && R.speed===1) document.title=`${e.sp.e} arrived · No meeting is safe`;
 }
 function event(R,txt){ R.lastEvent=txt; $("ticker").textContent=txt; }
@@ -1412,7 +1527,7 @@ function renderLiveHead(R){
   const arr=runSorted(R), first=arr[0];
   $("lastLabel").textContent=first ? "Your meeting lasted" : "Meeting in progress";
   $("lastFor").textContent=first ? fmt(first.t) : "No guests yet";
-  $("lastWho").textContent=first ? `before ${first.sp.e} ${first.sp.n} showed up${first.wild?" (a wildcard)":""}. ${first.src}.` : "Every gate is open. Run with WASD or the arrows if things get close.";
+  $("lastWho").textContent=first ? (first.key&&first.key.startsWith("w-x") ? `before ${first.sp.e} a ${first.sp.n.replace(/^Hit by a /,"")} hit you. ${first.src}.` : `before ${first.sp.e} ${first.sp.n} showed up${first.wild?" (a wildcard)":""}. ${first.src}.`) : "Every gate is open. Run with WASD or the arrows if things get close.";
   const s=scoreOf(arr,R.T), [g,cls]=grade(s);
   $("score").textContent=s; const ge=$("grade"); ge.textContent=g; ge.className="grade "+cls;
   $("scoreLabel").textContent=S.dur.noun+" safety, so far";
@@ -1438,7 +1553,7 @@ function follow(R){
   if(dx||dy) svgTop.call(zoom.translateBy,dx/S.t.k,dy/S.t.k);
 }
 function startDriving(k){
-  const R=S.run; if(!R || R.done || R.crashed) return;
+  const R=S.run; if(!R || R.done) return;
   if(!R.keys.has(k)){ R.keys.add(k); syncDpad(); }
   if(!R.autoSped && R.speed<60){
     R.autoSped=true; setSpeed(60);
@@ -1464,7 +1579,7 @@ function skipRun(){
   while(R.h<R.T-1e-9 && !R.done) stepRun(R,Math.min(R.T,R.h+1/240),0);
   finishRun(false);
 }
-function finishRun(early){
+function finishRun(early){ PLAN=null; syncPlan();
   const R=S.run; if(!R || R.done) return;
   R.done=true; R.early=early;
   cancelAnimationFrame(R.raf); clearInterval(R.timer);
@@ -1476,15 +1591,16 @@ function finishRun(early){
   $("preview").disabled=false;
   $("rClock").textContent=fmtClock(R.h*3600);
   beep([523,659,784,1047],0.17);
-  renderResults(); showRecap(R); if(CMP.on) openSimple(false);
+  renderResults(); showRecap(R);
   drawSprites(); drawYou();
+  if(!R.preview) showSheet(R);
 }
 function runSorted(R){ return R.arrivals.slice().sort((a,b)=>a.t-b.t); }
 function renderRunResults(R){
   const T=R.T, arr=runSorted(R), first=arr[0];
   $("lastLabel").textContent=R.preview ? "In the preview, your meeting lasted" : R.early ? "Before you ended it, your meeting lasted" : "Your meeting lasted";
   $("lastFor").textContent = first ? fmt(first.t) : (R.early ? fmt(R.h) : `All ${fmt(T)}`);
-  $("lastWho").textContent = first ? `before ${first.sp.e} ${first.sp.n} showed up${first.wild?" (a wildcard)":""}. ${first.src}.` : "Nothing reached you. You survived.";
+  $("lastWho").textContent = first ? (first.key&&first.key.startsWith("w-x") ? `before ${first.sp.e} a ${first.sp.n.replace(/^Hit by a /,"")} hit you. ${first.src}.` : `before ${first.sp.e} ${first.sp.n} showed up${first.wild?" (a wildcard)":""}. ${first.src}.`) : "Nothing reached you. You survived.";
   const s=scoreOf(arr,T), [g,cls]=grade(s);
   $("score").textContent=s; const ge=$("grade"); ge.textContent=g; ge.className="grade "+cls;
   $("scoreLabel").textContent=S.dur.noun+" safety, this run";
@@ -1508,7 +1624,7 @@ function showRecap(R){
   }
   const extras=[];
   if(R.rolled.length) extras.push(`Wildcards rolled: ${R.rolled.map(wildName).join(", ")}.`);
-  if(R.drove>0.05) extras.push(`You ran ${fmtMi(R.drove)}${R.crashed?" before a car hit you":""}.`);
+  if(R.drove>0.05) extras.push(`You ran ${fmtMi(R.drove)}${R.hits.length?`, hit ${R.hits.length}× (${R.hits.join(", ")}) along the way`:""}.`);
   $("recapTitle").textContent=title;
   $("recapBody").textContent=[body,...extras,"Think you could do better? Try today's daily game."].join(" ");
   $("recap").hidden=false;
@@ -1563,7 +1679,7 @@ function meetShareText(){
     const extra=[];
     for(const k of R.rolled){ extra.push(`${wildEmoji(k)} ${pct(wildP(k))}`); }
     if(R.drove>0.05) extra.push(`🏃 ran ${fmtMi(R.drove)}`);
-    if(R.crashed) extra.push("🚗 hit by a car");
+    if(R.hits.length) extra.push(`🛻 hit ${R.hits.length}×`);
     if(extra.length) lines.push("🎲 "+extra.join(" · "));
   }
   lines.push(SHARE_URL);
@@ -1849,8 +1965,11 @@ addEventListener("keydown",e=>{ if(!DG.open) return; if(e.key==="ArrowLeft"){ DG
 addEventListener("resize",()=>{ if(DG.open) dgResize(); });
 $("dgGo").onclick=dgStart;
 $("dgClose").onclick=dgClose;
-function syncMute(){ $("dgMute").textContent=S.sound?"🔊":"🔇"; $("dgMute").setAttribute("aria-label",S.sound?"Mute":"Unmute"); const b=$("sound"); if(b){ b.textContent=S.sound?"🔔":"🔕"; b.setAttribute("aria-pressed",String(S.sound)); } }
-$("dgMute").onclick=()=>{ S.sound=!S.sound; if(!S.sound){ try{ speechSynthesis.cancel(); }catch(_){} } else { ensureAudio(); beep([660]); } syncMute(); };
+function syncMute(){
+  for(const id of ["dgMute","sound","svSound"]){ const b=$(id); if(!b) continue; b.textContent=S.sound?"🔊":"🔇"; b.setAttribute("aria-label",S.sound?"Mute":"Unmute"); b.setAttribute("aria-pressed",String(S.sound)); b.title=S.sound?"Sound on. Tap to mute":"Sound is off. Tap to unmute"; }
+}
+function toggleSound(){ S.sound=!S.sound; if(!S.sound){ try{ speechSynthesis.cancel(); }catch(_){} } else { ensureAudio(); beep([660]); } syncMute(); }
+$("dgMute").onclick=toggleSound; $("svSound").onclick=toggleSound;
 $("dgCity").onclick=()=>{ if(S.run && !S.run.done){ toast("Your meeting is still going. Finish it to move there."); return; } DG.fromSimple=false; dgClose(); if(setUser(DG.city.lat,DG.city.lng,DG.city.label)) centerOn(DG.city.lat,DG.city.lng,VIEW_K[S.dur.m],600); };
 function dgShareTxt(){
   const rec=loadStore().days[DG.date]; if(!rec || rec.pts===undefined) return "";
@@ -1937,7 +2056,7 @@ $("teaseGo").onclick=()=>setMode("game");
 $("ast").onclick=()=>{ const f=$("footnote"); if(S.mode==="meet" && !$("startbar").hidden){ f.classList.remove("flash"); void f.offsetWidth; f.classList.add("flash"); } else toast("*you're never more than a few hours from a bear.",4000); };
 $("tabGame").onclick=()=>setMode("game");
 $("runGame").onclick=()=>setMode("game");
-$("sound").onclick=()=>{ S.sound=!S.sound; const b=$("sound"); b.setAttribute("aria-pressed",String(S.sound)); b.setAttribute("aria-label",S.sound?"Sound on":"Sound off"); b.textContent=S.sound?"🔔":"🔕"; if(S.sound){ ensureAudio(); beep([660]); } };
+$("sound").onclick=toggleSound; syncMute();
 window.addEventListener("keydown",e=>{
   const R=S.run; if(!R || R.done || S.mode!=="meet" || DG.open) return;
   if(e.target.closest && e.target.closest("input,textarea")) return;
@@ -1956,27 +2075,211 @@ document.querySelectorAll("#dpad button").forEach(b=>{
 const CMP={on:false, heading:null, gotAbs:false, timer:0, raf:0};
 function bearing(a,b){ const p1=a[1]*RAD, p2=b[1]*RAD, dl=(b[0]-a[0])*RAD;
   return (Math.atan2(Math.sin(dl)*Math.cos(p2), Math.cos(p1)*Math.sin(p2)-Math.sin(p1)*Math.cos(p2)*Math.cos(dl))/RAD+360)%360; }
-function etaLong(e,R){ const rem=remOf(e,R.you), base=e.D(R.h); let lo=0, hi=1;
-  while(e.D(R.h+hi)-base<rem && hi<2000) hi*=2; if(hi>=2000) return Infinity;
-  for(let i=0;i<30;i++){ const m=(lo+hi)/2; if(e.D(R.h+m)-base>=rem) hi=m; else lo=m; }
+function runAway(e,R){
+  // mph at which you're moving away from this animal (negative = toward it)
+  let dx=0, dy=0;
+  for(const k of R.keys){ const v=KEYS[k]; if(v){ dx+=v[0]; dy+=v[1]; } }
+  if(!dx && !dy && R.runB!=null){ dx=Math.sin(R.runB*RAD); dy=Math.cos(R.runB*RAD); }
+  const L=Math.hypot(dx,dy); if(!L) return 0;
+  const tgt=e.path&&e.path.length?e.path[e.path.length-1].p:e.pos, a=xy(R.you,tgt), al=Math.hypot(a[0],a[1]); if(!al) return 0;
+  return R.mph*(dx*a[0]+dy*a[1])/(L*al);
+}
+function etaLong(e,R){ const rem=remOf(e,R.you), base=e.D(R.h), va=runAway(e,R); let lo=0, hi=1;
+  const ok=m=>e.D(R.h+m)-base>=rem+va*m;
+  while(!ok(hi) && hi<2000) hi*=2; if(hi>=2000) return Infinity;
+  for(let i=0;i<30;i++){ const m=(lo+hi)/2; if(ok(m)) hi=m; else lo=m; }
   if(e.life!==undefined && R.h+hi>e.life) return Infinity; return hi; }
 function threats(n=3){
   const R=S.run;
   if(R && !R.done){
     return R.ents.filter(e=>e.arrived===null && e.dead===null && e.at===undefined)
       .map(e=>({key:e.key, sid:e.sp.id, e:e.sp.e, n:e.sp.n, src:e.src, pos:e.pos, d:mi2(e.pos,R.you), t:etaLong(e,R)}))
-      .filter(x=>isFinite(x.t)).sort((a,b)=>a.t-b.t).slice(0,n).map(x=>({...x, you:R.you}));
+      .filter(x=>isFinite(x.t) || (R.runB!=null||R.keys.size) && isFinite(etaLong(Object.assign({},R.ents.find(e=>e.key===x.key)),Object.assign({},R,{runB:null,keys:new Set()}))))
+      .sort((a,b)=>(isFinite(a.t)?a.t:1e9+a.d)-(isFinite(b.t)?b.t:1e9+b.d)).slice(0,n).map(x=>({...x, you:R.you}));
   }
   const you=[S.user.lng,S.user.lat];
   return (S.last||[]).filter(a=>isFinite(a.t)).slice(0,n).map((a,i)=>({key:'f'+i, sid:a.sp.id, e:a.sp.e, n:a.sp.n, src:a.f.name, pos:[a.f.lng,a.f.lat], d:a.d, t:a.t, you}));
+}
+
+/* ---------- run planner: best straight-line escape bearing ---------- */
+let PLAN=null; S.runMode=false;
+function planRun(snap){
+  const R0=snap?null:(S.run&&!S.run.done?S.run:null), o=snap?snap.o.slice():R0?R0.you.slice():[S.user.lng,S.user.lat], h0=snap?0:R0?R0.h:0, T=snap?snap.T:R0?R0.T:S.dur.m/60;
+  const P=w=>w.map(q=>({p:xy(q.p,o),k:q.k}));
+  const hitSet=snap?snap.hitSet:R0?R0.hitSet:null, sec0=snap?0:R0?R0.driveSec:0;
+  let src;
+  if(snap) src=snap.ents.map(e=>({sp:e.sp,at:e.at,pos:e.at===undefined?xy(e.pos,o):null,path:e.path?P(e.path):null,D:e.D,prevD:0,life:e.life}));
+  else if(R0) src=R0.ents.filter(e=>e.arrived===null&&e.dead===null).map(e=>({sp:e.sp,at:e.at,pos:e.at===undefined?xy(e.pos,o):null,path:e.path?P(e.path):null,D:e.D,prevD:e.prevD,life:e.life}));
+  else src=(S.last||[]).filter(a=>isFinite(a.t)).slice(0,40).map(a=>a.sp.ocean?{sp:a.sp,at:a.t}:{sp:a.sp,pos:xy([a.f.lng,a.f.lat],o),path:a.road?P(roadPath(a.F,null,a.exit)):null,D:h=>distAt(a.sp,h),prevD:0});
+  if(!src.length || T-h0<=0) return {none:true,o};
+  const MPH=snap?RUN_MPH:R0?R0.mph:RUN_MPH, maxD=MPH*(T-h0), stepD=Math.max(0.2,maxD/120), land=[];
+  for(let b=0;b<360;b+=10){
+    const ux=Math.sin(b*RAD), uy=Math.cos(b*RAD); let ok=0;
+    for(let d=stepD; d<=maxD+1e-9; d+=stepD){ const q=unxy([ux*d,uy*d],o); if(!projection(q) || region(q[1],q[0])!==region(o[1],o[0]) || !d3.geoContains(nation,q)) break; ok=d; }
+    land.push(ok);
+  }
+  const dt=Math.min(1/240,(T-h0)/400);
+  function sim(b,mph,stop){
+    const ux=Math.sin(b*RAD), uy=Math.cos(b*RAD);
+    const E=src.map(e=>({sp:e.sp,at:e.at,pos:e.pos&&e.pos.slice(),path:e.path&&e.path.slice(),D:e.D,prevD:e.prevD,life:e.life,done:false}));
+    let h=h0, ran=0, y=[0,0], th=0, first=Infinity, who=null, caught=null, rs=sec0, nx=Math.floor(sec0/CRASH_EVERY+1e-9)*CRASH_EVERY+CRASH_EVERY, sp=mph, hits=0;
+    while(h<T-1e-9){
+      const h1=Math.min(T,h+dt);
+      if(sp>0 && ran<stop){
+        const mv=Math.min(sp*(h1-h),stop-ran); ran+=mv; y=[ux*ran,uy*ran];
+        rs+=(h1-h)*3600;
+        while(hitSet && rs>=nx){ if(hitSet.has(nx)){ hits++; sp/=2; const t=h1; th+=WILD.crash.w*(T-t)/T; if(t<first){ first=t; who={e:"🛻",n:"Truck"}; caught=y.slice(); } } nx+=CRASH_EVERY; }
+      }
+      for(const e of E){
+        if(e.done) continue;
+        let t=null;
+        if(e.at!==undefined){ if(h1>=e.at) t=e.at; }
+        else {
+          const hE=e.life!==undefined?Math.min(h1,e.life):h1, d1=e.D(hE); let c=d1-e.prevD; e.prevD=d1;
+          while(c>0){
+            const wp=e.path&&e.path.length?e.path[0]:null, tg=wp?wp.p:y, k=wp?wp.k:1, dx=tg[0]-e.pos[0], dy=tg[1]-e.pos[1], rem=Math.hypot(dx,dy)*k;
+            if(c>=rem){ e.pos=tg.slice(); c-=rem; if(wp){ e.path.shift(); continue; } t=h1; break; }
+            const f=c/rem; e.pos=[e.pos[0]+dx*f,e.pos[1]+dy*f]; c=0;
+          }
+          if(t===null && e.life!==undefined && h1>=e.life) e.done=true;
+        }
+        if(t!==null){ e.done=true; th+=(e.sp.w||1)*(T-t)/T; if(t<first){ first=t; who=e.sp; caught=y.slice(); } }
+      }
+      h=h1;
+    }
+    // pressure at the end: animals still coming, weighted by how soon they'd reach you from there
+    let pr=0;
+    for(const e of E){
+      if(e.done || e.at!==undefined || !e.pos) continue;
+      if(e.life!==undefined && h>=e.life) continue;
+      let r=0, q=e.pos; if(e.path) for(const w of e.path){ r+=Math.hypot(w.p[0]-q[0],w.p[1]-q[1])*w.k; q=w.p; } r+=Math.hypot(y[0]-q[0],y[1]-q[1]);
+      const v=Math.max(0.5,(e.D(h+0.25)-e.D(h))/0.25), tr=r/v;
+      pr+=(e.sp.w||1)*Math.exp(-tr);
+    }
+    return {b,th,first,who,pr,hits,end:caught||y,ran:caught?Math.hypot(caught[0],caught[1]):ran};
+  }
+  const base=sim(0,0,0); let best=null;
+  const better=(r,b)=>!b || r.th<b.th-1e-6 || (Math.abs(r.th-b.th)<1e-6 && (r.first>b.first+1e-6 || (Math.abs(r.first-b.first)<1e-6 || (!isFinite(r.first)&&!isFinite(b.first))) && r.pr<b.pr));
+  const landAt=b=>{ const ux=Math.sin(b*RAD), uy=Math.cos(b*RAD); let ok=0; for(let d=stepD; d<=maxD+1e-9; d+=stepD){ const q=unxy([ux*d,uy*d],o); if(!projection(q) || region(q[1],q[0])!==region(o[1],o[0]) || !d3.geoContains(nation,q)) break; ok=d; } return ok; };
+  for(let i=0;i<36;i++){ if(land[i]<0.2) continue; const r=sim(i*10,MPH,land[i]); if(better(r,best)) best=r; }
+  if(best) for(const db of [-6,-3,3,6]){ const b=(best.b+db+360)%360, L=landAt(b); if(L<0.2) continue; const r=sim(b,MPH,L); if(better(r,best)) best=r; }
+  if(!best) return {water:true,o,base};
+  const gain=(isFinite(best.first)?best.first:T)-(isFinite(base.first)?base.first:T);
+  return {o,h0,T,base,best,b:best.b,gain,end:unxy(best.end,o),score:Math.round(100*Math.exp(-best.th/5)),baseScore:Math.round(100*Math.exp(-base.th/5))};
+}
+function runGainText(P){
+  if(P.none) return "Nothing to run from.";
+  if(P.water) return "Water every way. Nowhere to run.";
+  const m=Math.round(P.gain*60);
+  if(m<1) return "Running barely helps here. Hide.";
+  return `Running this way gives you ${m>=120?fmt(P.gain):m+" more min"}${m>=120?" more":""}`;
+}
+function planText(P){
+  if(P.none) return "Nothing to run from.";
+  if(P.water) return "Water every way. Nowhere to run.";
+  const f=P.best.first, cw=P.best.who;
+  const fate=isFinite(f)?(cw.n==="Truck"?`a truck hits you at ${fmt(f)}, ${fmtMi(P.best.ran)} out`:`${cw.e} ${cw.n} catches you at ${fmt(f)}, ${fmtMi(P.best.ran)} out`):`you make it to the end, ${fmtMi(P.best.ran)} out`;
+  if(P.gain*60<1 && P.score<=P.baseScore) return `Running barely helps. Hide. (${fate})`;
+  return `Run this way: ${P.gain*60>=1?"+"+fmt(P.gain)+" · ":""}${fate}`;
+}
+function setRunMode(on){
+  S.runMode=on; const R=S.run&&!S.run.done?S.run:null;
+  if(on){ PLAN=planRun(); if(R && !PLAN.none && !PLAN.water){ R.runB=PLAN.b; } else if(R && (PLAN.none||PLAN.water)) toast("🏃 "+planText(PLAN)); }
+  else { PLAN=null; if(R) R.runB=null; }
+  syncPlan(); drawYou();
+}
+function refreshPlan(){
+  if(!S.runMode || (S.run && S.run.done) || !nation){ if(PLAN && !(S.run&&!S.run.done)){ PLAN=null; syncPlan(); } return; }
+  if(S.run && !S.run.done) return;
+  try{ PLAN=planRun(); }catch(_){ PLAN=null; } syncPlan();
+}
+function togglePlan(){
+  if(S.runMode){ setRunMode(false); return; }
+  setRunMode(true);
+  if(PLAN){ if(!CMP.on){ toast("🏃 "+planText(PLAN),5000); if(!PLAN.none&&!PLAN.water){ const q=screen(...PLAN.end); if(!q||q[0]<40||q[1]<40||q[0]>S.W-40||q[1]>S.H-40) fitPoints([PLAN.o,PLAN.end],80,RM?0:600,0.8); } } }
+  syncPlan();
+}
+function syncPlan(){
+  for(const id of ["runPlan","runPlan2"]){ const b=$(id); if(b){ b.setAttribute("aria-pressed",String(!!S.runMode)); b.textContent="🏃 Run"; } }
+  { const a=$("svStill"), b=$("svRunMode"); if(a){ a.setAttribute("aria-pressed",String(!S.runMode)); b.setAttribute("aria-pressed",String(!!S.runMode)); } }
+  drawRunPlan(); if(CMP.on) drawCompass();
+}
+function clearPlan(){ if(PLAN){ PLAN=null; syncPlan(); } }
+function drawRunPlan(){
+  const g=d3.select("#runplan"); g.selectAll("*").remove();
+  if(!PLAN || PLAN.none || PLAN.water || S.mode!=="meet") return;
+  const n=24, pts=[]; for(let i=0;i<=n;i++){ const q=screen(...d3.geoInterpolate(PLAN.o,PLAN.end)(i/n)); if(q) pts.push(q); }
+  if(pts.length<2) return;
+  g.append("path").attr("class","rp").attr("d",d3.line()(pts));
+  const e=pts[pts.length-1], f=PLAN.best.first, caught=isFinite(f);
+  g.append("text").attr("class","end").attr("x",e[0]).attr("y",e[1]+7).attr("text-anchor","middle").text(caught?PLAN.best.who.e:"🏁");
+  g.append("text").attr("class","lbl").attr("x",e[0]).attr("y",e[1]-16).attr("text-anchor","middle").text(caught?`Caught at ${fmt(f)}`:"Made it");
+}
+
+/* ---------- end-of-meeting sheet + map result ---------- */
+function showSheet(R){
+  const T=R.T, arr=runSorted(R).filter(a=>a.t<=T+1e-9), first=arr[0], s=scoreOf(arr,T), [g,cls]=grade(s);
+  $("rsEye").textContent=`${S.dur.noun} · ${S.user.label||"your spot"}${R.early?" · ended early":""}`;
+  $("rsScore").textContent=s; const ge=$("rsGrade"); ge.textContent=g; ge.className="grade "+cls;
+  $("rsLast").textContent = first ? `You lasted ${fmt(first.t)}.` : R.early ? `Nothing reached you before you left at ${fmt(R.h)}.` : "You made it through. Nothing reached you.";
+  // comparison: same start, same dice, standing still vs best run
+  let cmp="";
+  try{
+    const P=planRun(R.snap), ran=R.drove>0.05;
+    if(!P.none){
+      const runS=P.water?null:P.score;
+      cmp=`<span class="${ran?"":"you"}">🧍 Standing still<b>${P.baseScore}/100</b></span><span class="${ran?"you":""}">🏃 Running${P.water?"":" "+compass16(P.b)}<b>${runS===null?"no land":runS+"/100"}</b></span>`;
+    }
+  }catch(_){}
+  $("rsCmp").innerHTML=cmp; $("rsCmp").hidden=!cmp;
+  const o=R.snap?R.snap.o:R.you, tl=$("rsTl"); tl.innerHTML="";
+  if(!arr.length){ const li=document.createElement("li"); li.innerHTML=`<span class="tm">${fmtClock(T*3600)}</span><span class="em">🏁</span><span>Meeting over. Nobody showed up.</span>`; tl.appendChild(li); }
+  for(const a of arr){
+    const li=document.createElement("li"), hit=a.key&&a.key.startsWith("w-x");
+    if(hit) li.className="hit";
+    const away=a.pos?mi2(o,a.pos):0;
+    const what=hit?`${a.sp.n}`:`${a.sp.n} reached you`;
+    const sub=hit?`You keep going at ${+(a.mph).toFixed(2)} mph`:`${a.src}${away>0.05?` · you were ${fmtMi(away)} from the start`:""}`;
+    li.innerHTML=`<span class="tm">${fmtClock(a.t*3600)}</span><span class="em">${a.sp.e}</span><span></span>`;
+    const c=li.lastChild; c.textContent=what; const sm=document.createElement("small"); sm.textContent=sub; c.appendChild(sm);
+    tl.appendChild(li);
+  }
+  $("rsRun").textContent = R.drove>0.05 ? `You ran ${fmtMi(R.drove)}${R.hits.length?`, got hit by ${R.hits.length} vehicle${R.hits.length>1?"s":""}, and finished at ${+R.mph.toFixed(2)} mph`:" without getting hit by anything with a hood"}.` : "You stood still the whole time.";
+  $("rsAll").hidden=!HITLOG.length;
+  if(HITLOG.length){ $("rsAllSum").textContent=`All-time vehicle hits on this device: ${HITLOG.length}`; $("rsAllList").innerHTML=""; for(const x of HITLOG){ const li=document.createElement("li"); li.textContent=`${x.emo} ${x.name} · ${fmtClock(x.t*3600)} into a ${x.dur} meeting${x.place?" near "+x.place:""}`; $("rsAllList").appendChild(li); } }
+  $("rsText").hidden=true;
+  $("rsheet").hidden=false;
+}
+function compass16(b){ return ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"][Math.round(((b%360)+360)%360/22.5)%16]; }
+$("rsX").onclick=()=>$("rsheet").hidden=true;
+$("rsheet").onclick=e=>{ if(e.target.id==="rsheet") $("rsheet").hidden=true; };
+$("rsShare").onclick=()=>copyText(meetShareText(),$("rsText"));
+$("rsAgain").onclick=()=>{ $("rsheet").hidden=true; const sim=CMP.on; startRun(false); if(sim && !CMP.on) openSimple(true); };
+$("rsMap").onclick=()=>{ $("rsheet").hidden=true; if(CMP.on) openSimple(false); const R=S.run; if(R && R.youPath){ const pts=[...R.youPath, ...R.arrivals.filter(a=>a.pos).map(a=>a.pos)]; const c=pts[0]; pts.push(unxy([-1.5,-1.5],c),unxy([1.5,1.5],c)); setTimeout(()=>{ fitPoints(pts,400,RM?0:600,0.75); },80); } drawYou(); };
+function drawRunResult(){
+  const g=d3.select("#runres"); g.selectAll("*").remove();
+  const R=S.run; d3.select("#sprites").attr("display",R&&R.done&&!R.preview?"none":null);
+  if(!R || R.preview || S.mode!=="meet" || !R.youPath) return;
+  const P=R.youPath.concat(R.done?[]:[R.you]).map(q=>screen(q[0],q[1])).filter(Boolean);
+  if(P.length>1) g.append("path").attr("class","yp").attr("d",d3.line()(P));
+  if(!R.done) return;
+  const groups=new Map();
+  for(const a of runSorted(R)){ if(!a.pos || a.t>R.T) continue; const k=a.pos[0].toFixed(3)+","+a.pos[1].toFixed(3); if(!groups.has(k)) groups.set(k,[]); groups.get(k).push(a); }
+  for(const L of groups.values()){
+    const q=screen(L[0].pos[0],L[0].pos[1]); if(!q) continue;
+    const pg=g.append("g").attr("class","pin").attr("transform",`translate(${q[0]},${q[1]})`);
+    pg.append("text").attr("text-anchor","middle").attr("y",-6).text(L.slice(0,4).map(a=>a.sp.e).join("")+(L.length>4?"…":""));
+    pg.append("text").attr("class","tl").attr("text-anchor","middle").attr("y",8).text(fmtClock(L[0].t*3600));
+  }
 }
 CMP.sel=null;
 function drawCompass(){
   if(!CMP.on) return;
   svPills();
   { const R0=S.run, n=R0?R0.arrivals.length:0, hb=$("svHit");
-    $("simple").classList.toggle("damaged",n>0);
-    if(n>0){ const last=R0.arrivals[n-1]; hb.hidden=false; hb.textContent=last.sp.e; hb.style.top=$("svArrow").style.top||"52%";
+    const live=R0&&!R0.done;
+    $("simple").classList.toggle("damaged",live&&n>0);
+    if(live&&n>0){ const last=R0.arrivals[n-1]; hb.hidden=false; hb.textContent=last.sp.e; hb.style.top=$("svArrow").style.top||"52%";
       if(n!==CMP.hits){ const ar=$("svArrow"); ar.classList.remove("shake"); void ar.offsetWidth; ar.classList.add("shake"); } }
     else hb.hidden=true;
     CMP.hits=n; }
@@ -1989,7 +2292,8 @@ function drawCompass(){
   const dots=$("svDots");
   const seen=new Set();
   const placed=[], byPlace=new Map();
-  for(const x of [sel,...list]){ const k=x.pos[0].toFixed(3)+","+x.pos[1].toFixed(3); if(!byPlace.has(k)) byPlace.set(k,x); }
+  for(const x of [sel,...list]){ const k=x.pos[0].toFixed(3)+","+x.pos[1].toFixed(3); if(!byPlace.has(k) && byPlace.size<5) byPlace.set(k,x); }
+  const more=list.filter(x=>![...byPlace.values()].includes(x)).length;
   [...byPlace.values()].forEach(x=>{
     let ang=bearing(x.you,x.pos)-H, a, dx, dy, t, px, py, tries=0;
     do{ a=ang*RAD; dx=Math.sin(a); dy=-Math.cos(a);
@@ -2002,18 +2306,24 @@ function drawCompass(){
     { const el=!(R&&!R.done)&&CMP.t0?(performance.now()-CMP.t0)/3600000:0, m=(x.t-el)*60; b.style.setProperty("--ring", m<3?"#FF3B30":m<10?"#FF9500":m<20?"#FFD60A":"transparent"); } b.classList.toggle("sel",x===sel);
     b.style.left=px+"px"; b.style.top=py+"px"; b.style.zIndex=x===sel?2:1; seen.add(x.key);
   });
+  { const mb=$("svMapBtn"); mb.textContent=more>0?`+${more}, see detailed map`:"View detailed map"; mb.style.top=(cy+my+8)+"px"; }
   [...dots.children].forEach(b=>{ if(!seen.has(b.dataset.k)) b.remove(); });
   const a=bearing(sel.you,sel.pos)-H;
+  { const ra=$("svRunArrow"), ok=PLAN&&!PLAN.none&&!PLAN.water; ra.hidden=!ok; if(ok){ const rr=Math.min(mx,my)*0.78, ang=(PLAN.b-H)*RAD; ra.style.left=(cx+Math.sin(ang)*rr)+"px"; ra.style.top=(cy-Math.cos(ang)*rr)+"px"; ra.querySelector("svg").style.transform=`rotate(${PLAN.b-H}deg)`; $("svRunLbl").style.top=(Math.cos(ang)<0?"-30px":"68px"); } }
   const ar=$("svArrow"); ar.style.opacity=1; ar.style.transform=`translate(-50%,-50%) rotate(${a}deg)`;
   $("svEye").textContent=R&&!R.done ? `Incoming · ${fmtClock(R.h*3600)} into the meeting` : "First to reach you";
   $("svName").textContent=`${sel.e} ${sel.n}`;
   const idle=!(R&&!R.done), el=idle&&CMP.t0?(performance.now()-CMP.t0)/1000:0, sec=Math.max(0,sel.t*3600-el);
-  $("svTime").innerHTML=sec<6000 ? `${fmtClock(sec)}<small>${sec<3600?"min":"hr"}</small>` : `${fmt(sel.t)}`;
-  $("svSub").textContent=sec<=0?"it's here":"until it reaches you";
-  $("svMeta").textContent=`${fmtMi(sel.d)} away · ${sel.src} · ${CMP.heading===null?"north up":"compass on"}`;
+  if(!isFinite(sec)){ $("svTime").innerHTML="∞"; $("svSub").textContent="can't catch you while you run"; }
+  else { $("svTime").innerHTML=sec<6000 ? `${fmtClock(sec)}<small>${sec<3600?"min":"hr"}</small>` : `${fmt(sel.t)}`;
+  $("svSub").textContent=sec<=0?"it's here":"until it reaches you"; }
+  { const live=R&&!R.done; $("svProg").hidden=!live; $("svMain").textContent=live?"⏭ Skip to end":"▶ Start meeting";
+    if(live){ $("svProgBar").style.width=(100*R.h/R.T)+"%"; $("svProgTxt").textContent=`${fmtClock(R.h*3600)} / ${fmtClock(R.T*3600)}${R.runB!=null?` · 🏃 ${+R.mph.toFixed(2)} mph`:""}${R.hits.length?` · 🛻×${R.hits.length}`:""}`; } }
+  $("svMeta").textContent=`from ${fmtMi(sel.d)} away · ${sel.src}`;
+  { const pl=$("svPlan"); pl.hidden=!PLAN; if(PLAN) pl.textContent=runGainText(PLAN); }
   setTone(sel.t*60);
 }
-function svPills(){ $("svCity").textContent="📍 "+S.user.label; $("svDur").textContent="⏱ "+S.dur.short+" meeting"; }
+function svPills(){ $("svCity").textContent="📍 "+S.user.label; $("svDur").textContent=S.dur.short==="workday"?"Workday":S.dur.chip; }
 function setTone(min){}
 function openSimple(on){
   CMP.on=on; if(on && !CMP.t0) CMP.t0=performance.now(); $("simple").hidden=!on; $("cmpBtn").setAttribute("aria-pressed",String(on));
@@ -2023,15 +2333,19 @@ function openSimple(on){
 }
 $("svDetail").onclick=()=>openSimple(false);
 function cmpState(){ const b=$("svCmp"), l=$("svCmpLbl"); if(!b) return; const on=CMP.heading!==null; b.classList.toggle("on",on); b.classList.toggle("nudge",!on && !CMP.asked); if(on) l.hidden=true; }
-setTimeout(()=>{ if(CMP.heading===null && !CMP.asked) $("svCmpLbl").hidden=false; },2000);
+setTimeout(()=>{ if(CMP.heading===null && !CMP.asked) $("svCmpLbl").hidden=false; setTimeout(()=>{ if(!CMP.asked) $("svCmpLbl").hidden=true; },30000); },10000);
 $("svCmp").onclick=()=>{ CMP.asked=true; startCompassSensors(); $("svCmpLbl").textContent="Checking for a compass…"; setTimeout(()=>{ if(CMP.heading===null){ $("svCmpLbl").hidden=false; $("svCmpLbl").textContent="No compass here. Arrows stay north-up."; setTimeout(()=>$("svCmpLbl").hidden=true,3000); } cmpState(); },1500); cmpState(); };
 setInterval(cmpState,700);
-function placeBack(){ const b=$("backSimple"); if(!b) return; const run=!$("runbar").hidden; b.style.bottom=run?(Math.max(112,$("runbar").offsetHeight+24))+"px":($("startbar").offsetHeight+28)+"px"; b.style.left=run?"":"auto"; }
+function placeBack(){ const b=$("backSimple"); if(!b) return; const d=$("dpad"); b.style.left="12px"; b.style.right="auto"; b.style.bottom=(d && !d.hidden ? d.offsetHeight+24 : 12)+"px"; }
 $("backSimple").onclick=()=>openSimple(true);
 addEventListener("resize",placeBack);
 setInterval(placeBack,500);
 document.querySelectorAll(".die").forEach(b=>b.addEventListener("click",e=>{ e.stopPropagation(); dieTap(b); }));
 $("svGame").onclick=()=>setMode("game");
+$("runPlan").onclick=togglePlan; $("runPlan2").onclick=togglePlan;
+$("svStill").onclick=()=>{ if(S.runMode) setRunMode(false); }; $("svRunMode").onclick=()=>{ if(!S.runMode) setRunMode(true); };
+$("svMapBtn").onclick=()=>openSimple(false);
+$("svMain").onclick=()=>{ ensureAudio(); const R=S.run; if(R && !R.done) skipRun(); else { startRun(false); if(!CMP.on) openSimple(true); } };
 $("svCity").onclick=()=>{ openSimple(false); $("q").focus(); };
 $("svDur").onclick=()=>{ openSimple(false); $("durSel").focus(); };
 addEventListener("resize",()=>CMP.on&&drawCompass());
