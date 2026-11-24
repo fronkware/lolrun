@@ -49,7 +49,7 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .simple{position:fixed;inset:0;z-index:50;color:#fff;background:var(--sv-bg,#12B35A);transition:background .6s;overflow:hidden;font-family:var(--font-body);user-select:none;-webkit-user-select:none}
 .simple.warn{--sv-bg:#E89A0C}.simple.hot{--sv-bg:#D8402A}.simple.done{--sv-bg:#3B4A42}
 .sv-top{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px))}
-.sv-tag{font-weight:700;font-size:1.05rem;line-height:1.25;margin-bottom:10px;padding-right:104px}
+.sv-tag{font-weight:700;font-size:1.05rem;line-height:1.25;margin-bottom:10px;padding-right:56px}
 .sv-tag span{font-weight:500;font-size:.85rem;opacity:.9}
 .sv-foot{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);text-align:center;font-size:.78rem;opacity:.85;padding:0 16px}
 .sv-pill2{display:inline-flex!important;align-items:center;gap:2px;padding:0 6px!important}
@@ -64,7 +64,7 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .sv-more{font-size:.95rem!important;font-weight:800;color:#fff}
 .sv-dot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:24px;border:0;padding:0;cursor:pointer;transition:left .3s,top .3s}
 .sv-dot.sel{background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.sv-bot{position:absolute;left:max(24px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 28px);right:178px}
+.sv-bot{position:absolute;left:max(24px,env(safe-area-inset-left,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 24px);right:max(24px,env(safe-area-inset-right,0px))}
 .sv-time{font-size:3rem;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
 .sv-time small{font-size:1.6rem;opacity:.6;margin-left:6px}
 .sv-sub{font-size:1.5rem;line-height:1.15;margin-top:4px}
@@ -91,6 +91,14 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .sv-runarrow svg{transition:transform .25s ease-out}
 .sv-runarrow svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 0 #fff) drop-shadow(0 2px 6px rgba(0,0,0,.25))}
 .sv-runarrow span{position:absolute;left:50%;top:68px;transform:translateX(-50%);background:#0A84FF;color:#fff;font-weight:700;font-size:.85rem;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.sv-acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.sv-acts .sv-main{padding:11px 18px;font-size:1rem}
+.sv-acts .sv-detail{padding:11px 16px}
+.sv-top .sv-prog{max-width:none;margin-top:10px}
+.sv-selwrap{display:inline-block;position:relative}
+.sv-selwrap select{appearance:none;-webkit-appearance:none;border:0;border-radius:999px;background:rgba(255,255,255,.25);color:#fff;font:inherit;font-weight:700;padding:2px 30px 4px 14px;cursor:pointer}
+.sv-selwrap select option{color:#111}
+.sv-selwrap::after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:.8em}
 .sv-plan{font-size:.9rem;font-weight:600;margin-top:8px}
 .sv-mapbtn{position:absolute;left:50%;transform:translate(-50%,-50%);border:0;border-radius:999px;background:rgba(255,255,255,.22);color:#fff;font-weight:700;font-size:.85rem;padding:7px 14px;white-space:nowrap;cursor:pointer;z-index:2}
 .sv-meta{font-size:.9rem;opacity:.85;margin-top:6px}
@@ -187,7 +195,19 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .legwild small{display:block;color:var(--muted);font-size:.7rem}
 .legend .ends{display:flex;justify-content:space-between;width:130px;color:var(--muted)}
 
-.startbar{left:auto;right:12px;bottom:12px;transform:none;width:min(300px,calc(100% - 24px));display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:12px;border-radius:22px;background:color-mix(in srgb,var(--card) 94%,transparent);border:1.5px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.18)}
+.bs-short{display:none}
+@media (max-width:600px){.bs-long{display:none}.bs-short{display:inline}}
+.startbox .gate.huge{font-size:1.05rem;padding:14px 12px;width:100%}
+.startwrap{left:auto;right:12px;bottom:12px;transform:none;width:min(300px,calc(100% - 24px));display:flex;flex-direction:column;gap:8px;background:none;border:0;padding:0;box-shadow:none}
+.startwrap[hidden]{display:none!important}
+.startwrap .dailyout{width:100%;padding:11px 12px;box-shadow:0 6px 18px rgba(0,0,0,.12);background:color-mix(in srgb,var(--card) 96%,transparent)}
+.sb-loc{border:0;background:none;padding:0;text-align:left;font-weight:800;font-size:1rem;color:var(--ink);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-loc:hover span{text-decoration:underline}
+.startbox .pitch{margin:0}
+.sb-mode select{background:var(--soft);color:var(--sea);font-weight:700;font-size:.9rem;padding:9px 30px 9px 14px;height:100%}
+.sb-mode::after{color:var(--sea)}
+.runbar .sb-mode select{padding:6px 28px 6px 12px;font-size:.85rem}
+.startbox{position:static!important;width:auto!important;left:auto;right:auto;bottom:auto;flex-direction:column;align-items:stretch;gap:8px;padding:12px;border-radius:22px;background:color-mix(in srgb,var(--card) 94%,transparent);border:1.5px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.18)}
 .pitch{margin:0;text-align:center;font-size:.9rem;color:var(--muted)}
 .gate{border:0;border-radius:16px;background:var(--accent);color:var(--accent-ink);font-family:var(--font-display);font-weight:800;font-size:1.3rem;padding:14px 18px;box-shadow:0 4px 0 color-mix(in srgb,var(--accent) 55%,#000);transition:transform .08s}
 .gate:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 color-mix(in srgb,var(--accent) 55%,#000)}
@@ -299,6 +319,36 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .rs-cmp span{flex:1;background:var(--soft);border-radius:12px;padding:8px 10px;font-size:.85rem;color:var(--muted)}
 .rs-cmp span b{display:block;font-size:1.2rem;color:var(--ink)}
 .rs-cmp span.you{outline:2px solid #0A84FF}
+.rs-lbl{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.rs-title{font-weight:800;font-size:1.2rem;line-height:1.2}
+.rs-tag{font-size:.82rem;color:var(--muted);margin-bottom:10px}
+.rs-lbl2{font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rs-axis{position:relative;margin:14px 6px 10px;height:var(--h,64px)}
+.rs-axis .ln{position:absolute;left:0;right:0;bottom:22px;height:3px;border-radius:2px;background:var(--line)}
+.rs-axis .tk{position:absolute;bottom:0;transform:translateX(-50%);font-size:.7rem;color:var(--muted);font-family:var(--font-mono,ui-monospace,monospace)}
+.rs-axis .tk::before{content:"";position:absolute;left:50%;bottom:16px;width:1px;height:10px;background:var(--muted);opacity:.5}
+.rs-axis .ev{position:absolute;transform:translateX(-50%);font-size:1.3rem;line-height:1;text-align:center}
+.rs-axis .ev::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:var(--stem,6px);background:currentColor;opacity:.35}
+.rs-axis .ev.hit{color:#C0392B}
+.rs-axis .none{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:.9rem;color:var(--muted)}
+.rs-stance{font-size:.85rem;color:var(--muted);margin-top:2px}
+.rs-chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.rs-chips span{display:inline-flex;flex-direction:column;align-items:center;min-width:46px;background:var(--soft);border-radius:12px;padding:6px 8px;font-size:1.25rem;line-height:1.1}
+.rs-chips span small{font-size:.7rem;color:var(--muted);font-family:var(--font-mono,ui-monospace,monospace);margin-top:2px}
+.rs-chips span.hit small{color:#C0392B}
+.rs-chips span.more{font-size:.95rem;font-weight:800;justify-content:center;color:var(--muted)}
+.rs-map{border-radius:14px;overflow:hidden;background:#BFE3F5;margin-top:4px}
+.rs-map svg{display:block;width:100%;height:auto}
+.rs-map .land{fill:#F3EBDD;stroke:#d8ccb6;stroke-width:.6}
+.rs-map .rd{fill:none;stroke:#cdb58f;stroke-width:.7;opacity:.7}
+.rs-map .ap{fill:none;stroke:#C0392B;stroke-width:1.6;stroke-dasharray:2 3;opacity:.75}
+.rs-map .yp{fill:none;stroke:#0A84FF;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.rs-map .yp.should{stroke-dasharray:7 6}
+.rs-map .em{font-size:16px;text-anchor:middle;dominant-baseline:central}
+.rs-map .tl{font-size:10px;font-weight:700;fill:#C0392B;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.rs-map .ol{font-size:10.5px;font-weight:700;fill:#5a2a22;paint-order:stroke;stroke:#fff;stroke-width:3.5px}
+.rs-map .yl{font-size:10px;font-weight:700;fill:#0A84FF;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.rs-cap{font-size:.8rem;color:var(--muted);margin:6px 0 12px}
 .rs-tl{list-style:none;margin:8px 0;padding:0;border-top:1px solid var(--line)}
 .rs-tl li{display:grid;grid-template-columns:52px 28px 1fr;gap:6px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);font-size:.92rem}
 .rs-tl .tm{font-family:var(--font-mono,ui-monospace,monospace);color:var(--muted);font-size:.82rem}
@@ -492,22 +542,26 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
         <div class="diebox"><button class="die" type="button" aria-label="Roll a random event">🎲</button><span class="dielbl left">Tempt fate!</span></div>
         <button type="button" id="zme" aria-label="Center the map"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg></button>
       </div>
-      <div class="overlay startbar" id="startbar">
-        <p class="pitch" id="footnote">*you're never more than a few hours from a bear.</p>
-        <div class="startrow">
-          <select id="durSel" aria-label="Meeting length"></select>
-          <button class="gate huge" id="startMeet" type="button">▶ Start</button>
+      <div class="overlay startwrap" id="startbar">
+        <div class="startbar startbox">
+          <button class="sb-loc" id="sbLoc" type="button" title="Use my location">📍 <span id="sbLocName">–</span></button>
+          <p class="pitch" id="footnote">*you're never more than a few hours from a bear.</p>
+          <div class="startrow">
+            <select id="durSel" aria-label="Meeting length"></select>
+            <span class="sb-mode sv-selwrap"><select id="sbMode" aria-label="Standing or running during the meeting"><option value="stand">standing</option><option value="run">running</option></select></span>
+          </div>
+          <button class="gate huge" id="startMeet" type="button">Get meeting safety score</button>
         </div>
-        <div class="startrow2"><button class="dailybtn" id="tabGame" type="button">🏆 Daily Challenge <span class="badge" id="dayBadge">#1</span></button><button class="dailybtn runbtn" id="runPlan" type="button" aria-pressed="false">🏃 Run</button></div>
+        <button class="dailybtn dailyout" id="tabGame" type="button">🏆 Daily Challenge <span class="badge" id="dayBadge">#1</span></button>
       </div>
       <div class="overlay runbar" id="runbar" hidden>
         <div class="rclock mono"><span id="rClock">0:00</span><span class="of"> / <span id="rT">30:00</span></span></div>
         <div class="chips sm" id="speeds" role="radiogroup" aria-label="Playback speed"></div>
-        <div class="rrow"><button class="ghost sm" id="skip" type="button">Skip ⏭</button><button class="ghost sm" id="endMeet" type="button">End meeting</button><button class="ghost sm runbtn" id="runPlan2" type="button" aria-pressed="false">🏃 Run</button></div>
+        <div class="rrow"><button class="ghost sm" id="skip" type="button">⏭ Skip to results</button><button class="ghost sm" id="endMeet" type="button">End meeting</button><span class="sb-mode sv-selwrap"><select id="rbMode" aria-label="Standing or running"><option value="stand">standing</option><option value="run">running</option></select></span></div>
         <button class="ghost sm" id="runGame" type="button">🏆 Play the Daily Challenge</button>
         <div class="drivehint" id="driveHint"><b>WASD</b>/arrows: run at 6 mph</div>
       </div>
-      <button class="overlay backsimple" id="backSimple" type="button">◀ Back to simple view</button>
+      <button class="overlay backsimple" id="backSimple" type="button" aria-label="Back to simple view">◀ <span class="bs-long">Back to simple view</span><span class="bs-short">Simple</span></button>
       <div class="overlay dpad" id="dpad" hidden aria-label="Run">
         <button type="button" data-k="w" aria-label="Run north">▲</button>
         <button type="button" data-k="a" aria-label="Run west">◀</button>
@@ -578,7 +632,7 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
     <div class="body">
       <div>
         <h3>Two speeds per animal</h3>
-        <p>Each animal sprints at top speed for as long as it can manage, then settles into a pace it can keep for hours. A cheetah does 64 mph for about 25 seconds, then walks. A wolf only sprints for 20 seconds but trots at 5 mph all day. Cats win up close; dogs, elephants and ostriches win over distance. During a meeting they chase wherever you are, so you can run away at 6 mph, a 10-minute mile. Every 5 seconds of running (meeting time, so speed-ups count) carries a 1 in 100 chance, which makes a hit about 97% likely if you run a whole 30-minute meeting, of getting hit by one of 20 tall-hooded pickups and SUVs (a lifted F-150, a Ram 2500, a Suburban…). You can keep running, but each hit halves your speed.</p>
+        <p>Each animal sprints at top speed for as long as it can manage, then settles into a pace it can keep for hours. A cheetah does 64 mph for about 25 seconds, then walks. A wolf only sprints for 20 seconds but trots at 5 mph all day. Cats win up close; dogs, elephants and ostriches win over distance. During a meeting they chase wherever you are, so you can run away at 6 mph, a 10-minute mile. Every 5 seconds of running (meeting time, so speed-ups count) carries a 1 in 200 chance, which makes a hit about 83% likely if you run a whole 30-minute meeting, of getting hit by one of 20 tall-hooded pickups and SUVs (a lifted F-150, a Ram 2500, a Suburban…). You can keep running, but each hit halves your speed.</p>
         <h3>Wildcards</h3>
         <p>Rolled fresh each time you start. 🕊️ Pigeons (25%) if you're within 25 miles of a city of 300,000 people or more; they fly in from downtown at 45 mph. 🦈 A shark (10%) if you're within 7.5 miles of the ocean: 30 minutes to get an Uber, load it and set up a temporary tank, then 30 mph, and the tank lasts 15 minutes. 🐝 Bees (4%) from a hive up to 3 miles away, at 15 mph. 🥥 A coconut (1%) lands on you at minute 5, wherever you are. Twelve oddballs (a kid with a bug, a goose, your boss…) at 1% each, and your state's local wildlife shows up 1 to 2 hours in.</p>
         <h3>The safety score</h3>
@@ -608,31 +662,38 @@ body{font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
   </details>
   <div class="rsheet" id="rsheet" hidden role="dialog" aria-label="Meeting result"><div class="rs-card">
     <button class="rs-x" id="rsX" type="button" aria-label="Close">✕</button>
+    <div class="rs-title">No meeting is safe*</div>
+    <div class="rs-tag">*you're never more than a few hours from a bear.</div>
     <div class="rs-eye" id="rsEye"></div>
-    <div class="rs-head"><span class="rs-score" id="rsScore"></span><span class="rs-of">/100</span><span class="grade" id="rsGrade"></span></div>
-    <div class="rs-last" id="rsLast"></div>
-    <div class="rs-cmp" id="rsCmp"></div>
-    <ol class="rs-tl" id="rsTl"></ol>
-    <div class="rs-run" id="rsRun"></div>
-    <details class="rs-all" id="rsAll" hidden><summary id="rsAllSum"></summary><ul id="rsAllList"></ul></details>
-    <div class="rs-btns"><button type="button" id="rsShare">Copy result</button><button type="button" id="rsMap">See it on the map</button><button type="button" id="rsAgain">Again</button></div>
+    <div class="rs-head"><span class="rs-score" id="rsScore"></span><span class="rs-of">/100</span><span class="rs-lbl2">Meeting safety score</span></div>
+    <div class="rs-stance" id="rsStance"></div>
+    <div class="rs-axis" id="rsAxis"></div>
+    <div class="rs-map"><svg id="rsMapSvg" role="img" aria-label="Map of your meeting"></svg></div>
+    <div class="rs-cap" id="rsCap"></div>
+    <div class="rs-btns"><button type="button" id="rsShare">Copy</button><button type="button" id="rsMap">See on map</button><button type="button" id="rsGame">Daily Challenge</button></div>
     <textarea class="sharetext" id="rsText" readonly hidden aria-label="Result text to copy"></textarea>
   </div></div>
   <div class="simple" id="simple" hidden role="dialog" aria-label="Simple view">
     <div class="sv-top">
       <div class="sv-tag">No meeting is safe*<br><span>*you're never more than a few hours from a bear.</span></div>
-      <div class="sv-pills"><span class="sv-pill sv-pill2"><button id="svCity" type="button">📍 –</button><i aria-hidden="true">·</i><button id="svDur" type="button">⏱ –</button></span></div></div>
+      <div class="sv-pills"><span class="sv-pill sv-pill2"><button id="svCity" type="button">📍 –</button><i aria-hidden="true">·</i><button id="svDur" type="button">⏱ –</button></span></div>
+      <div class="sv-acts"><button class="sv-main" id="svMain" type="button">Get meeting safety score</button><button class="sv-detail" id="svDetail" type="button" hidden>Detailed view</button></div>
+      <div class="sv-prog" id="svProg" hidden><div class="sv-pbar"><i id="svProgBar"></i></div><span id="svProgTxt"></span></div>
+    </div>
     <div class="sv-pulse" aria-hidden="true"><i></i><i></i><i></i></div>
     <div id="svDots"></div><button class="sv-mapbtn" id="svMapBtn" type="button">View detailed map</button>
     <div class="sv-arrow" id="svArrow"><svg viewBox="-100 -100 200 200" aria-hidden="true"><path class="arw" d="M0,62 L0,-60 M-42,-20 L0,-62 L42,-20" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><path class="crack" d="M-9,-46 L5,-30 L-6,-12 L7,6 L-5,24 L4,44 M7,6 L18,12 M-6,-12 L-16,-6" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <div class="sv-hit" id="svHit" hidden></div>
     <div class="sv-runarrow" id="svRunArrow" hidden><svg viewBox="-100 -100 200 200" aria-hidden="true"><path d="M0,62 L0,-60 M-42,-20 L0,-62 L42,-20" fill="none" stroke="#0A84FF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="svRunLbl">Run this way</span></div>
     <div class="sv-toast" id="svToast" hidden></div>
-    <button class="sv-snd" id="svSound" type="button" aria-label="Unmute">🔇</button><div class="sv-cmp" id="svCmpBox"><button class="cmpbtn" id="svCmp" type="button" aria-label="Turn on compass">🧭</button><span class="cmplbl" id="svCmpLbl" hidden>Tap so arrows point the real way</span></div>
-    <div class="sv-bot"><div class="sv-eye" id="svEye">Incoming</div><div class="sv-name" id="svName">–</div><div class="sv-time" id="svTime">–</div><div class="sv-sub" id="svSub">until it arrives</div><div class="sv-meta" id="svMeta"></div>
-      <div class="sv-prog" id="svProg" hidden><div class="sv-pbar"><i id="svProgBar"></i></div><span id="svProgTxt"></span></div>
-      <div class="sv-ctrl"><div class="sv-seg" role="group" aria-label="During the meeting"><button id="svStill" type="button" aria-pressed="true">🧍 Stand</button><button id="svRunMode" type="button" aria-pressed="false">🏃 Run</button></div></div><div class="sv-plan" id="svPlan" hidden></div></div>
-    <div class="sv-btns"><div class="diebox sv-die2"><span class="dielbl">Tempt fate!</span><button class="die" type="button" aria-label="Roll a random event">🎲</button></div><button class="sv-detail" id="svDetail" type="button">Detailed view</button><button class="sv-detail" id="svGame" type="button">Daily Challenge</button><button class="sv-main" id="svMain" type="button">▶ Start meeting</button></div>
+    <div class="sv-cmp" id="svCmpBox"><button class="cmpbtn" id="svCmp" type="button" aria-label="Turn on compass">🧭</button><span class="cmplbl" id="svCmpLbl" hidden>Tap so arrows point the real way</span></div>
+    <div class="sv-bot">
+      <div class="sv-meta" id="svMeta"></div>
+      <div class="sv-name" id="svName">–</div>
+      <div class="sv-time" id="svTime">–</div>
+      <div class="sv-sub"><span id="svSub">until it reaches you</span> <span class="sv-selwrap"><select id="svMode" aria-label="Standing or running during the meeting"><option value="stand">standing</option><option value="run">running</option></select></span></div>
+      <div class="sv-plan" id="svPlan" hidden></div>
+    </div>
   </div>
   <div class="simple dg" id="game" hidden role="dialog" aria-label="Zoo Stack">
     <canvas id="dgCanvas"></canvas>
@@ -683,7 +744,7 @@ const CATS = new Set(["lion","tiger","leopard","jaguar","cheetah","snowleopard",
 const BEARS = new Set(["grizzly","blackbear","polarbear","slothbear"]);
 const DOGS = new Set(["wolf","wilddog","dhole","hyena"]);
 const MEAT = new Set([...CATS,...BEARS,...DOGS,"croc","gator","komodo","chimp"]);
-const RUN_MPH = 6, CRASH_EVERY = 5, CRASH_P = 0.01;
+const RUN_MPH = 6, CRASH_EVERY = 5, CRASH_P = 0.005;
 // tall-hooded trucks and SUVs: the front-end heights that hit pedestrians in the torso and head
 const RIGS=[
   ["Lifted Ford F-150","🛻"],["Ram 1500","🛻"],["Ram 2500 HD","🛻"],["Ram 3500 dually","🛻"],["Chevy Silverado 1500","🛻"],
@@ -1298,11 +1359,11 @@ function setHint(){
 }
 function renderResults(){
   const u=S.user, T=S.dur.m/60, list=arrivals(u.lat,u.lng);
-  S.last=list; setTimeout(refreshPlan,0);
+  S.last=list; setTimeout(refreshPlan,0); svPills();
   $("spotLabel").textContent=u.example ? "Example spot · tap the map to use yours" : u.approx ? "Your rough spot, from your internet connection · tap the map to fix it" : "Your spot";
   $("where").textContent=u.label;
   $("coords").textContent=`${Math.abs(u.lat).toFixed(3)}°${u.lat>=0?"N":"S"}, ${Math.abs(u.lng).toFixed(3)}°${u.lng>=0?"E":"W"}`;
-  $("startMeet").textContent="▶ Start"; if($("durSel")) $("durSel").value=DURS.indexOf(S.dur);
+  $("startMeet").textContent="Get meeting safety score"; if($("durSel")) $("durSel").value=DURS.indexOf(S.dur);
   $("rT").textContent=fmtClock(S.dur.m*60);
   const R=S.run;
   if(R && R.done){ renderRunResults(R); }
@@ -1603,7 +1664,7 @@ function renderRunResults(R){
   $("lastWho").textContent = first ? (first.key&&first.key.startsWith("w-x") ? `before ${first.sp.e} a ${first.sp.n.replace(/^Hit by a /,"")} hit you. ${first.src}.` : `before ${first.sp.e} ${first.sp.n} showed up${first.wild?" (a wildcard)":""}. ${first.src}.`) : "Nothing reached you. You survived.";
   const s=scoreOf(arr,T), [g,cls]=grade(s);
   $("score").textContent=s; const ge=$("grade"); ge.textContent=g; ge.className="grade "+cls;
-  $("scoreLabel").textContent=S.dur.noun+" safety, this run";
+  $("scoreLabel").textContent=S.dur.noun+" safety, this run · "+stanceText(R);
   $("chartLabel").textContent="Who showed up, and when"; $("listLabel").textContent="Arrival order, this run";
   renderChart(arr,T);
   $("chartEmpty").hidden=arr.length>0; $("chartEmpty").textContent=arr.length?"":"Nobody made it.";
@@ -1674,7 +1735,8 @@ function meetShareText(){
   const lines=[`🦁 No meeting is safe · ${S.user.label}`];
   if(R) lines.push(first ? `⏱️ My ${S.dur.short} meeting lasted ${fmt(first.t)} before ${first.sp.e} showed up` : `⏱️ My ${S.dur.short} meeting survived every zoo in America`);
   else lines.push(first ? `⏱️ My meeting can last ${fmt(first.t)} before ${first.sp.e} shows up` : "⏱️ My meeting can last forever");
-  lines.push(`🛡️ ${S.dur.short} meeting safety: ${s}/100 (${g})`, row.join(""), `👥 ${n} ${n===1?"guest":"guests"} in ${fmt(T)}`);
+  const tl=R ? (list.filter(a=>a.t<=T).slice(0,5).map(a=>`${a.sp.e} ${fmtClock(a.t*3600)}`).join(" · ")+(n>5?` · +${n-5}`:"") || "🏁 nobody showed up") : row.join("");
+  lines.push(`🛡️ ${S.dur.short} meeting safety${R?(R.drove>0.05?" (running)":" (standing)"):""}: ${s}/100 (${g})`, tl, `👥 ${n} ${n===1?"guest":"guests"} in ${fmt(T)}`);
   if(R){
     const extra=[];
     for(const k of R.rolled){ extra.push(`${wildEmoji(k)} ${pct(wildP(k))}`); }
@@ -1886,7 +1948,7 @@ let lastTalk=-1;
 function animalTalk(x){
   const pool=PHRASES[x.sid]||GENERIC;
   let k; do{ k=Math.floor(Math.random()*pool.length); }while(k===lastTalk && pool.length>1); lastTalk=k;
-  ensureAudio(); say(pool[k], TALK_PITCH[x.sid]||1, 1);
+  if(!CMP.on){ ensureAudio(); say(pool[k], TALK_PITCH[x.sid]||1, 1); }
   toast(`${x.e} “${pool[k]}”`,2600);
 }
 function tone(f,t0,dur,type,gain,filt){
@@ -1966,10 +2028,10 @@ addEventListener("resize",()=>{ if(DG.open) dgResize(); });
 $("dgGo").onclick=dgStart;
 $("dgClose").onclick=dgClose;
 function syncMute(){
-  for(const id of ["dgMute","sound","svSound"]){ const b=$(id); if(!b) continue; b.textContent=S.sound?"🔊":"🔇"; b.setAttribute("aria-label",S.sound?"Mute":"Unmute"); b.setAttribute("aria-pressed",String(S.sound)); b.title=S.sound?"Sound on. Tap to mute":"Sound is off. Tap to unmute"; }
+  for(const id of ["dgMute","sound"]){ const b=$(id); if(!b) continue; b.textContent=S.sound?"🔊":"🔇"; b.setAttribute("aria-label",S.sound?"Mute":"Unmute"); b.setAttribute("aria-pressed",String(S.sound)); b.title=S.sound?"Sound on. Tap to mute":"Sound is off. Tap to unmute"; }
 }
 function toggleSound(){ S.sound=!S.sound; if(!S.sound){ try{ speechSynthesis.cancel(); }catch(_){} } else { ensureAudio(); beep([660]); } syncMute(); }
-$("dgMute").onclick=toggleSound; $("svSound").onclick=toggleSound;
+$("dgMute").onclick=toggleSound;
 $("dgCity").onclick=()=>{ if(S.run && !S.run.done){ toast("Your meeting is still going. Finish it to move there."); return; } DG.fromSimple=false; dgClose(); if(setUser(DG.city.lat,DG.city.lng,DG.city.label)) centerOn(DG.city.lat,DG.city.lng,VIEW_K[S.dur.m],600); };
 function dgShareTxt(){
   const rec=loadStore().days[DG.date]; if(!rec || rec.pts===undefined) return "";
@@ -2019,19 +2081,19 @@ function buildSearch(){
   q.addEventListener("blur",()=>setTimeout(close,120));
 }
 $("locate").onclick=()=>{
-  if(!navigator.geolocation){ toast("This browser can't share location. Tap the map or search a city."); return; }
+  if(!navigator.geolocation){ toast("This browser can't share your location. Tap the map where you are."); return; }
   toast("Asking for your location…",9000);
   let done=false;
   const fail=msg=>{ if(done) return; done=true; toast(msg,5000); };
-  const timer=setTimeout(()=>fail("No location came back. Tap the map or search a city instead."),9000);
+  const timer=setTimeout(()=>fail("No location came back. Tap the map where you are."),9000);
   try{
     navigator.geolocation.getCurrentPosition(p=>{
       if(done) return; done=true; clearTimeout(timer); $("toast").hidden=true;
       const {latitude:la, longitude:lo}=p.coords;
       if(S.mode!=="meet") setMode("meet");
       if(setUser(la,lo)) centerOn(la,lo,VIEW_K[S.dur.m],700);
-    },()=>{ clearTimeout(timer); fail("Location is blocked here. Tap the map or search a city instead."); },{timeout:8000,maximumAge:600000});
-  }catch(_){ clearTimeout(timer); fail("Location is blocked here. Tap the map or search a city instead."); }
+    },()=>{ clearTimeout(timer); fail("Location is unavailable. Tap the map where you are."); },{timeout:8000,maximumAge:600000});
+  }catch(_){ clearTimeout(timer); fail("Location is unavailable. Tap the map where you are."); }
 };
 svgTop.on("click",e=>{
   if(e.defaultPrevented) return;
@@ -2201,7 +2263,7 @@ function togglePlan(){
 }
 function syncPlan(){
   for(const id of ["runPlan","runPlan2"]){ const b=$(id); if(b){ b.setAttribute("aria-pressed",String(!!S.runMode)); b.textContent="🏃 Run"; } }
-  { const a=$("svStill"), b=$("svRunMode"); if(a){ a.setAttribute("aria-pressed",String(!S.runMode)); b.setAttribute("aria-pressed",String(!!S.runMode)); } }
+  for(const id of ["svMode","sbMode","rbMode"]){ const m=$(id); if(m) m.value=S.runMode?"run":"stand"; }
   drawRunPlan(); if(CMP.on) drawCompass();
 }
 function clearPlan(){ if(PLAN){ PLAN=null; syncPlan(); } }
@@ -2217,44 +2279,155 @@ function drawRunPlan(){
 }
 
 /* ---------- end-of-meeting sheet + map result ---------- */
-function showSheet(R){
-  const T=R.T, arr=runSorted(R).filter(a=>a.t<=T+1e-9), first=arr[0], s=scoreOf(arr,T), [g,cls]=grade(s);
-  $("rsEye").textContent=`${S.dur.noun} · ${S.user.label||"your spot"}${R.early?" · ended early":""}`;
-  $("rsScore").textContent=s; const ge=$("rsGrade"); ge.textContent=g; ge.className="grade "+cls;
-  $("rsLast").textContent = first ? `You lasted ${fmt(first.t)}.` : R.early ? `Nothing reached you before you left at ${fmt(R.h)}.` : "You made it through. Nothing reached you.";
-  // comparison: same start, same dice, standing still vs best run
-  let cmp="";
-  try{
-    const P=planRun(R.snap), ran=R.drove>0.05;
-    if(!P.none){
-      const runS=P.water?null:P.score;
-      cmp=`<span class="${ran?"":"you"}">🧍 Standing still<b>${P.baseScore}/100</b></span><span class="${ran?"you":""}">🏃 Running${P.water?"":" "+compass16(P.b)}<b>${runS===null?"no land":runS+"/100"}</b></span>`;
-    }
-  }catch(_){}
-  $("rsCmp").innerHTML=cmp; $("rsCmp").hidden=!cmp;
-  const o=R.snap?R.snap.o:R.you, tl=$("rsTl"); tl.innerHTML="";
-  if(!arr.length){ const li=document.createElement("li"); li.innerHTML=`<span class="tm">${fmtClock(T*3600)}</span><span class="em">🏁</span><span>Meeting over. Nobody showed up.</span>`; tl.appendChild(li); }
-  for(const a of arr){
-    const li=document.createElement("li"), hit=a.key&&a.key.startsWith("w-x");
-    if(hit) li.className="hit";
-    const away=a.pos?mi2(o,a.pos):0;
-    const what=hit?`${a.sp.n}`:`${a.sp.n} reached you`;
-    const sub=hit?`You keep going at ${+(a.mph).toFixed(2)} mph`:`${a.src}${away>0.05?` · you were ${fmtMi(away)} from the start`:""}`;
-    li.innerHTML=`<span class="tm">${fmtClock(a.t*3600)}</span><span class="em">${a.sp.e}</span><span></span>`;
-    const c=li.lastChild; c.textContent=what; const sm=document.createElement("small"); sm.textContent=sub; c.appendChild(sm);
-    tl.appendChild(li);
+function axisLayout(arr,T){
+  // place each arrival at its time; stack ones that would overlap
+  const rows=[], out=[];
+  for(const a of arr){ const f=Math.min(1,Math.max(0,a.t/T)); let r=0; while(rows[r]!==undefined && f-rows[r]<0.075) r++; rows[r]=f; out.push({a,f,r}); }
+  return {out, nrows:Math.max(1,rows.length)};
+}
+function renderAxis(arr,T){
+  const el=$("rsAxis"); el.innerHTML="";
+  const {out,nrows}=axisLayout(arr,T), rowH=26;
+  el.style.setProperty("--h",(34+nrows*rowH)+"px");
+  const ln=document.createElement("div"); ln.className="ln"; el.appendChild(ln);
+  for(const q of [0,0.5,1]){ const t=document.createElement("span"); t.className="tk"; t.style.left=(q*100)+"%"; t.textContent=fmtClock(T*q*3600); el.appendChild(t); }
+  if(!arr.length){ const n=document.createElement("div"); n.className="none"; n.textContent="🏁 Nobody showed up"; el.appendChild(n); return; }
+  for(const {a,f,r} of out){
+    const e=document.createElement("span"); e.className="ev"+(a.key&&a.key.startsWith("w-x")?" hit":"");
+    e.style.left=(f*100)+"%"; e.style.bottom=(28+r*rowH)+"px"; e.style.setProperty("--stem",(6+r*rowH)+"px");
+    e.textContent=a.sp.e; e.title=`${a.sp.n} · ${fmtClock(a.t*3600)}`; el.appendChild(e);
   }
-  $("rsRun").textContent = R.drove>0.05 ? `You ran ${fmtMi(R.drove)}${R.hits.length?`, got hit by ${R.hits.length} vehicle${R.hits.length>1?"s":""}, and finished at ${+R.mph.toFixed(2)} mph`:" without getting hit by anything with a hood"}.` : "You stood still the whole time.";
-  $("rsAll").hidden=!HITLOG.length;
-  if(HITLOG.length){ $("rsAllSum").textContent=`All-time vehicle hits on this device: ${HITLOG.length}`; $("rsAllList").innerHTML=""; for(const x of HITLOG){ const li=document.createElement("li"); li.textContent=`${x.emo} ${x.name} · ${fmtClock(x.t*3600)} into a ${x.dur} meeting${x.place?" near "+x.place:""}`; $("rsAllList").appendChild(li); } }
+}
+function stanceText(R){ return R.drove>0.05 ? `🏃 ran ${fmtMi(R.drove)}` : "🧍 stood still"; }
+function showSheet(R){
+  const T=R.T, arr=runSorted(R).filter(a=>a.t<=T+1e-9), sc=scoreOf(arr,T), [g,cls]=grade(sc);
+  $("rsEye").textContent=`${S.dur.noun} · ${S.user.label||"your spot"}${R.early?" · ended early":""}`;
+  $("rsStance").textContent = R.drove>0.05
+    ? `🏃 You ran ${fmtMi(R.drove)}. Runners risk getting hit by tall trucks and SUVs${R.hits.length?`, and ${R.hits.length} got you`:", but none got you"}.`
+    : "";
+  $("rsStance").hidden=!$("rsStance").textContent;
+  $("rsScore").textContent=sc;
+  renderAxis(arr,T);
+  let plan=null; const ran=R.drove>0.05;
+  if(!ran){ try{ plan=planRun(R.snap); }catch(_){ plan=null; } }
+  drawMiniMap(R,arr,plan);
+  $("rsCap").textContent = ran ? `Blue: the ${fmtMi(R.drove)} you ran${R.hits.length?`, hit by ${R.hits.length} vehicle${R.hits.length>1?"s":""}`:""}. Dashed red: where the animals came from.`
+    : plan && !plan.none && !plan.water ? `Dashed blue: where to run next time. Dashed red: where the animals came from.` : `Dashed red: where the animals came from.`;
   $("rsText").hidden=true;
   $("rsheet").hidden=false;
+}
+function drawMiniMap(R,arr,plan){
+  const svg=d3.select("#rsMapSvg"); svg.selectAll("*").remove();
+  const W=480, H=270; svg.attr("viewBox",`0 0 ${W} ${H}`);
+  const o=R.snap?R.snap.o:R.youPath[0];
+  // the animals that mattered: arrivals first, then whoever ended closest
+  const pathOf=e=>[e.from,...(e.tp||[]),e.pos].filter(Boolean);
+  const live=R.ents.filter(e=>e.at===undefined && e.from && !(e.key||"").startsWith("w-x"));
+  const arrivedKeys=new Set(arr.map(a=>a.key));
+  const pick=[...live.filter(e=>arrivedKeys.has(e.key)), ...live.filter(e=>!arrivedKeys.has(e.key)).sort((a,b)=>mi2(a.pos,R.you)-mi2(b.pos,R.you))].slice(0,5);
+  const you=R.youPath.length>1?R.youPath.concat([R.you]):null;
+  const should=plan&&!plan.none&&!plan.water?[o,plan.end]:null;
+  const pts=[o,...(you||[]),...(should||[])];
+  for(const e of pick) for(const q of pathOf(e)) pts.push(q);
+  // keep the crop local: drop points far beyond the nearest few
+  const far=Math.max(3,d3.quantile(pts.map(q=>mi2(o,q)).sort(d3.ascending),0.9)||3);
+  const box=pts.filter(q=>mi2(o,q)<=far*1.05);
+  box.push(unxy([-1.5,-1.5],o),unxy([1.5,1.5],o));
+  const pr=d3.geoMercator().fitExtent([[18,18],[W-18,H-18]],{type:"MultiPoint",coordinates:box});
+  const gp=d3.geoPath(pr);
+  svg.append("rect").attr("width",W).attr("height",H).attr("fill","#BFE3F5");
+  if(statesGeo.length) svg.append("path").attr("class","land").attr("d",gp({type:"FeatureCollection",features:statesGeo}));
+  if(RD.ok){
+    const [[x0,y0],[x1,y1]]=[[0,0],[W,H]], segs=[];
+    const inv0=pr.invert([x0-40,y1+40]), inv1=pr.invert([x1+40,y0-40]);
+    for(let v=0;v<RD.n;v++){ if(RD.X[v]<inv0[0]||RD.X[v]>inv1[0]||RD.Y[v]<inv0[1]||RD.Y[v]>inv1[1]) continue;
+      for(let k=RD.deg[v];k<RD.deg[v+1];k++){ const w=RD.adj[k]; if(w>v) segs.push([[RD.X[v],RD.Y[v]],[RD.X[w],RD.Y[w]]]); } }
+    if(segs.length) svg.append("path").attr("class","rd").attr("d",gp({type:"MultiLineString",coordinates:segs}));
+  }
+  const line=L=>d3.line()(L.map(q=>pr(q)));
+  for(const e of pick){
+    const P=pathOf(e); if(P.length<2) continue;
+    svg.append("path").attr("class","ap").attr("d",line(P));
+    const s0=pr(P[0]); if(s0[0]>-20&&s0[0]<W+20&&s0[1]>-20&&s0[1]<H+20) svg.append("text").attr("class","em").attr("x",s0[0]).attr("y",s0[1]).attr("opacity",.85).text(e.sp.e);
+  }
+  if(you) svg.append("path").attr("class","yp").attr("d",line(you));
+  if(should){ svg.append("path").attr("class","yp should").attr("d",d3.line()(d3.range(0,1.0001,1/24).map(t=>pr(d3.geoInterpolate(should[0],should[1])(t))))); const e2=pr(should[1]); svg.append("text").attr("class","yl").attr("x",e2[0]).attr("y",e2[1]-10).text("run here"); }
+  const groups=new Map();
+  for(const a of arr){ if(!a.pos) continue; const k=a.pos[0].toFixed(3)+","+a.pos[1].toFixed(3); if(!groups.has(k)) groups.set(k,[]); groups.get(k).push(a); }
+  for(const L of groups.values()){ const q=pr(L[0].pos); svg.append("text").attr("class","em").attr("x",q[0]).attr("y",q[1]-8).text(L.slice(0,3).map(a=>a.sp.e).join("")+(L.length>3?"…":"")); svg.append("text").attr("class","tl").attr("x",q[0]).attr("y",q[1]+12).text(fmtClock(L[0].t*3600)); }
+  // up to 3 distinct places the arrivals came from
+  const seenSrc=new Set(), origins=[];
+  for(const a of arr){ const e=R.ents.find(x=>x.key===a.key); if(!e || !e.from || e.at!==undefined || (a.key||"").startsWith("w-x")) continue; const nm=(e.src||"").split(" · ")[0]; if(!nm || seenSrc.has(nm)) continue; if(origins.some(q=>mi2(q.p,e.from)<0.3)) continue; seenSrc.add(nm); origins.push({p:e.from,nm,em:e.sp.e}); if(origins.length>=3) break; }
+  for(const og of origins){
+    let [px,py]=pr(og.p); const inside=px>=8&&px<=W-8&&py>=8&&py<=H-8, d=mi2(o,og.p);
+    if(!inside){ const c=pr(o), dx=px-c[0], dy=py-c[1], k=Math.min((dx>0?(W-14-c[0]):(14-c[0]))/(dx||1e-9),(dy>0?(H-14-c[1]):(14-c[1]))/(dy||1e-9)); px=c[0]+dx*k; py=c[1]+dy*k; }
+    const g=svg.append("g").attr("class","og"); const lbl=`${inside?"":"→ "}${og.nm}${inside?"":` (${fmtMi(d)})`}`;
+    g.append("circle").attr("cx",px).attr("cy",py).attr("r",4).attr("fill","#C0392B").attr("stroke","#fff").attr("stroke-width",1.5);
+    const anchor=px>W*0.7?"end":px<W*0.3?"start":"middle";
+    g.append("text").attr("class","ol").attr("x",px+(anchor==="start"?7:anchor==="end"?-7:0)).attr("y",py+(py<H/2?18:-9)).attr("text-anchor",anchor).text(lbl);
+  }
+  const y0=pr(o); svg.append("circle").attr("cx",y0[0]).attr("cy",y0[1]).attr("r",5).attr("fill","#0A84FF").attr("stroke","#fff").attr("stroke-width",2);
+  if(!groups.size || mi2(o,R.you)>0.05){ svg.append("text").attr("class","yl").attr("x",y0[0]).attr("y",y0[1]+16).text("You"); }
 }
 function compass16(b){ return ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"][Math.round(((b%360)+360)%360/22.5)%16]; }
 $("rsX").onclick=()=>$("rsheet").hidden=true;
 $("rsheet").onclick=e=>{ if(e.target.id==="rsheet") $("rsheet").hidden=true; };
-$("rsShare").onclick=()=>copyText(meetShareText(),$("rsText"));
-$("rsAgain").onclick=()=>{ $("rsheet").hidden=true; const sim=CMP.on; startRun(false); if(sim && !CMP.on) openSimple(true); };
+$("rsShare").onclick=()=>copyResultImage();
+// ---- copy the result card as an image (falls back to text) ----
+function svgToImage(el){
+  const clone=el.cloneNode(true), src=el.querySelectorAll("*"), dst=clone.querySelectorAll("*");
+  const props=["fill","stroke","stroke-width","stroke-dasharray","stroke-linecap","stroke-linejoin","opacity","font-size","font-weight","font-family","paint-order","text-anchor","dominant-baseline"];
+  src.forEach((n,i)=>{ const cs=getComputedStyle(n); dst[i].setAttribute("style",props.map(k=>`${k}:${cs.getPropertyValue(k)}`).join(";")); });
+  const vb=el.viewBox.baseVal; clone.setAttribute("xmlns","http://www.w3.org/2000/svg"); clone.setAttribute("width",vb.width); clone.setAttribute("height",vb.height);
+  const url="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(new XMLSerializer().serializeToString(clone));
+  return new Promise((ok,no)=>{ const im=new Image(); im.onload=()=>ok(im); im.onerror=no; im.src=url; });
+}
+function rr(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+function wrapText(ctx,t,x,y,maxW,lh){ const words=t.split(" "); let line=""; for(const w of words){ const tt=line?line+" "+w:w; if(ctx.measureText(tt).width>maxW && line){ ctx.fillText(line,x,y); y+=lh; line=w; } else line=tt; } if(line){ ctx.fillText(line,x,y); y+=lh; } return y; }
+async function resultPng(){
+  const W=1080, P=64, F='-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif', EM='"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+  const map=await svgToImage($("rsMapSvg")).catch(()=>null);
+  const mapH=map?Math.round((W-2*P)*270/480):0;
+  const c=document.createElement("canvas"); c.width=W; c.height=1500; const x=c.getContext("2d");
+  x.fillStyle="#fff"; x.fillRect(0,0,W,c.height);
+  let y=P;
+  x.fillStyle="#30C85E"; rr(x,0,0,W,14,0); x.fill();
+  x.fillStyle="#111"; x.font=`800 44px ${F}`; x.textBaseline="top"; x.fillText("No meeting is safe*",P,y); y+=56;
+  x.fillStyle="#777"; x.font=`500 26px ${F}`; x.fillText("*you're never more than a few hours from a bear.",P,y); y+=50;
+  x.fillStyle="#555"; x.font=`600 30px ${F}`; x.fillText($("rsEye").textContent,P,y); y+=52;
+  x.fillStyle="#111"; x.font=`800 120px ${F}`; const sc=$("rsScore").textContent; x.fillText(sc,P,y); const sw=x.measureText(sc).width;
+  x.font=`600 40px ${F}`; x.fillStyle="#888"; x.fillText("/100",P+sw+10,y+64); const ow=x.measureText("/100").width;
+  x.font=`700 28px ${F}`; x.fillStyle="#666"; x.fillText("MEETING SAFETY SCORE",P+sw+ow+40,y+72);
+  y+=140;
+  const st=$("rsStance").textContent; if(st){ x.font=`500 28px ${F}`; x.fillStyle="#555"; y=wrapText(x,st,P,y,W-2*P,38); y+=10; }
+  { const R0=S.run, T=R0.T, arr=runSorted(R0).filter(a=>a.t<=T+1e-9), {out,nrows}=axisLayout(arr,T), rowH=62, AX=P+20, AW=W-2*P-40;
+    const base=y+nrows*rowH+30;
+    x.fillStyle="#E3E3E8"; rr(x,AX,base,AW,6,3); x.fill();
+    x.font=`600 24px ui-monospace,Menlo,monospace`; x.fillStyle="#888"; x.textAlign="center";
+    for(const q of [0,0.5,1]){ x.fillRect(AX+AW*q-1,base-4,2,14); x.fillText(fmtClock(T*q*3600),AX+AW*q,base+20); }
+    if(!arr.length){ x.font=`600 30px ${F}`; x.fillText("🏁 Nobody showed up",W/2,base-50); }
+    for(const {a,f,r} of out){ const ex=AX+AW*f, ey=base-22-r*rowH-40; x.fillStyle=(a.key||"").startsWith("w-x")?"#C0392B":"#aaa"; x.fillRect(ex-1,ey+44,2,base-(ey+44)); x.font=`44px ${EM}`; x.fillText(a.sp.e,ex,ey); }
+    x.textAlign="left"; y=base+64; }
+  if(map){ x.save(); rr(x,P,y,W-2*P,mapH,26); x.clip(); x.drawImage(map,P,y,W-2*P,mapH); x.restore(); y+=mapH+20; }
+  x.fillStyle="#666"; x.font=`500 26px ${F}`; y=wrapText(x,$("rsCap").textContent,P,y,W-2*P,36);
+  y+=24; x.fillStyle="#30C85E"; x.font=`700 30px ${F}`; x.fillText("lolrun.com/meeting",P,y); y+=30+P;
+  const out=document.createElement("canvas"); out.width=W; out.height=y; out.getContext("2d").drawImage(c,0,0);
+  return new Promise(ok=>out.toBlob(ok,"image/png"));
+}
+async function copyResultImage(){
+  const txt=meetShareText();
+  try{
+    if(!navigator.clipboard || !window.ClipboardItem) throw 0;
+    const png=resultPng();
+    await navigator.clipboard.write([new ClipboardItem({"image/png":png,"text/plain":new Blob([txt],{type:"text/plain"})})]);
+    toast("Image copied to clipboard. Paste it into your team chat.");
+  }catch(_){
+    try{ const blob=await resultPng(); const f=new File([blob],"meeting-safety.png",{type:"image/png"});
+      if(navigator.canShare && navigator.canShare({files:[f]})){ await navigator.share({files:[f],text:txt}); return; } }catch(_){}
+    copyText(txt,$("rsText"));
+  }
+}
+$("rsGame").onclick=()=>{ $("rsheet").hidden=true; setMode("game"); };
 $("rsMap").onclick=()=>{ $("rsheet").hidden=true; if(CMP.on) openSimple(false); const R=S.run; if(R && R.youPath){ const pts=[...R.youPath, ...R.arrivals.filter(a=>a.pos).map(a=>a.pos)]; const c=pts[0]; pts.push(unxy([-1.5,-1.5],c),unxy([1.5,1.5],c)); setTimeout(()=>{ fitPoints(pts,400,RM?0:600,0.75); },80); } drawYou(); };
 function drawRunResult(){
   const g=d3.select("#runres"); g.selectAll("*").remove();
@@ -2284,10 +2457,11 @@ function drawCompass(){
     else hb.hidden=true;
     CMP.hits=n; }
   const R=S.run, H=CMP.heading??0, list=threats(40);
+  syncSvActs();
   if(!list.length){ $("svName").textContent="Nothing coming"; $("svTime").textContent="—"; $("svSub").textContent="no zoo animal can reach you"; $("svMeta").textContent=""; $("svDots").innerHTML=""; $("svArrow").style.opacity=0; setTone(Infinity); return; }
   let sel=list.find(x=>x.key===CMP.sel); if(!sel){ sel=list[0]; CMP.sel=sel.key; }
   const W=innerWidth, top=document.querySelector("#simple .sv-top").getBoundingClientRect().bottom+34, bot=document.querySelector("#simple .sv-bot").getBoundingClientRect().top-30;
-  const cx=W/2, cy=(top+bot)/2, mx=W/2-30, my=Math.max(70,(bot-top)/2);
+  const cx=W/2, cy=(top+bot-50)/2, mx=W/2-30, my=Math.max(60,(bot-top-50)/2);
   $("svArrow").style.top=cy+"px"; document.querySelector("#simple .sv-pulse").style.top=cy+"px";
   const dots=$("svDots");
   const seen=new Set();
@@ -2306,24 +2480,24 @@ function drawCompass(){
     { const el=!(R&&!R.done)&&CMP.t0?(performance.now()-CMP.t0)/3600000:0, m=(x.t-el)*60; b.style.setProperty("--ring", m<3?"#FF3B30":m<10?"#FF9500":m<20?"#FFD60A":"transparent"); } b.classList.toggle("sel",x===sel);
     b.style.left=px+"px"; b.style.top=py+"px"; b.style.zIndex=x===sel?2:1; seen.add(x.key);
   });
-  { const mb=$("svMapBtn"); mb.textContent=more>0?`+${more}, see detailed map`:"View detailed map"; mb.style.top=(cy+my+8)+"px"; }
+  { const mb=$("svMapBtn"); mb.textContent=more>0?`+${more}, see detailed map`:"View detailed map"; const low=Math.max(cy+Math.min(mx,my)*0.8, ...placed.map(q=>q[1]+22)); mb.style.top=(low+22)+"px"; }
   [...dots.children].forEach(b=>{ if(!seen.has(b.dataset.k)) b.remove(); });
   const a=bearing(sel.you,sel.pos)-H;
   { const ra=$("svRunArrow"), ok=PLAN&&!PLAN.none&&!PLAN.water; ra.hidden=!ok; if(ok){ const rr=Math.min(mx,my)*0.78, ang=(PLAN.b-H)*RAD; ra.style.left=(cx+Math.sin(ang)*rr)+"px"; ra.style.top=(cy-Math.cos(ang)*rr)+"px"; ra.querySelector("svg").style.transform=`rotate(${PLAN.b-H}deg)`; $("svRunLbl").style.top=(Math.cos(ang)<0?"-30px":"68px"); } }
   const ar=$("svArrow"); ar.style.opacity=1; ar.style.transform=`translate(-50%,-50%) rotate(${a}deg)`;
-  $("svEye").textContent=R&&!R.done ? `Incoming · ${fmtClock(R.h*3600)} into the meeting` : "First to reach you";
   $("svName").textContent=`${sel.e} ${sel.n}`;
   const idle=!(R&&!R.done), el=idle&&CMP.t0?(performance.now()-CMP.t0)/1000:0, sec=Math.max(0,sel.t*3600-el);
-  if(!isFinite(sec)){ $("svTime").innerHTML="∞"; $("svSub").textContent="can't catch you while you run"; }
+  if(!isFinite(sec)){ $("svTime").innerHTML="∞"; $("svSub").textContent="can't catch you while"; }
   else { $("svTime").innerHTML=sec<6000 ? `${fmtClock(sec)}<small>${sec<3600?"min":"hr"}</small>` : `${fmt(sel.t)}`;
   $("svSub").textContent=sec<=0?"it's here":"until it reaches you"; }
-  { const live=R&&!R.done; $("svProg").hidden=!live; $("svMain").textContent=live?"⏭ Skip to end":"▶ Start meeting";
+  { const live=R&&!R.done; $("svProg").hidden=!live;
     if(live){ $("svProgBar").style.width=(100*R.h/R.T)+"%"; $("svProgTxt").textContent=`${fmtClock(R.h*3600)} / ${fmtClock(R.T*3600)}${R.runB!=null?` · 🏃 ${+R.mph.toFixed(2)} mph`:""}${R.hits.length?` · 🛻×${R.hits.length}`:""}`; } }
   $("svMeta").textContent=`from ${fmtMi(sel.d)} away · ${sel.src}`;
   { const pl=$("svPlan"); pl.hidden=!PLAN; if(PLAN) pl.textContent=runGainText(PLAN); }
   setTone(sel.t*60);
 }
-function svPills(){ $("svCity").textContent="📍 "+S.user.label; $("svDur").textContent=S.dur.short==="workday"?"Workday":S.dur.chip; }
+function syncSvActs(){ const R=S.run, live=!!(R&&!R.done); $("svMain").textContent=live?"⏭ Skip to results":"Get meeting safety score"; $("svDetail").hidden=!live; $("svMode").value=S.runMode?"run":"stand"; }
+function svPills(){ $("sbLocName").textContent=S.user.label||"Your spot"; $("svCity").textContent="📍 "+S.user.label; $("svDur").textContent=S.dur.short==="workday"?"Workday":S.dur.chip; }
 function setTone(min){}
 function openSimple(on){
   CMP.on=on; if(on && !CMP.t0) CMP.t0=performance.now(); $("simple").hidden=!on; $("cmpBtn").setAttribute("aria-pressed",String(on));
@@ -2341,9 +2515,9 @@ $("backSimple").onclick=()=>openSimple(true);
 addEventListener("resize",placeBack);
 setInterval(placeBack,500);
 document.querySelectorAll(".die").forEach(b=>b.addEventListener("click",e=>{ e.stopPropagation(); dieTap(b); }));
-$("svGame").onclick=()=>setMode("game");
-$("runPlan").onclick=togglePlan; $("runPlan2").onclick=togglePlan;
-$("svStill").onclick=()=>{ if(S.runMode) setRunMode(false); }; $("svRunMode").onclick=()=>{ if(!S.runMode) setRunMode(true); };
+$("sbMode").onchange=e=>setRunMode(e.target.value==="run"); $("rbMode").onchange=e=>setRunMode(e.target.value==="run");
+$("sbLoc").onclick=()=>$("locate").click();
+$("svMode").onchange=e=>{ setRunMode(e.target.value==="run"); drawCompass(); };
 $("svMapBtn").onclick=()=>openSimple(false);
 $("svMain").onclick=()=>{ ensureAudio(); const R=S.run; if(R && !R.done) skipRun(); else { startRun(false); if(!CMP.on) openSimple(true); } };
 $("svCity").onclick=()=>{ openSimple(false); $("q").focus(); };
