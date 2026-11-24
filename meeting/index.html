@@ -330,7 +330,7 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .rs-axis .ev{position:absolute;transform:translateX(-50%);font-size:1.3rem;line-height:1;text-align:center}
 .rs-axis .ev::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:var(--stem,6px);background:currentColor;opacity:.35}
 .rs-axis .ev.hit{color:#C0392B}
-.rs-axis .none{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:.9rem;color:var(--muted)}
+.rs-axis .none{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:.9rem;color:var(--muted);line-height:1.3}
 .rs-stance{font-size:.85rem;color:var(--muted);margin-top:2px}
 .rs-chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
 .rs-chips span{display:inline-flex;flex-direction:column;align-items:center;min-width:46px;background:var(--soft);border-radius:12px;padding:6px 8px;font-size:1.25rem;line-height:1.1}
@@ -2279,6 +2279,15 @@ function drawRunPlan(){
 }
 
 /* ---------- end-of-meeting sheet + map result ---------- */
+function originName(e){ const s=(e.src||"").split(" · ")[0], m=s.match(/^Wild, from (.*) out$/); return m?`the wild, ${m[1]} away`:s; }
+function nextAfter(R){
+  // the soonest animal still coming when a safe meeting ends
+  let best=null;
+  for(const e of R.ents){ if(e.arrived!==null || e.dead!==null || e.at!==undefined || !e.from || (e.key||"").startsWith("w-x")) continue;
+    let t; try{ t=etaLong(e,Object.assign({},R,{runB:null,keys:new Set()})); }catch(_){ continue; }
+    if(isFinite(t) && (!best || t<best.t)) best={e,t:R.h+t}; }
+  return best;
+}
 function axisLayout(arr,T){
   // place each arrival at its time; stack ones that would overlap
   const rows=[], out=[];
@@ -2291,7 +2300,8 @@ function renderAxis(arr,T){
   el.style.setProperty("--h",(34+nrows*rowH)+"px");
   const ln=document.createElement("div"); ln.className="ln"; el.appendChild(ln);
   for(const q of [0,0.5,1]){ const t=document.createElement("span"); t.className="tk"; t.style.left=(q*100)+"%"; t.textContent=fmtClock(T*q*3600); el.appendChild(t); }
-  if(!arr.length){ const n=document.createElement("div"); n.className="none"; n.textContent="🏁 Nobody showed up"; el.appendChild(n); return; }
+  if(!arr.length){ el.style.setProperty("--h","92px"); const n=document.createElement("div"); n.className="none"; const nx=S.run&&nextAfter(S.run);
+    n.textContent=nx?`🏁 Nobody showed up. Next: ${nx.e.sp.e} ${nx.e.sp.n} in ${fmt(nx.t)}, from ${originName(nx.e)}`:"🏁 Nobody showed up"; el.appendChild(n); return; }
   for(const {a,f,r} of out){
     const e=document.createElement("span"); e.className="ev"+(a.key&&a.key.startsWith("w-x")?" hit":"");
     e.style.left=(f*100)+"%"; e.style.bottom=(28+r*rowH)+"px"; e.style.setProperty("--stem",(6+r*rowH)+"px");
@@ -2324,11 +2334,12 @@ function drawMiniMap(R,arr,plan){
   const pathOf=e=>[e.from,...(e.tp||[]),e.pos].filter(Boolean);
   const live=R.ents.filter(e=>e.at===undefined && e.from && !(e.key||"").startsWith("w-x"));
   const arrivedKeys=new Set(arr.map(a=>a.key));
-  const pick=[...live.filter(e=>arrivedKeys.has(e.key)), ...live.filter(e=>!arrivedKeys.has(e.key)).sort((a,b)=>mi2(a.pos,R.you)-mi2(b.pos,R.you))].slice(0,5);
+  const pick=arr.length?[...live.filter(e=>arrivedKeys.has(e.key)), ...live.filter(e=>!arrivedKeys.has(e.key)).sort((a,b)=>mi2(a.pos,R.you)-mi2(b.pos,R.you))].slice(0,5):[];
   const you=R.youPath.length>1?R.youPath.concat([R.you]):null;
   const should=plan&&!plan.none&&!plan.water?[o,plan.end]:null;
   const pts=[o,...(you||[]),...(should||[])];
   for(const e of pick) for(const q of pathOf(e)) pts.push(q);
+  if(!arr.length){ const nx=nextAfter(R); if(nx) pts.push(nx.e.from, nx.e.pos); }
   // keep the crop local: drop points far beyond the nearest few
   const far=Math.max(3,d3.quantile(pts.map(q=>mi2(o,q)).sort(d3.ascending),0.9)||3);
   const box=pts.filter(q=>mi2(o,q)<=far*1.05);
@@ -2358,6 +2369,7 @@ function drawMiniMap(R,arr,plan){
   // up to 3 distinct places the arrivals came from
   const seenSrc=new Set(), origins=[];
   for(const a of arr){ const e=R.ents.find(x=>x.key===a.key); if(!e || !e.from || e.at!==undefined || (a.key||"").startsWith("w-x")) continue; const nm=(e.src||"").split(" · ")[0]; if(!nm || seenSrc.has(nm)) continue; if(origins.some(q=>mi2(q.p,e.from)<0.3)) continue; seenSrc.add(nm); origins.push({p:e.from,nm,em:e.sp.e}); if(origins.length>=3) break; }
+  if(!arr.length){ const nx=nextAfter(R); if(nx){ const e=nx.e, P=pathOf(e); if(P.length>1) svg.append("path").attr("class","ap").attr("d",line(P)); origins.push({p:e.from,nm:`${e.sp.e} ${originName(e)} · ${fmt(nx.t)}`}); } }
   for(const og of origins){
     let [px,py]=pr(og.p); const inside=px>=8&&px<=W-8&&py>=8&&py<=H-8, d=mi2(o,og.p);
     if(!inside){ const c=pr(o), dx=px-c[0], dy=py-c[1], k=Math.min((dx>0?(W-14-c[0]):(14-c[0]))/(dx||1e-9),(dy>0?(H-14-c[1]):(14-c[1]))/(dy||1e-9)); px=c[0]+dx*k; py=c[1]+dy*k; }
@@ -2405,7 +2417,7 @@ async function resultPng(){
     x.fillStyle="#E3E3E8"; rr(x,AX,base,AW,6,3); x.fill();
     x.font=`600 24px ui-monospace,Menlo,monospace`; x.fillStyle="#888"; x.textAlign="center";
     for(const q of [0,0.5,1]){ x.fillRect(AX+AW*q-1,base-4,2,14); x.fillText(fmtClock(T*q*3600),AX+AW*q,base+20); }
-    if(!arr.length){ x.font=`600 30px ${F}`; x.fillText("🏁 Nobody showed up",W/2,base-50); }
+    if(!arr.length){ x.font=`600 30px ${F}`; const nx=nextAfter(R0); x.fillText("🏁 Nobody showed up",W/2,base-90); if(nx){ x.font=`500 26px ${F}`; x.fillText(`Next: ${nx.e.sp.e} ${nx.e.sp.n} in ${fmt(nx.t)}, from ${originName(nx.e)}`,W/2,base-48); } }
     for(const {a,f,r} of out){ const ex=AX+AW*f, ey=base-22-r*rowH-40; x.fillStyle=(a.key||"").startsWith("w-x")?"#C0392B":"#aaa"; x.fillRect(ex-1,ey+44,2,base-(ey+44)); x.font=`44px ${EM}`; x.fillText(a.sp.e,ex,ey); }
     x.textAlign="left"; y=base+64; }
   if(map){ x.save(); rr(x,P,y,W-2*P,mapH,26); x.clip(); x.drawImage(map,P,y,W-2*P,mapH); x.restore(); y+=mapH+20; }
